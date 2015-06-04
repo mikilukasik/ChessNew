@@ -14,7 +14,12 @@ app.use(morgan("combined"))
 //newAi
 var dletters = ["a","b","c","d","e","f","g","h"]
 var dfigures = ["","King","Queen","Rook","Bishop","Knight","Pawn"]
+
+//this looks like a stinking hack.. 
 var dcolors = ["","Black","White"]
+
+
+
 var allTables=[]
 //var table=[]
 var allMoves=[]
@@ -94,6 +99,7 @@ function whatsThere(i,j,aiTable){
 
 	return pieceThere
 }
+
 function pushAid(x,y,hanyadik,milegyen,fromTable,hit){
 	
 
