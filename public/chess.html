@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chess</title>
+<script src="jquery.js"></script>
+<!-- <script src="ai2.js"></script> -->
+<!-- <script src="trialfunc.js"></script>
+ -->
+<!-- <script src="chessai.js"></script>
+ -->
+
+
+
+ <style>
+	
+	html, body {
+		height: 98%;
+		/*overflow-x: scroll;*/
+	}
+	.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+	}
+	
+	.square img{
+		width:80%; height:auto;;
+	}
+	.darker img{
+		width:80%; height:auto;;
+	}
+	.heading {
+		height: 4%;
+		background-color: grey;
+	}
+	.square {
+		height: 10%;
+		width: 10%;
+	}
+	.left-column {
+		width: 4%;
+		background-color: grey;
+		
+	}
+	.main-table {
+		height: 600px;
+		width: 600px;
+		text-align: center;
+		
+	}
+	.statusCell {
+		display: block;
+		text-align-content: stretch;  
+		height: 100%;
+		width: 100px;
+  		overflow-y: scroll;
+	}
+	.chatTextTr {
+		
+		height: 100%;
+		
+	}
+	.chatCell {
+		display: block;
+		text-align-content: stretch;  
+		height: 566px;
+		width: 220px;
+		/*width: 300px;
+  		*/overflow-y: scroll;
+	}
+	.frame-table {
+		
+		/*text-align-content: stretch;  */
+		height: 602px;
+
+		/*width:95%;
+*/
+  		
+	}
+	
+	.statusTr {
+		height: 100%;
+	}
+	.leftTable {
+		height: 100%;
+	}
+	.darker {
+		background-color: silver;
+		height: 10%;
+		width: 10%;
+	}
+	.myPiece:hover {
+		
+		cursor: pointer;
+	}
+	
+	
+	.selected {
+		background-color: yellow;
+		
+		
+	}
+	/*table {
+  		
+	}*/
+	
+</style>
+
+
+
+
+
+<script >
+//alert()
+
+var tableNum=window.opener.tableNum//1
+
+var dletters = ["a","b","c","d","e","f","g","h"]
+var dfigures = ["","King","Queen","Rook","Bishop","Knight","Pawn"]
+var dcolors = ["","Black","White"]
+var wNext=true
+var wPlayer=window.opener.playerColor//false
+var escConst=2
+var fadeConst=1
+var level=1
+hitValue=0
+var table=[]
+bAi=window.opener.bAi
+wAi=window.opener.wAi
+var alerted=false
+
+var playerID=window.opener.playerName//prompt("What's your name?")
+
+
+var bestHit=0
+var pollNum=0
+					
+		
+// setInterval(function(){
+// 	if((!wNext)&&bAi){
+// 	 	//console.log('bAi')
+// 	 	//var currentTime=Date.now()
+// 	 	makeAMove(ai(false))
+// 	 	//console.log(Date.now()-currentTime+' ms')
+// 	}
+// },800);
+// setInterval(function(){
+// 	if((wNext)&&wAi){
+// 		//console.log('wAi')
+	 	
+// 	 	//var currentTime=Date.now()
+// 	 	makeAMove(ai(true))
+// 	 	//console.log(Date.now()-currentTime+' ms')
+// 	}
+// },800);
+
+			// if(!wNext){
+			
+
+
+
+
+
+
+
+					//poll it!!!
+		setInterval(function(){
+			if(tempMoveString.length<2){
+				refreshTable()
+				//showTable()
+			}
+			if(moveArrayToStrings(getAllMoves(getTableData(table,wPlayer),table,wPlayer))<1||
+				moveArrayToStrings(getAllMoves(getTableData(table,!wPlayer),table,!wPlayer))<1){
+				alertText="Game over"
+				whoCantMove=false
+			}
+			if(!(alertText=="")){
+				if(validateTable(table,wPlayer)==9){
+					alertText+=", you won!"
+				}
+				if(validateTable(table,!wPlayer)==9){
+					alertText+=", you lost."
+				}
+
+			}
+			
+			if (!alerted&&!alertText==""){
+				alerted=true
+				
+
+				if(wAi||bAi){
+					window.close()
+
+				}else{	
+					alert(alertText)
+				}
+			
+
+
+			}
+					},100);
+
+function clickedItTrans(i,j){
+	
+	var clickedField=[j,8-i]
+	var clickedString=dletters[j]+(9-i)
+	
+	clickedIt(clickedField,clickedString)
+//	console.log(clickedField,clickedString)
+
+}
+function coordsToMoveString(a,b,c,d){
+	
+	//console.log( dletters[a]+(b+1)+dletters[c]+(d+1))
+	
+	return dletters[a]+(b+1)+dletters[c]+(d+1)
+}
+
+function drawTable(){
+	$(".ideRakd").empty();
+	var appendTable = $('<table class="main-table"> border="1"')  
+	$(".ideRakd").append(appendTable)
+	
+	if($('.main-table').height()<$('.main-table').width()){
+
+
+		var atHeight = $('.main-table').height();
+		$('.main-table').css({'width':atHeight});
+
+	}else{
+
+		var atWidth = $('.main-table').width();
+		$('.main-table').css({'height':atWidth});
+
+
+	}
+
+
+	if(wPlayer){
+
+
+		for(var i=0;i < 9;i++){
+		   	var rowEndTr=$('</tr>')
+		   	if(i==0){
+		   		var rowTr=$('<tr class="heading row'+i+'">')
+		   		var rowNumber=""
+
+		   	}else{
+		   		var rowTr=$('<tr class="row'+i+'">')
+		   		var rowNumber=(9-i)
+		   	}
+		   	var firstTd=$('<td class="left-column">'+rowNumber+'</td>')
+		   	$(".main-table").append(rowTr)
+		   	$(".row"+i).append(firstTd)
+			
+			for (var j = 0; j < 8; j++) {
+				if(i==0){
+					$(".row"+i).append($('<td>'+dletters[j].toUpperCase()+'</td>'))
+				}else{
+					if ((i+j) & 1) {
+						$(".row"+i).append($('<td onclick="clickedItTrans('+i+','+j+')" class="square '+dletters[j]+(9-i)+'"></td>'))
+					}else{
+						$(".row"+i).append($('<td onclick="clickedItTrans('+i+','+j+')" class="darker '+dletters[j]+(9-i)+'"></td>'))
+					}
+				}
+		   
+			};
+			$(".main-table").append(rowEndTr)
+		   	
+		}
+	
+
+	}else{
+
+
+
+		for(var i=8;i >= 0;i--){
+		   	var rowEndTr=$('</tr>')
+		   	if(i==8){
+		   		var rowTr=$('<tr class="heading row'+i+'">')
+		   		var rowNumber=""
+
+		   	}else{
+		   		var rowTr=$('<tr class="row'+i+'">')
+		   		var rowNumber=(8-i)
+		   	}
+		   	var firstTd=$('<td class="left-column">'+rowNumber+'</td>')
+		   	$(".main-table").append(rowTr)
+		   	$(".row"+i).append(firstTd)
+			
+			for (var j = 7; j >= 0; j--) {
+				if(i==8){
+					$(".row"+i).append($('<td>'+dletters[j].toUpperCase()+'</td>'))
+				}else{
+					if ((i+j+1) & 1) {
+						$(".row"+i).append($('<td onclick="clickedItTrans('+(i+1)+','+j+')" class="square '+dletters[j]+(8-i)+'"></td>'))
+					}else{
+						$(".row"+i).append($('<td onclick="clickedItTrans('+(i+1)+','+j+')" class="darker '+dletters[j]+(8-i)+'"></td>'))
+					}
+				}
+		   
+			};
+			$(".main-table").append(rowEndTr)
+		   	
+		}
+	
+
+	}
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	console.log("drawTable done")
+	
+
+}	
+
+function initTable(){	
+	var wNext=true
+	alerted=false
+	tempString=""							
+	//table = new Array(8)							
+
+
+	var tempTable=$.ajax({
+	    type: 'GET',
+	    url: '/initTable?t='+tableNum,
+	    dataType: 'json',
+	    success: function() { },
+	    data: {},
+	    async: false
+	});
+
+
+	// table=$.getJSON("/initTable")//.responseJSON//,function(){
+	// // 	console.log(arguments[0].table)
+	// // 	table=arguments[0].table
+
+	// // })
+	table=tempTable.responseJSON.table
+	//console.log(table)
+		
+
+
+
+
+	console.log("initTable done")
+	
+}
+function showTable(){								//this will update the displayed table from the array
+	for(var i=0; i<8; i++){
+		for(var j=0; j<8; j++){
+			
+			var thisFigure = $('<img src="cPiecesPng/'+ table[i][j][0]+table[i][j][1]+'.png" alt='+dcolors[table[i][j][0]][0]+dfigures[table[i][j][1]]+'></img>')
+			
+		 	if (table[i][j][4]==true||table[i][j][2]==true) {
+				
+				thisFigure.addClass('selected');
+		 	}else{
+		 		
+		 		
+		 	}
+			var thisSquare = "."+dletters[i]+(j+1)
+
+			
+			
+			$(thisSquare).empty();
+			
+			//if (wNext==wPlayer&&((table[i][j][0]==1&&!wPlayer)||(table[i][j][0]==2&&wPlayer)))thisFigure.addClass('myPiece')
+
+
+			$(thisSquare).append(thisFigure);
+
+		}
+	}
+	showTableStatus()
+	showChat()
+}
+
+
+
+
+
+function showTableStatus(){								//this will update the displayed status 
+
+			
+	$(".statusCell").empty();
+	var thisStatusStr = ""
+	allMoves.forEach(function(thisMoveStr){
+
+		var thisSFigure = '<img src="cPiecesPng/'+thisMoveStr.substring(0,2)+'.png" height=18></img>'
+		var thisMoveHTML =  '<span style="vertical-align: 10%;">'+thisMoveStr.substring(2,6)+'</span>'
+		var thisLayingFigure = '<img src="cPiecesPng/'+thisMoveStr.substring(6)+'.png" class="rotate90" height=18></img>'
+
+		thisStatusStr=thisStatusStr+thisSFigure+thisMoveHTML+thisLayingFigure+'<br>'
+	}) 
+	var thisStatus= $('<p style="font-size:105%">'+thisStatusStr+'</p>')
+	
+	$(".statusCell").append(thisStatus)
+
+	$(".isItYourTurn").empty()
+	if(wNext==wPlayer){
+		$(".isItYourTurn").append($("<div>Your turn</div>"))
+	}else{
+		
+		$(".isItYourTurn").append($("<div>Please wait..</div>"))
+	}
+	
+}
+
+function showChat(){								//this will update the chat field 
+
+			
+	$(".chatCell").empty();
+	var thisChatHTML = ""
+	chatLines.forEach(function(chatLine){
+
+		
+		thisChatHTML = thisChatHTML+'<span>'+chatLine+'</span><br>'
+		
+	}) 
+	var thisChat= $('<p>'+thisChatHTML+'</p>')
+	
+	$(".chatCell").append(thisChat)
+	
+}
+
+
+
+
+
+function moveIt(moveString,intable){    //should be updated from server for en pass, sanc
+		var thistable=[]
+		//var thistable=[]
+		for (var i=0;i<8;i++){
+			thistable[i]=new Array(8)
+			for (var j=0;j<8;j++){
+				thistable[i][j]= new Array (4)
+
+				intable[i][j].forEach(function (value,feCount){
+					thistable[i][j][feCount]=value
+				})
+			}
+		}
+		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this will be captured in another function
+		// thistable=othistable
+		
+
+
+		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
+		
+		(	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==2&&				//es feher
+			moveString[3]==8)	||																//es 8asra lep vagy
+			(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==1&&				//vagy fekete
+			moveString[3]==1)					)												//1re
+		){			
+			//
+			console.log(moveString)																		//AKKOR
+			thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]=5  					//kiralyno lett
+			//thistable[dletters.indexOf(moveString[0])][moveString[1]-1][5]=queenCanMove  		//ugy is mozog
+		}
+
+
+
+
+		//sancolni se volna rossz
+		thistable[dletters.indexOf(moveString[2])][moveString[3]-1]=
+			thistable[dletters.indexOf(moveString[0])][moveString[1]-1]
+		thistable[dletters.indexOf(moveString[0])][moveString[1]-1]=[0,0,false,false,false]//,blankFunction]
+		//wNext=!wNext
+		return thistable
+}
+
+var tempMoveString=""
+
+function makeAMove(whatMove){
+	var tempTable=$.ajax({
+			    type: 'GET',
+			    url: '/move?m='+whatMove+'&t='+tableNum,
+			    dataType: 'json',
+			    success: function() { },
+			    data: {},
+			    async: false
+			});
+			wNext=!wNext
+			return tempTable.responseJSON.table
+}
+// $(".chatInput").keyup(function(event){
+//     if(event.keyCode == 13){
+//         sendChat()
+//     }
+// });
+function sendChat(){
+	var tempTable=$.ajax({
+			    type: 'GET',
+			    url: '/chat?t='+tableNum+'&c='+playerID+": "+$(".chatInput").val(),
+			    dataType: 'json',
+			    success: function() { },
+			    data: {},
+			    async: false,
+			});
+			$(".chatInput").val("")
+			
+}
+
+function refreshTable(){
+	var tempTable=$.ajax({
+			    type: 'GET',
+			    url: '/getTable?t='+tableNum,
+			    dataType: 'json',
+			    success: function() { },
+			    data: {},
+			    async: false
+			});
+			alertText=""
+			var whoCantMove=false
+
+			if(!(pollNum==tempTable.responseJSON.pollnum)){
+
+
+
+
+					//console.log("lefutott")
+					//console.log(pollNum)
+					table=tempTable.responseJSON.table
+					wNext=tempTable.responseJSON.next
+					allMoves=tempTable.responseJSON.allmoves
+					chatLines=tempTable.responseJSON.chat
+					pollNum=tempTable.responseJSON.pollnum
+					showTable()
+
+			}
+			// if(moveArrayToStrings(getAllMoves(getTableData(table,wPlayer),table,wPlayer))<1){
+			// 	alertText="Game over"
+			// 	whoCantMove=true
+			// }
+
+				
+
+			
+}
+
+function clickedIt(clickedField,clickedString){
+	//console.log(tempMoveString)
+	var x=clickedField[0]
+	var y=clickedField[1]
+	var clickedColor=false
+	
+	if ((((table[x][y][0]==1&&wPlayer==false)||(table[x][y][0]==2&&wPlayer==true))||tempMoveString.length>0)&&wNext==wPlayer){
+		// (table[x][y][0]==2)
+		// 	clickedColor=true
+		// }
+
+		if(clickedString==tempMoveString){
+			table[x][y][2]=false
+			clearHighlights()
+			showTable()
+			tempMoveString=""
+		}else{
+			if (table[x][y][0]>0 && tempMoveString=="") {
+				
+					canMove(table[x][y][1],x,y,wPlayer,table).forEach(highLightThem)
+					//console.log(tempMoveString)
+			};
+			if(table[x][y][0]>0||0<tempMoveString.length){
+				
+				tempMoveString+=clickedString
+			
+				if(tempMoveString.length<3){
+					table[x][y][2]=true;
+				}
+				//console.log(getTableData(table,wNext))
+			
+			}
+			if(tempMoveString.length>3){
+				
+				
+				if(table[x][y][4]==true){
+
+					table[x][y][2]=false 
+					//table=moveIt(tempMoveString,table)
+					// send move to server here, res should be  resulting table
+					// var tempTable=$.ajax({
+					//     type: 'GET',
+					//     url: '/move?m='+tempMoveString,
+					//     dataType: 'json',
+					//     success: function() { },
+					//     data: {},
+					//     async: false
+					// });
+					// table=tempTable.responseJSON.table
+					makeAMove(tempMoveString)
+			
+					
+					//clearHighlights()
+					
+					//showTable()
+					tempMoveString=""
+					//wNext=!wNext
+					
+
+				}else{
+					tempMoveString=tempMoveString[0]+tempMoveString[1]
+				}
+
+					
+
+			}
+			showTable()
+
+		}
+	}
+}
+function canMove(what,k,l,isWhite,moveTable){
+	var possibleMoves=[]
+	switch (what) {
+	    // case 0:
+	
+	    case 1:
+	       
+	        	
+	        		possibleMoves= pawnCanMove(k,l,isWhite,moveTable)
+	        			
+	    		
+	        break;
+	    case 2:
+	        		possibleMoves= bishopCanMove(k,l,isWhite,moveTable)
+	        		
+	        break;
+	    case 3:
+	        		possibleMoves= horseCanMove(k,l,isWhite,moveTable)
+	        		
+	        break;
+	    case 4:
+	       			possibleMoves= rookCanMove(k,l,isWhite,moveTable)
+	        		
+	        
+	        break;
+	    case 5:
+	        		possibleMoves= queenCanMove(k,l,isWhite,moveTable)
+	        		
+	        break;
+	    case 9:
+	    			possibleMoves= kingCanMove(k,l,isWhite,moveTable)
+	        		
+	    	break;
+	
+		
+	}
+	
+	for(var  i=possibleMoves.length-1;i>=0;i--){							//sakkba nem lephetunk
+		if(validateTable(moveIt(coordsToMoveString(k,l,possibleMoves[i][0],possibleMoves[i][1]),moveTable),!isWhite)==9){
+			possibleMoves.splice(i,1)
+		}
+	}
+	
+
+
+	if (what==9&&moveTable[k][l][3]){					//lesznek sanc lepesek is a possibleMoves tombben
+		if(validateTable(moveTable,!isWhite)==9){		// de sakkban allunk
+			for(var spliceCount=possibleMoves.length-1; spliceCount>=0; spliceCount--){
+				if(possibleMoves[spliceCount][1]==l&&(possibleMoves[spliceCount][0]==k-2||possibleMoves[spliceCount][0]==k+2)){
+					possibleMoves.splice(spliceCount,1)
+				}
+			}
+
+		}
+
+
+		// remove the sakkot atugrani sem er
+		var removeKmin2=true
+		var removeKplus2=true
+		var removeThis=false
+		for(var  i=possibleMoves.length-1;i>=0;i--){
+			if(possibleMoves[i][1]==l&&possibleMoves[i][0]==k-1) removeKmin2=false
+			if(possibleMoves[i][1]==l&&possibleMoves[i][0]==k+1) removeKplus2=false
+		}
+
+		for(var  i=possibleMoves.length-1;i>=0;i--){
+			if(possibleMoves[i][1]==l&&possibleMoves[i][0]==k-2&&removeKmin2){
+				//possibleMoves.splice(i,1)
+				removeThis=true
+				console.log("to be removed")
+			}
+			if((possibleMoves[i][1]==l&&possibleMoves[i][0]==k+2&&removeKplus2)||removeThis){
+				possibleMoves.splice(i,1)
+				console.log("removed")
+			}
+		}
+
+
+
+		
+
+	}
+
+	return possibleMoves
+
+
+
+}
+function highLightThem(arrayOfCoords){
+	table[arrayOfCoords[0]][arrayOfCoords[1]][4]=true;
+}
+function clearHighlights(){
+	for(var i=0;i<8;i++){
+		for(var j=0;j<8;j++){
+			table[i][j][4]=false;
+			table[i][j][2]=false;
+
+		}				
+	}
+}
+function letsPlay(){
+	drawTable()
+	//if(prompt('Reset ongoing game?  (yes/no)')=='yes'){
+		initTable()  
+	//}
+	refreshTable()
+	//showTable()
+
+	// aimove()
+	// bored(2)
+}
+
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+
+function blankFunction(){
+	alert("blankFunction called");
+
+}
+function isEven(n) {
+  return n == parseFloat(n)? !(n%2) : void 0;
+}
+
+//newAi
+
+
+function getTableData(origTable,isWhite){
+	var returnArray=[]		// elso elem az osszes babu ertekenek osszge, aztan az osszes babu koordinataja
+	var tableValue=0
+	var myTempPieces=[]
+	if (isWhite){
+		var origColor=2
+		var noc=1
+	}else{
+		var origColor=1
+		var noc=2
+	}
+	for(var lookI=0;lookI<8;lookI++){
+		for(var lookJ=0;lookJ<8;lookJ++){
+			//alert(thisTempState[lookI][lookJ][0])
+			if (origTable[lookI][lookJ][0]==origColor){
+				myTempPieces.push([lookI,lookJ,origTable[lookI][lookJ][1]])
+				tableValue+=origTable[lookI][lookJ][1]
+			}else{
+				if (origTable[lookI][lookJ][0]==noc){
+					tableValue-=origTable[lookI][lookJ][1]
+
+				}
+
+			}
+		}
+	}
+	returnArray.push(tableValue)
+	returnArray.push(myTempPieces)
+	return returnArray	// elso elem az osszes babu ertekenek osszge, aztan babkuk
+
+}
+
+
+function whatsThere(i,j,aiTable){
+	var pieceThere=[]
+
+	 //if(aiCalled){
+		if (i>=0&&j>=0&&i<8&&j<8) {
+			pieceThere.push(aiTable[i][j][0],aiTable[i][j][1],aiTable[i][j][2],aiTable[i][j][3])//,aiTable[i][j][3])
+		}
+
+	// }
+	// else{
+	// 	if (onBoard(j,8-i)) {
+	// 		pieceThere.push(table[j][8-i][0],table[j][8-i][1],table[j][8-i][3])
+	// 	}
+	// }
+
+	return pieceThere
+}
+function pushAid(x,y,hanyadik,milegyen,fromTable,hit){
+	
+
+	if (whatsThere(x,y,fromTable)[hanyadik]==milegyen) {
+		
+			canMoveTo.push([x,y,whatsThere(x,y,fromTable)[1]])
+			
+			if(bestHit<whatsThere(x,y,fromTable)[1]){
+				bestHit=whatsThere(x,y,fromTable)[1]
+				//alert(bestHit)
+			}
+
+				//besthit=10}//whatsThere(x,y,fromTable)[1]}
+			return true
+			
+	
+	};
+	return false
+}
+function pawnCanMove(k,l,isWhite,moveTable){
+	canMoveTo=[]
+	//var hitIt=false
+	
+		//if(aiCalled){
+		
+		if (isWhite){
+
+			if(pushAid(k,l+1,0,0,moveTable)&&l==1){pushAid(k,l+2,0,0,moveTable)}
+			pushAid(k-1,l+1,0,1,moveTable,true)
+			pushAid(k+1,l+1,0,1,moveTable,true)
+
+			//en pass
+			if(whatsThere(k-1,l,moveTable)[3]){
+				
+				pushAid(k-1,l+1,0,0,moveTable,true)
+
+			}
+			if(whatsThere(k+1,l,moveTable)[3]){
+				
+				pushAid(k+1,l+1,0,0,moveTable,true)
+
+			}
+
+
+		}else{
+
+			if(pushAid(k,l-1,0,0,moveTable)&&l==6){pushAid(k,l-2,0,0,moveTable)}
+			pushAid(k-1,l-1,0,2,moveTable,true)
+			pushAid(k+1,l-1,0,2,moveTable,true)
+
+			//en pass
+			if(whatsThere(k-1,l,moveTable)[3]){
+				
+				pushAid(k-1,l-1,0,0,moveTable,true)
+
+			}
+			if(whatsThere(k+1,l,moveTable)[3]){
+				
+				pushAid(k+1,l-1,0,0,moveTable,true)
+
+			}
+
+
+
+
+		}
+
+
+		// }else{
+		// 	if(pushAid(k-1,l,0,0)&&k==7){pushAid(k-2,l,0,0)}
+		// 	pushAid(k-1,l-1,0,1)
+		// 	pushAid(k-1,l+1,0,1)
+
+		// }
+		 
+	return canMoveTo
+		
+		
+}
+// function bPawnCanMove(k,l,isWhite){
+// 	canMoveTo=[]
+	// var hitIt=false
+	
+	// 	if(aiCalled){
+			// if(pushAid(k,l-1,0,0)&&l==6){pushAid(k,l-2,0,0)}
+			// pushAid(k-1,l-1,0,2)
+			// pushAid(k+1,l-1,0,2)
+
+		// }else{
+		// 	if(pushAid(k+1,l,0,0)&&k==2){pushAid(k+2,l,0,0)}
+		// 	pushAid(k+1,l-1,0,2)
+		// 	pushAid(k+1,l+1,0,2)
+
+		// }
+		 
+// 	return canMoveTo
+// }
+
+function rookCanMove(k,l,isWhite,moveTable){
+	canMoveTo=[]
+	// if(aiCalled){
+
+		if(!isWhite){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
+
+	
+	// }else {
+	// 	if(table[l][8-k][0]==1){
+	// 		var c=2
+	// 		var nc=1
+	// 	}else{
+	// 		var c=1
+	// 		var nc=2
+	// 	}
+	// }
+	var goFurther=[true,true,true,true]
+	for (var moveCount=1;moveCount<8;moveCount++){
+		if(goFurther[0]){
+			pushAid(k+moveCount,l,0,0,moveTable)
+			if (pushAid(k+moveCount,l,0,c,moveTable,true)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[0]=false}
+		}
+		if(goFurther[1]){
+			pushAid(k-moveCount,l,0,0,moveTable)
+			if (pushAid(k-moveCount,l,0,c,moveTable,true)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[1]=false}
+		}
+		if(goFurther[2]){
+			pushAid(k,l+moveCount,0,0,moveTable)
+			if (pushAid(k,l+moveCount,0,c,moveTable,true)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[2]=false}
+		}
+		if(goFurther[3]){
+			pushAid(k,l-moveCount,0,0,moveTable)
+			if (pushAid(k,l-moveCount,0,c,moveTable,true)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+		}
+	}
+	return canMoveTo
+}
+function bishopCanMove(k,l,isWhite,moveTable){
+	canMoveTo=[]
+	//if(aiCalled){
+
+		if(!isWhite){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
+
+	// }
+	// else {
+	// 	if(table[l][8-k][0]==1){
+	// 		var c=2
+	// 		var nc=1
+	// 	}else{
+	// 		var c=1
+	// 		var nc=2
+	// 	}
+	// }
+	var goFurther=[true,true,true,true]
+	for (var moveCount=1;moveCount<8;moveCount++){
+		if(goFurther[0]){
+			pushAid(k+moveCount,l+moveCount,0,0,moveTable)
+			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
+		}
+		if(goFurther[1]){
+			pushAid(k-moveCount,l+moveCount,0,0,moveTable)
+			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
+		}
+		if(goFurther[2]){
+			pushAid(k+moveCount,l-moveCount,0,0,moveTable)
+			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
+		}
+		if(goFurther[3]){
+			pushAid(k-moveCount,l-moveCount,0,0,moveTable)
+			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+		}
+	}
+	return canMoveTo
+}
+
+function queenCanMove(k,l,isWhite,moveTable){
+	canMoveTo=[]
+	//if(aiCalled){
+
+		if(!isWhite){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
+
+	// }
+	// else {
+	// 	if(table[l][8-k][0]==1){
+	// 		var c=2
+	// 		var nc=1
+	// 	}else{
+	// 		var c=1
+	// 		var nc=2
+	// 	}
+	// }
+	var goFurther=[true,true,true,true,true,true,true,true]
+	for (var moveCount=1;moveCount<8;moveCount++){
+		if(goFurther[0]){
+			pushAid(k+moveCount,l+moveCount,0,0,moveTable)
+			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
+		}
+		if(goFurther[1]){
+			pushAid(k-moveCount,l+moveCount,0,0,moveTable)
+			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
+		}
+		if(goFurther[2]){
+			pushAid(k+moveCount,l-moveCount,0,0,moveTable)
+			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
+		}
+		if(goFurther[3]){
+			pushAid(k-moveCount,l-moveCount,0,0,moveTable)
+			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+		}
+
+		if(goFurther[4]){
+			pushAid(k+moveCount,l,0,0,moveTable)
+			if (pushAid(k+moveCount,l,0,c,moveTable,true)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[4]=false}
+		}
+		if(goFurther[5]){
+			pushAid(k-moveCount,l,0,0,moveTable)
+			if (pushAid(k-moveCount,l,0,c,moveTable,true)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[5]=false}
+		}
+		if(goFurther[6]){
+			pushAid(k,l+moveCount,0,0,moveTable)
+			if (pushAid(k,l+moveCount,0,c,moveTable,true)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[6]=false}
+		}
+		if(goFurther[7]){
+			pushAid(k,l-moveCount,0,0,moveTable)
+			if (pushAid(k,l-moveCount,0,c,moveTable,true)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[7]=false}
+		}
+	}
+	return canMoveTo
+}
+
+function kingCanMove(k,l,isWhite,moveTable){
+	//sancolni is kene tudni
+	canMoveTo=[]
+
+	
+
+		if(!isWhite){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
+
+	
+	moveCount=1
+	pushAid(k+moveCount,l+moveCount,0,0,moveTable)
+	pushAid(k-moveCount,l+moveCount,0,0,moveTable)
+	pushAid(k+moveCount,l-moveCount,0,0,moveTable)
+	pushAid(k-moveCount,l-moveCount,0,0,moveTable)
+	pushAid(k+moveCount,l,0,0,moveTable)
+	pushAid(k-moveCount,l,0,0,moveTable)
+	pushAid(k,l+moveCount,0,0,moveTable)
+	pushAid(k,l-moveCount,0,0,moveTable)
+	
+	pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)
+	pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)
+	pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)
+	pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)
+	pushAid(k+moveCount,l,0,c,moveTable,true)
+	pushAid(k-moveCount,l,0,c,moveTable,true)
+	pushAid(k,l+moveCount,0,c,moveTable,true)
+	pushAid(k,l-moveCount,0,c,moveTable,true)
+	
+
+
+	//console.log("mit keres itt")
+
+	//sanc
+	if(moveTable[k][l][3]){					//if the king hasnt moved yet, 
+		//if(l==0){		
+
+			// ja nincs sakkban, nem is ugrik at sakkot, minden ures kozotte
+
+							//white king
+			if(table[0][l][3]&&whatsThere(1,l,moveTable)[0]==0&&whatsThere(2,l,moveTable)[0]==0&&whatsThere(3,l,moveTable)[0]==0){				// unmoved rook on [0][l]
+				pushAid(2,l,0,0,moveTable)			//mark that cell if empty
+
+			}
+			if(table[7][l][3]&&whatsThere(5,l,moveTable)[0]==0&&whatsThere(6,l,moveTable)[0]==0){				// unmoved rook on [7][l]
+				pushAid(6,l,0,0,moveTable)			//mark that cell if empty
+
+			}
+
+		//}else{								//black king
+
+
+		//}
+
+
+
+	}
+
+
+
+	return canMoveTo	
+}
+
+function horseCanMove(k,l,isWhite,moveTable){
+	
+	canMoveTo=[]
+	pushAid(k+1,l+2,0,0,moveTable)
+	pushAid(k+1,l-2,0,0,moveTable)
+	pushAid(k-1,l+2,0,0,moveTable)
+	pushAid(k-1,l-2,0,0,moveTable)
+	
+	pushAid(k+2,l+1,0,0,moveTable)
+	pushAid(k+2,l-1,0,0,moveTable)
+	pushAid(k-2,l+1,0,0,moveTable)
+	pushAid(k-2,l-1,0,0,moveTable)
+	
+	//if(aiCalled){
+
+		if(!isWhite){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
+
+	// }
+	// else {
+	// 	if(table[l][8-k][0]==1){
+	// 		var c=2
+	// 		var nc=1
+	// 	}else{
+	// 		var c=1
+	// 		var nc=2
+	// 	}
+	// }
+
+	pushAid(k+1,l+2,0,c,moveTable,true)
+	pushAid(k+1,l-2,0,c,moveTable,true)
+	pushAid(k-1,l+2,0,c,moveTable,true)
+	pushAid(k-1,l-2,0,c,moveTable,true)
+	
+	pushAid(k+2,l+1,0,c,moveTable,true)
+	pushAid(k+2,l-1,0,c,moveTable,true)
+	pushAid(k-2,l+1,0,c,moveTable,true)
+	pushAid(k-2,l-1,0,c,moveTable,true)
+	
+
+	
+	 return canMoveTo
+
+		
+}
+function moveArrayToStrings(moveArray){
+	var strArray=[]
+	moveArray.forEach(function(thisMove){
+		strArray.push(dletters[thisMove[0]]+(thisMove[1]+1)+dletters[thisMove[2]]+(1+thisMove[3]))
+
+
+	})
+	for(var i=strArray.length-1;i>=0;i--){
+		if(validateTable(moveIt(strArray[i],table),!wNext)==9){
+			strArray.splice(i,1)
+		}
+	}
+	
+
+
+
+
+
+
+	return strArray
+
+
+
+
+}	
+
+//var switchCount=0;
+
+function getAllMoves(rawTableData,tableToMoveOn,whiteNext){		
+	
+	// var moveArrays=[]
+	// var moveStrings=[]
+	var tableData=rawTableData[1]
+	thisArray=[]
+	thisStrArray=[]
+	//var whiteNext=false
+	//if (tableToMoveOn[tableData[0][1]][tableData[0][0]][0]=2){
+		//whiteNext=true
+	//}
+
+
+	for(var pieceNo=0;pieceNo<tableData.length;pieceNo++){
+		//console.log(pieceNo)
+		
+		// 	var thisString=""
+		//switchCount++
+		switch (tableData[pieceNo][2]) {
+		    // case 0:
+		
+		    case 1:
+		       
+		        	
+		        		pawnCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	
+
+
+
+		        	// thisArray.push(tableData[pieceNo][0],tableData[pieceNo][1])
+		        	// moveArrays.push(pawnCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn))
+		    		
+		        break;
+		    case 2:
+		        //alert("bishop")
+		        	bishopCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	
+		        	//console.log(moveArrays)
+		        break;
+		    case 3:
+		        //alert("horse")
+		        	horseCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	
+		        	//console.log(moveArrays)
+		        break;
+		    case 4:
+		        //alert("rook")
+		        	rookCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	
+		        	//console.log(moveArrays)
+		        
+		        break;
+		    case 5:
+		        //alert("queen")
+		        	queenCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	
+		        	//console.log(moveArrays)
+		        break;
+		    case 9:
+		    	//alert("king")
+		    		kingCanMove(tableData[pieceNo][0],tableData[pieceNo][1],whiteNext,tableToMoveOn)
+		        			.forEach(function(stepItem){
+									thisArray.push([tableData[pieceNo][0],tableData[pieceNo][1],stepItem[0],stepItem[1]])
+								})
+		        	//console.log(moveArrays)
+		    	break;
+		}
+		
+	}
+	//console.log('switch was called: '+switchCount)
+
+	return thisArray
+	
+}
+function validateTable(tableToValidate, wNx){
+	bestHit=0
+	
+	var myMoves=//moveArrayToStrings(
+		getAllMoves(getTableData(tableToValidate,wNx),tableToValidate,wNx)//)
+	//do we really need these in strings?
+	var mybest =bestHit
+	bestHit=0
+	
+	//var hisMoves=getAllMoves(getTableData(tableToValidate,!wNx),tableToValidate,!wNx)
+	//var hisbest=bestHit
+	return [mybest]//,myMoves[0]]
+	
+}
+function validateTable2(tableToValidate, wNx){
+	bestHit=0
+	
+	var myMoves=//moveArrayToStrings(
+		getAllMoves(getTableData(tableToValidate,wNx),tableToValidate,wNx)//)
+	//do we really need these in strings?
+	var mybest =bestHit
+	bestHit=0
+	
+	//var hisMoves=getAllMoves(getTableData(tableToValidate,!wNx),tableToValidate,!wNx)
+	//var hisbest=bestHit
+	return [mybest]//,myMoves[0]]
+	
+}
+
+
+function createFirstTableState(cfTable,cfColor){
+	
+	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor))
+	// for(var i=cfMoves.length-1;i>=0;i--){
+	// 	if(validateTable(moveIt(cfMoves[i],table),!wNext)==9){
+	// 		cfMoves.splice(i,1)
+	// 	}
+	// }
+
+
+
+
+	var tempTable=new Array(8)
+	var allTempTables=[]
+	var opponentsOrigValue=validateTable(cfTable,!cfColor)
+	var myOrigValue=validateTable(cfTable,cfColor)
+
+	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
+	
+	i=0
+	
+	cfMoves.forEach(function(stepMove){
+		
+		tempTable=moveIt(stepMove,cfTable)
+		
+		var myOrigValue=hitValue
+		hitValue=0
+	
+		tTableValue=myOrigValue-escConst*(validateTable(tempTable,!cfColor)-opponentsOrigValue)+(validateTable(tempTable,cfColor)/2)
+		//console.log(tTableValue)
+		// allTempTables.push([stepMove,tTableValue])
+
+		//tempTableValue=0
+		
+
+		// one deeper
+
+		var cf2Moves=moveArrayToStrings(getAllMoves(getTableData(tempTable,cfColor),tempTable,cfColor))
+		//console.log(cf2Moves)
+		var tempTable2=new Array(8)
+		var tTable2Value=0
+		//var allTempTables=[]
+		var opponents2OrigValue=validateTable(tempTable,!cfColor)
+		var myOrigValue=validateTable(tempTable,cfColor)
+
+		cf2Moves.forEach(function(step2Move,moveNo){
+
+			temp2Table=moveIt(step2Move,tempTable)
+
+			var myOrig2Value=hitValue
+			hitValue=0
+			
+			tTable2Value -=myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
+				opponents2OrigValue)+(validateTable(temp2Table,cfColor)/10)/10)
+	
+			//alert(tTable2Value)
+	
+		})
+
+
+
+		// deepening ends
+
+
+
+
+		//allTempTables.push([stepMove,tTableValue])
+
+
+
+
+
+
+
+
+
+		//totalArrayValue=0
+
+		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
+
+		var repValue=tTable2Value/50+tTableValue
+		allTempTables.push([stepMove,
+		parseInt(repValue*100),parseInt(tTableValue*100),parseInt(tTable2Value*100)])//,tableHitValue]) //row: movestring, ai val, deepen val, deep hit val, [tables]
+		
+	})
+	//console.clear()
+	tempstr=""
+	if(wNext){
+		tempstr="White's move, "
+	}else{
+		tempstr="Black's move, "
+	}	
+	//console.log(tempstr+i+' tables generated.')
+	allTempTables=allTempTables.sort(sortAiArray)
+	return allTempTables
+}
+// function listArray(rankedMoves){
+// 	rankedMoves.forEach(function(thismove){
+// 		console.log(thismove)
+// 	})
+// }
+function sortAiArray(a,b){
+	if(typeof(a[0])=="boolean"){
+		return -1}
+	if(a[1]>b[1]){
+		return -1
+	}else{
+		if(a[1]<b[1]){return +1}
+	}
+
+	// if(a[2]>b[2]){
+	// 	return -1
+	// }else{
+	// 	if(a[2]<b[2]){return +1}
+	// }
+
+	// if(a[3]>b[3]){
+	// 	return -1
+	// }else{
+	// 	if(a[3]<b[3]){return +1}
+	// }
+	return 0
+}
+// function ai(wn){
+// 	tableToAi=createFirstTableState(table,wn)
+
+// 	// tableToAi.forEach(function(tableTo){
+// 	// 	console.log(tableTo[0],tableTo[1],tableTo[2],tableTo[3])
+// 	// })
+// 	//aiLoop([table],1,wn,wn)
+// 	console.clear()
+// 	for (var i=0;i<tableToAi.length;i++)
+// 		console.log(tableToAi[i])
+// 	return tableToAi[1][0]
+
+// }
+
+// function aimove(){
+// 		console.log('working...')
+// 		table=moveIt(ai(wNext),table)
+// 		showTable()
+// 				// wNext=!wNext
+// 				// wNext=!wNext
+
+			
+// }
+
+
+</script>
+</head>
+<body onload="letsPlay()"> 
+<!--  -->
+	<table class="frame-table" border="1">
+		<tr>
+			
+			<td>
+				<table class="leftTable">
+					<tr class="yourTurnTr">
+						<td class="isItYourTurn"></td>
+						
+					</tr>
+					<tr class="statusTr">
+					
+						<td class="statusCell"></td>
+					</tr>
+				</table>
+			</td>
+			<td class="ideRakd"></td>
+			<td>
+				<table>
+				<tr class="chatTextTr">
+					<td class="chatCell"></td>
+				</tr>
+				<tr class="chatInputRow"><td>
+					<input type="text" class="chatInput" onkeydown="if (event.keyCode == 13) sendChat()">
+
+
+<!-- <input type="text" id="txtSearch" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/>
+<input type="button" id="btnSearch" value="Search" onclick="doSomething();" /> -->
+<!-- shareimprove this answer
+answered Sep 30 '08 at 21:56
+
+Sergey Ilinsky
+18.6k63749 -->
+
+
+
+
+
+					<button class="chatButton" onclick="sendChat()">Send</button>
+				</td></tr>
+
+				</table>
+			</td>
+
+			
+		</tr>
+	</table>
+	<!-- <p class="status">
+				<button onclick="moveIt(prompt(),table)">move</button>
+	
+			</p> -->
+</body>
+</html>
