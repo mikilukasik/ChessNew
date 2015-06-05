@@ -153,7 +153,7 @@ var pollConst=80
 			if(tempMoveString.length<2){
 				refreshTable()
 				
-				if(ai){
+				if(ai&&!(wNext==wPlayer)){
 					//refreshTable()
 
 					tempMoveString=getAiMove(!wPlayer)
