@@ -701,7 +701,7 @@ function validateTable(tableToValidate, wNx){
 	bestHit=0
 	
 	
-	return [mybest]
+	return [mybest,myMoves]
 	
 }
 function validateTable2(tableToValidate, wNx){
