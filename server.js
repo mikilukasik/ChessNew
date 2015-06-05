@@ -853,7 +853,7 @@ function createFirstTableState(cfTable,cfColor){
 	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
 	
 	i=0
-	
+	console.log(cfMoves)
 	cfMoves.forEach(function(stepMove){
 		
 		tempTable=moveIt(stepMove,cfTable)
