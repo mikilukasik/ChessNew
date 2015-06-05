@@ -286,19 +286,6 @@ function drawTable(){
 
 	}
 
-
-
-
-
-
-	
-
-
-
-	
-
-
-
 	console.log("drawTable done")
 	
 
@@ -517,12 +504,12 @@ function clickedIt(clickedField,clickedString){
 				
 				if(table[x][y][4]==true){
 
-					table[x][y][2]=false 
+					//table[x][y][2]=false 
 					//table=moveIt(tempMoveString,table)
 					//showTable()
 					makeAMove(tempMoveString)
 					tempMoveString=""
-					//refreshTable()
+					refreshTable()
 					
 					if(ai){
 						refreshTable()
