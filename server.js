@@ -573,7 +573,7 @@ function horseCanMove(k,l,isWhite,moveTable){
 
 		
 }
-function moveArrayToStrings(moveArray){
+function moveArrayToStrings(moveArray,ftable){
 	var strArray=[]
 	moveArray.forEach(function(thisMove){
 		strArray.push(dletters[thisMove[0]]+(thisMove[1]+1)+dletters[thisMove[2]]+(1+thisMove[3]))
@@ -581,7 +581,7 @@ function moveArrayToStrings(moveArray){
 
 	})
 	for(var i=strArray.length-1;i>=0;i--){
-		if(validateTable(moveIt(strArray[i],table),!wNext)==9){
+		if(validateTable(moveIt(strArray[i],ftable),!wNext)==9){
 			strArray.splice(i,1)
 		}
 	}
@@ -841,7 +841,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 }
 function createFirstTableState(cfTable,cfColor){
 	
-	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor))
+	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor),cfTable)
 	
 
 	var tempTable=new Array(8)
