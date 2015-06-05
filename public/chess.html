@@ -130,6 +130,7 @@ hitValue=0
 var table=[]
 bAi=window.opener.bAi
 wAi=window.opener.wAi
+ai=window.opener.ai
 var alerted=false
 
 var playerID=window.opener.playerName//prompt("What's your name?")
@@ -519,11 +520,15 @@ function clickedIt(clickedField,clickedString){
 					table[x][y][2]=false 
 					
 					makeAMove(tempMoveString)
+					
+					if(ai){
+						makeAMove(getAiMove(wPlayer))
+					}
 			
 					
 					
 					tempMoveString=""
-					wNext=!wNext
+					//wNext=!wNext
 					
 
 				}else{
