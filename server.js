@@ -500,11 +500,11 @@ function kingCanMove(k,l,isWhite,moveTable){
 			// ja nincs sakkban, nem is ugrik at sakkot, minden ures kozotte
 
 							//white king
-			if(table[0][l][3]&&whatsThere(1,l,moveTable)[0]==0&&whatsThere(2,l,moveTable)[0]==0&&whatsThere(3,l,moveTable)[0]==0){				// unmoved rook on [0][l]
+			if(moveTable[0][l][3]&&whatsThere(1,l,moveTable)[0]==0&&whatsThere(2,l,moveTable)[0]==0&&whatsThere(3,l,moveTable)[0]==0){				// unmoved rook on [0][l]
 				pushAid(2,l,0,0,moveTable)			//mark that cell if empty
 
 			}
-			if(table[7][l][3]&&whatsThere(5,l,moveTable)[0]==0&&whatsThere(6,l,moveTable)[0]==0){				// unmoved rook on [7][l]
+			if(moveTable[7][l][3]&&whatsThere(5,l,moveTable)[0]==0&&whatsThere(6,l,moveTable)[0]==0){				// unmoved rook on [7][l]
 				pushAid(6,l,0,0,moveTable)			//mark that cell if empty
 
 			}
