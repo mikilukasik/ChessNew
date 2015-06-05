@@ -42,7 +42,7 @@ players[1]=[]	//players last polled
 players[2]=[]	//bolleans true if game is to start
 players[3]=[]	//player colors for new games
 players[4]=[]	//table numbers for new games
-
+players[5]=[]	//playagainst ai
 
 var lobbyPollNum=0
 var lobbyChat=[]
@@ -995,7 +995,11 @@ app.get('/startGame', function (req, res) {
   players[4][wPNum]=firstFreeTable
   players[4][bPNum]=firstFreeTable
 
-
+  if(req.query.w=='Computer'||req.query.b=='Computer'){
+	 players[5][wPNum]=true;		//Will play against computer
+ 	 players[5][bPNum]=true;		
+	  
+  }
 
   
   
@@ -1050,11 +1054,12 @@ app.get('/getLobby', function (req, res) {
   		lobbyPollNum++
   		var openTableNum=players[4][playerIndex]
   		var openTableColor=players[3][playerIndex]
+		var playAgainstAi=players[5][playerIndex]
 
   		players[2][playerIndex]=false
 
   		res.json({players: players[0], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
-  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor});
+  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, playagainstai=playAgainstAi});
 
 
   	}else{

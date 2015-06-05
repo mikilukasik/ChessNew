@@ -38,6 +38,7 @@
 	 		//if(confirm('Press OK to start game in new tab. You might have to allow popup windows first.'))
 			 window.open("chess.html")
 			openNow=false		
+			ai=false
 	 	}
 	
 	},800);
@@ -58,11 +59,12 @@
 					console.log('opening')
 					tableNum=lobbyPoll.responseJSON.opentablenum
 					playerColor=lobbyPoll.responseJSON.opentablecolor
-					if (wAi||bAi){
-						window.open("chessai.html")
-					}else{
+					var ai=lobbyPoll.responseJSON.playagainstai
+					// if (wAi||bAi){
+					// 	window.open("chessai.html")
+					// }else{
 						openNow=true;
-						}
+						// }
 				}
 
 
