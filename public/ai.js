@@ -65,14 +65,7 @@ function createFirstTableState(cfTable,cfColor){
 		parseInt(repValue*100),parseInt(tTableValue*100),parseInt(tTable2Value*100)])//,tableHitValue]) //row: movestring, ai val, deepen val, deep hit val, [tables]
 		
 	})
-	//console.clear()
-	// tempstr=""
-	// if(wNext){
-	// 	tempstr="White's move, "
-	// }else{
-	// 	tempstr="Black's move, "
-	// }	
-	//console.log(tempstr+i+' tables generated.')
+	
 	allTempTables=allTempTables.sort(sortAiArray)
 	return allTempTables
 }
@@ -81,8 +74,9 @@ function createFirstTableState(cfTable,cfColor){
 
 function ai(tablE,wn){
 	
-	tableToAi=createFirstTableState(tablE,wn)
+	//var tableToAi=createFirstTableState(tablE,wn)
 	
-	return tableToAi[1][0]
+	return createFirstTableState(tablE,wn)[1][0]
+	//tableToAi[1][0]
 
 }
