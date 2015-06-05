@@ -700,7 +700,7 @@ function validateTable(tableToValidate, wNx, returnMoves){
 	var mybest =bestHit
 	bestHit=0
 	
-	returnMoves&&return myMoves
+	returnMoves&&return myMoves.
 	return [mybest]
 	
 }
