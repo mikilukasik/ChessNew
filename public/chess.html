@@ -139,26 +139,6 @@ var bestHit=0
 var pollNum=0
 					
 		
-// setInterval(function(){
-// 	if((!wNext)&&bAi){
-// 	 	//console.log('bAi')
-// 	 	//var currentTime=Date.now()
-// 	 	makeAMove(ai(false))
-// 	 	//console.log(Date.now()-currentTime+' ms')
-// 	}
-// },800);
-// setInterval(function(){
-// 	if((wNext)&&wAi){
-// 		//console.log('wAi')
-	 	
-// 	 	//var currentTime=Date.now()
-// 	 	makeAMove(ai(true))
-// 	 	//console.log(Date.now()-currentTime+' ms')
-// 	}
-// },800);
-
-			// if(!wNext){
-			
 
 
 
@@ -201,7 +181,7 @@ var pollNum=0
 
 
 			}
-					},100);
+					},500);
 
 function clickedItTrans(i,j){
 	
@@ -211,12 +191,6 @@ function clickedItTrans(i,j){
 	clickedIt(clickedField,clickedString)
 //	console.log(clickedField,clickedString)
 
-}
-function coordsToMoveString(a,b,c,d){
-	
-	//console.log( dletters[a]+(b+1)+dletters[c]+(d+1))
-	
-	return dletters[a]+(b+1)+dletters[c]+(d+1)
 }
 
 function drawTable(){
@@ -345,17 +319,8 @@ function initTable(){
 	});
 
 
-	// table=$.getJSON("/initTable")//.responseJSON//,function(){
-	// // 	console.log(arguments[0].table)
-	// // 	table=arguments[0].table
-
-	// // })
 	table=tempTable.responseJSON.table
-	//console.log(table)
-		
-
-
-
+	
 
 	console.log("initTable done")
 	
@@ -379,8 +344,6 @@ function showTable(){								//this will update the displayed table from the arr
 			
 			$(thisSquare).empty();
 			
-			//if (wNext==wPlayer&&((table[i][j][0]==1&&!wPlayer)||(table[i][j][0]==2&&wPlayer)))thisFigure.addClass('myPiece')
-
 
 			$(thisSquare).append(thisFigure);
 
@@ -457,11 +420,7 @@ function makeAMove(whatMove){
 			wNext=!wNext
 			return tempTable.responseJSON.table
 }
-// $(".chatInput").keyup(function(event){
-//     if(event.keyCode == 13){
-//         sendChat()
-//     }
-// });
+
 function sendChat(){
 	var tempTable=$.ajax({
 			    type: 'GET',
@@ -492,8 +451,7 @@ function refreshTable(){
 
 
 
-					//console.log("lefutott")
-					//console.log(pollNum)
+					
 					table=tempTable.responseJSON.table
 					wNext=tempTable.responseJSON.next
 					allMoves=tempTable.responseJSON.allmoves
@@ -502,11 +460,7 @@ function refreshTable(){
 					showTable()
 
 			}
-			// if(moveArrayToStrings(getAllMoves(getTableData(table,wPlayer),table,wPlayer))<1){
-			// 	alertText="Game over"
-			// 	whoCantMove=true
-			// }
-
+	
 				
 
 			
@@ -519,9 +473,7 @@ function clickedIt(clickedField,clickedString){
 	var clickedColor=false
 	
 	if ((((table[x][y][0]==1&&wPlayer==false)||(table[x][y][0]==2&&wPlayer==true))||tempMoveString.length>0)&&wNext==wPlayer){
-		// (table[x][y][0]==2)
-		// 	clickedColor=true
-		// }
+		
 
 		if(clickedString==tempMoveString){
 			table[x][y][2]=false
@@ -550,25 +502,13 @@ function clickedIt(clickedField,clickedString){
 				if(table[x][y][4]==true){
 
 					table[x][y][2]=false 
-					//table=moveIt(tempMoveString,table)
-					// send move to server here, res should be  resulting table
-					// var tempTable=$.ajax({
-					//     type: 'GET',
-					//     url: '/move?m='+tempMoveString,
-					//     dataType: 'json',
-					//     success: function() { },
-					//     data: {},
-					//     async: false
-					// });
-					// table=tempTable.responseJSON.table
+					
 					makeAMove(tempMoveString)
 			
 					
-					//clearHighlights()
 					
-					//showTable()
 					tempMoveString=""
-					//wNext=!wNext
+					wNext=!wNext
 					
 
 				}else{
@@ -601,10 +541,7 @@ function letsPlay(){
 		initTable()  
 	//}
 	refreshTable()
-	//showTable()
-
-	// aimove()
-	// bored(2)
+	
 }
 
 

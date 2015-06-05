@@ -88,6 +88,12 @@ function canMove(what,k,l,isWhite,moveTable){
 
 
 }
+function coordsToMoveString(a,b,c,d){
+	
+	//console.log( dletters[a]+(b+1)+dletters[c]+(d+1))
+	
+	return dletters[a]+(b+1)+dletters[c]+(d+1)
+}
 
 
 function blankFunction(){
