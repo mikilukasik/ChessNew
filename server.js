@@ -934,6 +934,9 @@ var moveStr=String(req.query.m)
 
 	allMoves[req.query.t].push(toPush)
   	allTables[req.query.t]=moveIt(moveStr,allTables[req.query.t])
+	  
+	  //trick here:
+	  allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
   
 
   var result=allTables[req.query.t]
