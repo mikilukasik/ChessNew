@@ -520,10 +520,13 @@ function clickedIt(clickedField,clickedString){
 					table[x][y][2]=false 
 					
 					makeAMove(tempMoveString)
-					refreshTable()
+					//refreshTable()
 					
 					if(ai){
-						makeAMove(getAiMove(!wPlayer))
+						tempMoveString=getAiMove(!wPlayer)
+						refreshTable()
+
+						makeAMove(tempMoveString)
 					}
 			
 					
