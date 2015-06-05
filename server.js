@@ -691,7 +691,7 @@ function getAllMoves(rawTableData,tableToMoveOn,whiteNext){
 	return thisArray
 	
 }
-function validateTable(tableToValidate, wNx){
+function validateTable(tableToValidate, wNx, returnMoves){
 	bestHit=0
 	
 	var myMoves=
@@ -700,7 +700,7 @@ function validateTable(tableToValidate, wNx){
 	var mybest =bestHit
 	bestHit=0
 	
-	
+	returnMoves&&return myMoves
 	return [mybest]
 	
 }
