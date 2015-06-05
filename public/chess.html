@@ -442,47 +442,47 @@ function showChat(){								//this will update the chat field
 
 
 
-function moveIt(moveString,intable){    //should be updated from server for en pass, sanc
-		var thistable=[]
-		//var thistable=[]
-		for (var i=0;i<8;i++){
-			thistable[i]=new Array(8)
-			for (var j=0;j<8;j++){
-				thistable[i][j]= new Array (4)
+// function moveIt(moveString,intable){    //should be updated from server for en pass, sanc
+// 		var thistable=[]
+// 		//var thistable=[]
+// 		for (var i=0;i<8;i++){
+// 			thistable[i]=new Array(8)
+// 			for (var j=0;j<8;j++){
+// 				thistable[i][j]= new Array (4)
 
-				intable[i][j].forEach(function (value,feCount){
-					thistable[i][j][feCount]=value
-				})
-			}
-		}
-		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this will be captured in another function
-		// thistable=othistable
+// 				intable[i][j].forEach(function (value,feCount){
+// 					thistable[i][j][feCount]=value
+// 				})
+// 			}
+// 		}
+// 		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this will be captured in another function
+// 		// thistable=othistable
 		
 
 
-		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
+// 		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
 		
-		(	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==2&&				//es feher
-			moveString[3]==8)	||																//es 8asra lep vagy
-			(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==1&&				//vagy fekete
-			moveString[3]==1)					)												//1re
-		){			
-			//
-			console.log(moveString)																		//AKKOR
-			thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]=5  					//kiralyno lett
-			//thistable[dletters.indexOf(moveString[0])][moveString[1]-1][5]=queenCanMove  		//ugy is mozog
-		}
+// 		(	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==2&&				//es feher
+// 			moveString[3]==8)	||																//es 8asra lep vagy
+// 			(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==1&&				//vagy fekete
+// 			moveString[3]==1)					)												//1re
+// 		){			
+// 			//
+// 			console.log(moveString)																		//AKKOR
+// 			thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]=5  					//kiralyno lett
+// 			//thistable[dletters.indexOf(moveString[0])][moveString[1]-1][5]=queenCanMove  		//ugy is mozog
+// 		}
 
 
 
 
-		//sancolni se volna rossz
-		thistable[dletters.indexOf(moveString[2])][moveString[3]-1]=
-			thistable[dletters.indexOf(moveString[0])][moveString[1]-1]
-		thistable[dletters.indexOf(moveString[0])][moveString[1]-1]=[0,0,false,false,false]//,blankFunction]
-		//wNext=!wNext
-		return thistable
-}
+// 		//sancolni se volna rossz
+// 		thistable[dletters.indexOf(moveString[2])][moveString[3]-1]=
+// 			thistable[dletters.indexOf(moveString[0])][moveString[1]-1]
+// 		thistable[dletters.indexOf(moveString[0])][moveString[1]-1]=[0,0,false,false,false]//,blankFunction]
+// 		//wNext=!wNext
+// 		return thistable
+// }
 
 var tempMoveString=""
 
