@@ -942,8 +942,12 @@ app.get('/move', function (req, res) {
 app.get('/aiMove', function (req, res) {
 
   
-  var result=ai(allTables[req.query.t],req.query.p)
-  
+  if(req.query.p==2){
+	   var result=ai(allTables[req.query.t],true)
+  }else{
+	  var result=ai(allTables[req.query.t],false)
+	  
+  }
  
  	res.json({aimove: result});
 
