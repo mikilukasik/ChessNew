@@ -780,12 +780,6 @@ app.get('/move', function (req, res) {
   
 
 var moveStr=String(req.query.m)
-// var toPush=  String(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][0])+allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]+moveStr+
-// 	allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][0]+allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][1]
-
-
-// allMoves[req.query.t].push(toPush)
-
 
 
 
