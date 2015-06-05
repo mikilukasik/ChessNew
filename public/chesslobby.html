@@ -28,7 +28,7 @@
 
 	var wAi=false
 	var bAi=false
-
+	var playAgainstAi=false
 	var openNow=false
 	
 	setInterval(function(){
@@ -36,9 +36,9 @@
 	 	refreshLobby()
 	 	if (openNow){
 	 		//if(confirm('Press OK to start game in new tab. You might have to allow popup windows first.'))
-			 window.open("chess.html")
+			window.open("chess.html")
 			openNow=false		
-			ai=false
+			playAgainstAi=false
 	 	}
 	
 	},800);
@@ -59,7 +59,7 @@
 					console.log('opening')
 					tableNum=lobbyPoll.responseJSON.opentablenum
 					playerColor=lobbyPoll.responseJSON.opentablecolor
-					var ai=lobbyPoll.responseJSON.playagainstai
+					playAgainstaAi=lobbyPoll.responseJSON.playagainstai
 					// if (wAi||bAi){
 					// 	window.open("chessai.html")
 					// }else{
