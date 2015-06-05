@@ -153,14 +153,17 @@ var pollConst=80
 			if(tempMoveString.length<2){
 				refreshTable()
 				
-				if(ai&&!(wNext==wPlayer)){
+				if(wNext==wPlayer){
+					var aiCount=0
+				}else{
 					//refreshTable()
-
+					aiCount++
 					//tempMoveString=getAiMove(!wPlayer)
 					//refreshTable()
-
-					makeAMove(getAiMove(!wPlayer))
-					refreshTable()
+					if(aiCount==1){
+						makeAsyncMove(getAiMove(!wPlayer))
+						//refreshTable()
+					}
 				}
 				
 				//showTable()
@@ -530,7 +533,7 @@ function clickedIt(clickedField,clickedString){
 					//table[x][y][2]=false 
 					//table=moveIt(tempMoveString,table)
 					//showTable()
-					makeAMove(tempMoveString)
+					makeAsyncMove(tempMoveString)
 					// tempMoveString=""
 					// refreshTable()
 					
