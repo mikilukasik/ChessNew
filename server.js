@@ -9,8 +9,9 @@ app.use(morgan("combined"))
 
 
 //
-
-
+var escConst=2
+var fadeConst=1
+var level=1
 
 
 var dletters = ["a","b","c","d","e","f","g","h"]
