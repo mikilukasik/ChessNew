@@ -59,7 +59,9 @@
 					console.log('opening')
 					tableNum=lobbyPoll.responseJSON.opentablenum
 					playerColor=lobbyPoll.responseJSON.opentablecolor
-					playAgainstAi=lobbyPoll.responseJSON.playagainstai
+					if(lobbyPoll.responseJSON.playagainstai){playAgainstAi=lobbyPoll.responseJSON.playagainstai}else{
+							playAgainstAi=false
+					}
 					// if (wAi||bAi){
 					// 	window.open("chessai.html")
 					// }else{
