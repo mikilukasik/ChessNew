@@ -409,9 +409,12 @@ function showChat(){								//this will update the chat field
 
 var tempMoveString=""
 function getAiMove(whosMove){
+	if(whosMove){
+		var playerCN = true
+	}
 	var tempTable=$.ajax({
 			    type: 'GET',
-			    url: '/aiMove?p='+whosMove+'&t='+tableNum,
+			    url: '/aiMove?p='+playerCN+'&t='+tableNum,
 			    dataType: 'json',
 			    success: function() { },
 			    data: {},
