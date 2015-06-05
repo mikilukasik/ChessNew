@@ -866,7 +866,7 @@ function createFirstTableState(cfTable,cfColor){
 
 		// one deeper
 
-		var cf2Moves=moveArrayToStrings(getAllMoves(getTableData(tempTable,cfColor),tempTable,cfColor))
+		var cf2Moves=moveArrayToStrings(getAllMoves(getTableData(tempTable,cfColor),tempTable,cfColor),tempTable,cfColor)
 		//console.log(cf2Moves)
 		var tempTable2=new Array(8)
 		var tTable2Value=0
