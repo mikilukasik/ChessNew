@@ -1059,7 +1059,7 @@ app.get('/getLobby', function (req, res) {
   		players[2][playerIndex]=false
 
   		res.json({players: players[0], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
-  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, playagainstai=playAgainstAi});
+  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, playagainstai: playAgainstAi});
 
 
   	}else{
