@@ -796,7 +796,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&((moveStri
   	
 }
 //es itt a vege
-//en passt lepett
+//indul en passt lepett
 
 if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //paraszt
 	thistable[dletters.indexOf(moveString[2])][moveString[3]-1][0]==0&&	//uresre
@@ -809,14 +809,14 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 }	
 
 
-		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this will be captured in another function
+		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this global val. will be captured in another function
 		// thistable=othistable
 		
 
 
 		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
 		
-		(	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==2&&				//es feher
+		(	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==2&&					//es feher
 			moveString[3]==8)	||																//es 8asra lep vagy
 			(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==1&&				//vagy fekete
 			moveString[3]==1)					)												//1re
