@@ -939,6 +939,18 @@ app.get('/move', function (req, res) {
  	res.json({table: result});
 
 });
+app.get('/getAllMoves', function (req, res) {
+  //console.log(req)
+  
+  if(req.query.p==2){
+	   var result=validateTable(allTables[req.query.t],true,true)
+  }else{
+	  var result=validateTable(allTables[req.query.t],false,true)
+  
+  }
+ 
+ 	res.json({allmoves: result});
+});
 app.get('/aiMove', function (req, res) {
 
   
@@ -962,14 +974,7 @@ app.get('/getTable', function (req, res) {
 
 });
 
-app.get('/getAllMoves', function (req, res) {
-  //console.log(req)
-  
-  var result=validateTable(allTables[req.query.t],req.query.w,true)
-  
- 	res.json({moves: result});
 
-});
 
 app.get('/chat', function (req, res) {
   //console.log(req)
