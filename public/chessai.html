@@ -142,7 +142,7 @@ setInterval(function(){
 	if((!wNext)&&bAi){
 	 	//console.log('bAi')
 	 	//var currentTime=Date.now()
-	 	makeAMove(ai(false))
+	 	makeAMove(ai(table,false))
 	 	//console.log(Date.now()-currentTime+' ms')
 	}
 },800);
@@ -151,7 +151,7 @@ setInterval(function(){
 		//console.log('wAi')
 	 	
 	 	//var currentTime=Date.now()
-	 	makeAMove(ai(true))
+	 	makeAMove(ai(table,true))
 	 	//console.log(Date.now()-currentTime+' ms')
 	}
 },800);
