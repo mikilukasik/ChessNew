@@ -156,10 +156,10 @@ var pollConst=80
 				if(ai&&!(wNext==wPlayer)){
 					//refreshTable()
 
-					tempMoveString=getAiMove(!wPlayer)
+					//tempMoveString=getAiMove(!wPlayer)
 					//refreshTable()
 
-					makeAsyncMove(tempMoveString)
+					makeAsyncMove(getAiMove(!wPlayer))
 					refreshTable()
 				}
 				
