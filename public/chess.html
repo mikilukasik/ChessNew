@@ -423,6 +423,18 @@ function makeAMove(whatMove){
 			wNext=!wNext
 			return tempTable.responseJSON.table
 }
+function makeAsyncMove(whatMove){
+	var tempTable=$.ajax({
+			    type: 'GET',
+			    url: '/move?m='+whatMove+'&t='+tableNum,
+			    dataType: 'json',
+			    success: function() { },
+			    data: {},
+			    async: true
+			});
+			wNext=!wNext
+			return tempTable.responseJSON.table
+}
 
 function sendChat(){
 	var tempTable=$.ajax({
@@ -517,7 +529,7 @@ function clickedIt(clickedField,clickedString){
 						tempMoveString=getAiMove(!wPlayer)
 						//refreshTable()
 
-						makeAMove(tempMoveString)
+						makeAsyncMove(tempMoveString)
 						refreshTable()
 					}
 					tempMoveString=""
