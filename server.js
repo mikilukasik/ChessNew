@@ -19,7 +19,7 @@ var dletters = ["a","b","c","d","e","f","g","h"]
 //this looks like a stinking hack.. 
 //var dcolors = ["","Black","White"]
 
-
+var bestHit=0
 
 var allTables=[]
 //var table=[]
