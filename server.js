@@ -722,23 +722,23 @@ function moveIt(moveString,intable){
 			}
 		}
 				//itt indil sanc bastyatolas
-	if(thisTable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==9&&thisTable[dletters.indexOf(moveString[0])][moveString[1]-1][3]){
+	if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==9&&thistable[dletters.indexOf(moveString[0])][moveString[1]-1][3]){
 	  	//if(moveString.substring(2)=="")
 	  	switch(moveString.substring(2)){
 	  		case "c1":
-	  				thisTable=moveIt("a1d1",thisTable)
+	  				thistable=moveIt("a1d1",thistable)
 	  			break;
 	  		
 	  		case "g1":
-	  				thisTable=moveIt("h1f1",thisTable)
+	  				thistable=moveIt("h1f1",thistable)
 	  			break;
 	  		
 	  		case "c8":
-	  				thisTable=moveIt("a8d8",thisTable)
+	  				thistable=moveIt("a8d8",thistable)
 	  			break;
 	  		
 	  		case "g8":
-	  				thisTable=moveIt("h1f1",thisTable)
+	  				thistable=moveIt("h1f1",thistable)
 	  			break;
 	
 	  	}
@@ -755,32 +755,32 @@ function moveIt(moveString,intable){
 //unmark all first
 
 for (ij=0;ij<8;ij++){ 
-	//if(thisTable[ij][3][1]==1){
-		thisTable[ij][3][3]=false
+	//if(thistable[ij][3][1]==1){
+		thistable[ij][3][3]=false
 	//}
-	//if(thisTable[ij][4][1]==1){
-		thisTable[ij][4][3]=false
+	//if(thistable[ij][4][1]==1){
+		thistable[ij][4][3]=false
 	//}
 }
 
 
 
 
-if(thisTable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&((moveString[1]==2&&moveString[3]==4)||(moveString[1]==7&&moveString[3]==5))){ //ha paraszt kettot lep
+if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&((moveString[1]==2&&moveString[3]==4)||(moveString[1]==7&&moveString[3]==5))){ //ha paraszt kettot lep
   	
-	thisTable[dletters.indexOf(moveString[0])][moveString[1]-1][3]=true
+	thistable[dletters.indexOf(moveString[0])][moveString[1]-1][3]=true
   	
 }
 //es itt a vege
 //en passt lepett
 
-if(thisTable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //paraszt
-	thisTable[dletters.indexOf(moveString[2])][moveString[3]-1][0]==0&&	//uresre
+if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //paraszt
+	thistable[dletters.indexOf(moveString[2])][moveString[3]-1][0]==0&&	//uresre
 	!(moveString[0]==moveString[2])){	//keresztbe
 
-		thisTable[dletters.indexOf(moveString[2])][moveString[3]-1]=thisTable[dletters.indexOf(moveString[2])][moveString[1]-1]
-		//thisTable[dletters.indexOf(moveString[2])][moveString[3]-1][0]=thisTable[dletters.indexOf(moveString[2])][moveString[1]-1][0]//= [0,0,false,false,false]//ures
-		thisTable[dletters.indexOf(moveString[2])][moveString[1]-1]= [0,0,false,false,false]//ures
+		thistable[dletters.indexOf(moveString[2])][moveString[3]-1]=thistable[dletters.indexOf(moveString[2])][moveString[1]-1]
+		//thistable[dletters.indexOf(moveString[2])][moveString[3]-1][0]=thistable[dletters.indexOf(moveString[2])][moveString[1]-1][0]//= [0,0,false,false,false]//ures
+		thistable[dletters.indexOf(moveString[2])][moveString[1]-1]= [0,0,false,false,false]//ures
 
 }	
 
