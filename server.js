@@ -938,12 +938,13 @@ var moveStr=String(req.query.m)
 	  
 	  //trick here:
 	  allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
+	   //allWNexts[req.query.t]=!allWNexts[req.query.t]
+  
   
 
   var result=allTables[req.query.t]
   pollNum[req.query.t]++
-  allWNexts[req.query.t]=!allWNexts[req.query.t]
-  
+ 
  	res.json({table: result});
 
 
