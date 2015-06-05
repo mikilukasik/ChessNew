@@ -408,7 +408,18 @@ function showChat(){								//this will update the chat field
 
 
 var tempMoveString=""
-
+function getAiMove(whosMove){
+	var tempTable=$.ajax({
+			    type: 'GET',
+			    url: '/aiMove?p='+whosMove+'&t='+tableNum,
+			    dataType: 'json',
+			    success: function() { },
+			    data: {},
+			    async: false
+			});
+			//wNext=!wNext
+			return tempTable.responseJSON.aimove
+}
 function makeAMove(whatMove){
 	var tempTable=$.ajax({
 			    type: 'GET',

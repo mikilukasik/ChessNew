@@ -921,32 +921,31 @@ function ai(tablE,wn){
 }
 
 app.get('/move', function (req, res) {
-  //console.log(req)
-  
-
-var moveStr=String(req.query.m)
-
-
-
+ var moveStr=String(req.query.m)
 
 	var toPush=  String(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][0])+allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]+moveStr+
 	allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][0]+allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][1]
-
 
 	allMoves[req.query.t].push(toPush)
   	allTables[req.query.t]=moveIt(moveStr,allTables[req.query.t])
 	  
 	  //trick here:
-	  allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
-	   //allWNexts[req.query.t]=!allWNexts[req.query.t]
+	 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
+	   allWNexts[req.query.t]=!allWNexts[req.query.t]
   
-  
-
   var result=allTables[req.query.t]
   pollNum[req.query.t]++
  
  	res.json({table: result});
 
+});
+app.get('/aiMove', function (req, res) {
+
+  
+  var result=ai(allTables[req.query.t],req.query.p)
+  
+ 
+ 	res.json({aimove: result});
 
 });
 
