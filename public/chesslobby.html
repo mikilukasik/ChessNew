@@ -88,7 +88,8 @@
 }
 function showLobby(){
 	$(".putPlayersHere").empty();
-	var playersHTML = ""
+	var thisfunc="askToStart('Computer')"
+	var playersHTML = '<span onclick="'+thisfunc+'">Computer</span><br>'
 	players.forEach(function(player){
 
 		var thisfunc="askToStart('"+player+"')"
