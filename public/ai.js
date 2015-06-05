@@ -4,14 +4,7 @@
 function createFirstTableState(cfTable,cfColor){
 	
 	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor))
-	// for(var i=cfMoves.length-1;i>=0;i--){
-	// 	if(validateTable(moveIt(cfMoves[i],table),!wNext)==9){
-	// 		cfMoves.splice(i,1)
-	// 	}
-	// }
-
-
-
+	
 
 	var tempTable=new Array(8)
 	var allTempTables=[]
@@ -30,10 +23,6 @@ function createFirstTableState(cfTable,cfColor){
 		hitValue=0
 	
 		tTableValue=myOrigValue-escConst*(validateTable(tempTable,!cfColor)-opponentsOrigValue)+(validateTable(tempTable,cfColor)/2)
-		//console.log(tTableValue)
-		// allTempTables.push([stepMove,tTableValue])
-
-		//tempTableValue=0
 		
 
 		// one deeper
@@ -56,7 +45,7 @@ function createFirstTableState(cfTable,cfColor){
 			tTable2Value -=myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
 				opponents2OrigValue)+(validateTable(temp2Table,cfColor)/10)/10)
 	
-			//alert(tTable2Value)
+			
 	
 		})
 
@@ -67,17 +56,7 @@ function createFirstTableState(cfTable,cfColor){
 
 
 
-		//allTempTables.push([stepMove,tTableValue])
 
-
-
-
-
-
-
-
-
-		//totalArrayValue=0
 
 		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
 
@@ -87,12 +66,12 @@ function createFirstTableState(cfTable,cfColor){
 		
 	})
 	//console.clear()
-	tempstr=""
-	if(wNext){
-		tempstr="White's move, "
-	}else{
-		tempstr="Black's move, "
-	}	
+	// tempstr=""
+	// if(wNext){
+	// 	tempstr="White's move, "
+	// }else{
+	// 	tempstr="Black's move, "
+	// }	
 	//console.log(tempstr+i+' tables generated.')
 	allTempTables=allTempTables.sort(sortAiArray)
 	return allTempTables
@@ -101,15 +80,9 @@ function createFirstTableState(cfTable,cfColor){
 
 
 function ai(tablE,wn){
+	
 	tableToAi=createFirstTableState(tablE,wn)
-
-	// tableToAi.forEach(function(tableTo){
-	// 	console.log(tableTo[0],tableTo[1],tableTo[2],tableTo[3])
-	// })
-	//aiLoop([table],1,wn,wn)
-	// console.clear()
-	// for (var i=0;i<tableToAi.length;i++)
-	// 	console.log(tableToAi[i])
+	
 	return tableToAi[1][0]
 
 }
