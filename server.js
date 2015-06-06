@@ -67,6 +67,8 @@ function addMovesToTable(originalTable,whiteNext){
 			})
 			if(originalTable[i][j][0]==myCol){
 				tableWithMoves[i][j][5]=canMove(originalTable[i][j][1],i,j,whiteNext,originalTable)
+			}else{
+				tableWithMoves[i][j][5]==[]
 			}
 		}
 	}
