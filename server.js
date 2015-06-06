@@ -958,7 +958,7 @@ app.get('/move', function (req, res) {
 	  //trick here:
 	 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
 	   allWNexts[req.query.t]=!allWNexts[req.query.t]
-  
+  allTables[req.query.t]=addMovesToTable(allTables[req.query.t],allWNexts[req.query.t])
   var result=allTables[req.query.t]
   pollNum[req.query.t]++
  
