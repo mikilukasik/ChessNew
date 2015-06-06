@@ -1009,11 +1009,11 @@ app.get('/startGame', function (req, res) {
   players[4][wPNum]=firstFreeTable
   players[4][bPNum]=firstFreeTable
 
-  if(req.query.w=='Computer'||req.query.b=='Computer'){
+ // if(req.query.w=='Computer'||req.query.b=='Computer'){
 	 players[5][wPNum]=true;		//Will play against computer
  	 players[5][bPNum]=true;		
 	  
-  }
+  //}
 
   
   
