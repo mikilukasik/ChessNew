@@ -526,13 +526,13 @@ function clickedIt(clickedField,clickedString){
 			showTable()
 			tempMoveString=""
 		}else{
-			if (table[x][y][0]>0 && tempMoveString=="") {
+			if (table[x][y][5]==true && tempMoveString=="") {
 				
 					table[x][y][5].forEach(highLightThem)
 					showTable
 					//console.log(tempMoveString)
 			};
-			if(table[x][y][5]==true||0<tempMoveString.length){
+			if(table[x][y][0]>0||0<tempMoveString.length){
 				
 				tempMoveString+=clickedString
 			
