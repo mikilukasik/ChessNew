@@ -517,8 +517,9 @@ function clickedIt(clickedField,clickedString){
 	var y=clickedField[1]
 	var clickedColor=false
 	
-	if ((((table[x][y][0]==1&&wPlayer==false)||(table[x][y][0]==2&&wPlayer==true))||tempMoveString.length>0)&&wNext==wPlayer){
+	if ((  table[x][y][5]==true ||tempMoveString.length>0)&&wNext==wPlayer){
 		
+		//((table[x][y][0]==1&&wPlayer==false)||(table[x][y][0]==2&&wPlayer==true))
 
 		if(clickedString==tempMoveString){
 			table[x][y][2]=false
@@ -526,7 +527,7 @@ function clickedIt(clickedField,clickedString){
 			showTable()
 			tempMoveString=""
 		}else{
-			if (table[x][y][5]==true && tempMoveString=="") {
+			if (table[x][y][0]>0 && tempMoveString=="") {
 				
 					table[x][y][5].forEach(highLightThem)
 					showTable
