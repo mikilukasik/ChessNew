@@ -1000,18 +1000,14 @@ app.get('/startGame', function (req, res) {
 	players[2][bPNum]=true;		//ask bplayer to start game
 	
 	players[3][wPNum]=true;		//will play w
-	players[3][bPNum]=false;		//will play w
+	players[3][bPNum]=false;		//will play b
 	
 	players[4][wPNum]=firstFreeTable
 	players[4][bPNum]=firstFreeTable
 
 	players[5][wPNum]=req.query.b;		//give them the opponents name
 	players[5][bPNum]=req.query.w;		
-
-
-
-  
-  
+ 
  	res.json({none: 0});
 
 });
