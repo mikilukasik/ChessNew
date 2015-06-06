@@ -1172,8 +1172,8 @@ app.get('/initTable', function (req,res) {
 //}
   console.log(allTables[req.query.t])
   
- 
-  var result=addMovesToTable(allTables[req.query.t],true)
+  allTables[req.query.t]=addMovesToTable(allTables[req.query.t],true)
+  var result=allTables[req.query.t]
 
 	res.json({table: result});
 
