@@ -60,6 +60,7 @@ function addMovesToTable(originalTable,whiteNext){
 	for(var i=0;i<8;i++){
 		tableWithMoves[i]=new Array(8)
 		for(var j=0;j<8;j++){
+			tableWithMoves[i][j]=[]
 			originalTable[i][j].forEach(function (value,feCount){
 				tableWithMoves[i][j][feCount]=value
 				
