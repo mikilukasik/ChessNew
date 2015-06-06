@@ -954,7 +954,7 @@ app.get('/getAllMoves', function (req, res) {
 app.get('/aiMove', function (req, res) {
 
   
-  if(req.query.p==2){
+  if(req.query.p==2){			//2 stands for white
 	   var result=ai(allTables[req.query.t],true)
   }else{
 	  var result=ai(allTables[req.query.t],false)
@@ -990,30 +990,25 @@ app.get('/chat', function (req, res) {
 });
 
 app.get('/startGame', function (req, res) {
-  //console.log(req)
-  // var firstFreeTable=0
-  // do{
-  // 	firstFreeTable++
-  // } while(!(allTables[firstFreeTable]==null))
-  var wPNum=players[0].indexOf(req.query.w)
-  var bPNum=players[0].indexOf(req.query.b)
+ 
+	var wPNum=players[0].indexOf(req.query.w)
+	var bPNum=players[0].indexOf(req.query.b)
+	
+	firstFreeTable++
+	
+	players[2][wPNum]=true;		//ask wplayer to start game
+	players[2][bPNum]=true;		//ask bplayer to start game
+	
+	players[3][wPNum]=true;		//will play w
+	players[3][bPNum]=false;		//will play w
+	
+	players[4][wPNum]=firstFreeTable
+	players[4][bPNum]=firstFreeTable
 
-  firstFreeTable++
+	players[5][wPNum]=req.query.b;		//give them the opponents name
+	players[5][bPNum]=req.query.w;		
 
-  players[2][wPNum]=true;		//ask wplayer to start game
-  players[2][bPNum]=true;		//ask bplayer to start game
 
-  players[3][wPNum]=true;		//will play w
-  players[3][bPNum]=false;		//will play w
-
-  players[4][wPNum]=firstFreeTable
-  players[4][bPNum]=firstFreeTable
-
- // if(req.query.w=='Computer'||req.query.b=='Computer'){
-	 players[5][wPNum]=req.query.b;		//give them the opponents name
- 	 players[5][bPNum]=req.query.w;		
-	  
-  //}
 
   
   
