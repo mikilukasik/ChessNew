@@ -162,7 +162,7 @@ var aiCount =0
 					//tempMoveString=getAiMove(!wPlayer)
 					//refreshTable()
 					if(aiCount==2&&opponentsName=="Computer"){
-						makeAsyncMove(getAiMove(!wPlayer))
+						makeAMove(getAiMove(!wPlayer))
 						//refreshTable()
 					}
 				}
@@ -551,7 +551,7 @@ function clickedIt(clickedField,clickedString){
 					//table=moveIt(tempMoveString,table)
 					//showTable()
 					makeAMove(tempMoveString)
-					//wNext=!wNext
+					wNext=!wNext
 					// tempMoveString=""
 					// refreshTable()
 					
