@@ -50,7 +50,30 @@ var allChats=[]
 
 var firstFreeTable=2
 
-
+function addMovesToTable(originalTable,whiteNext){
+	if(whiteNext){
+		var myCol=2
+	}else{
+		var myCol=1
+	}
+	var tableWithMoves=new Array(8)
+	for(var i=0;i<8;i++){
+		tableWithMoves[i]=new Array(8)
+		for(var j=0;j<8;j++){
+			originalTable[i][j].forEach(function (value,feCount){
+				tableWithMoves[i][j][feCount]=value
+				
+			})
+			if(originalTable[i][j][0]==myCol){
+				tableWithMoves[i][j][5]=canMove(originalTable[i][j][1],i,j,whiteNext,originalTable)
+			}
+		}
+	}
+	
+	
+	return tableWithMoves
+	
+}
 
 function canMove(what,k,l,isWhite,moveTable){
 	var possibleMoves=[]
@@ -1147,7 +1170,7 @@ app.get('/initTable', function (req,res) {
   console.log(allTables[req.query.t])
   
  
-  var result=allTables[req.query.t]
+  var result=addMovesToTable(allTables[req.query.t],true)
 
 	res.json({table: result});
 
