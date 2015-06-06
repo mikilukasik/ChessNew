@@ -139,7 +139,7 @@ var playerID=window.opener.playerName//prompt("What's your name?")
 
 var bestHit=0
 var pollNum=0
-var pollConst=1000
+var pollConst=350
 					
 		
 var aiCount =0
@@ -365,7 +365,7 @@ function showTableStatus(){								//this will update the displayed status
 
 			
 	$(".statusCell").empty();
-	var thisStatusStr = ""
+	var thisStatusStr = "<span>Opponent:<br>"+opponentsName+"</span><br>"
 	allMoves.forEach(function(thisMoveStr){
 
 		var thisSFigure = '<img src="cPiecesPng/'+thisMoveStr.substring(0,2)+'.png" height=18></img>'
