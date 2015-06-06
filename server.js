@@ -1010,8 +1010,8 @@ app.get('/startGame', function (req, res) {
   players[4][bPNum]=firstFreeTable
 
  // if(req.query.w=='Computer'||req.query.b=='Computer'){
-	 players[5][wPNum]=true;		//Will play against computer
- 	 players[5][bPNum]=true;		
+	 players[5][wPNum]=req.query.b;		//give them the opponents name
+ 	 players[5][bPNum]=req.query.w;		
 	  
   //}
 
@@ -1068,12 +1068,12 @@ app.get('/getLobby', function (req, res) {
   		lobbyPollNum++
   		var openTableNum=players[4][playerIndex]
   		var openTableColor=players[3][playerIndex]
-		var playAgainstAi=players[5][playerIndex]
+		var opponentsName=players[5][playerIndex]
 
   		players[2][playerIndex]=false
 
   		res.json({players: players[0], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
-  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, playagainstai: playAgainstAi});
+  			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, opponentsname: opponentsName});
 
 
   	}else{

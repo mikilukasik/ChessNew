@@ -28,7 +28,7 @@
 
 	var wAi=false
 	var bAi=false
-	var playAgainstAi=false
+	var opponentsName=""
 	var openNow=false
 	
 	setInterval(function(){
@@ -60,9 +60,10 @@
 					console.log('opening')
 					tableNum=lobbyPoll.responseJSON.opentablenum
 					playerColor=lobbyPoll.responseJSON.opentablecolor
-					if(lobbyPoll.responseJSON.playagainstai){playAgainstAi=lobbyPoll.responseJSON.playagainstai}else{
-							playAgainstAi=false
-					}
+					opponentsName=lobbyPoll.responseJSON.opponentsname
+					// if(lobbyPoll.responseJSON.playagainstai){playAgainstAi=lobbyPoll.responseJSON.playagainstai}else{
+					// 		playAgainstAi=false
+					// }
 					// if (wAi||bAi){
 					// 	window.open("chessai.html")
 					// }else{
