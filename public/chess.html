@@ -528,7 +528,7 @@ function clickedIt(clickedField,clickedString){
 		}else{
 			if (table[x][y][0]>0 && tempMoveString=="") {
 				
-					canMove(table[x][y][1],x,y,wPlayer,table).forEach(highLightThem)
+					table[x][y][5].forEach(highLightThem)
 					//console.log(tempMoveString)
 			};
 			if(table[x][y][0]>0||0<tempMoveString.length){
