@@ -1167,7 +1167,7 @@ app.get('/initTable', function (req,res) {
 	allTables[req.query.t][3][7]=[1,5,false,true,false]//,queenCanMove]				//b q
 	allTables[req.query.t][4][7]=[1,9,false,true,false]//,kingCanMove]				//b k
 	
-	console.log("initTable done")
+	//console.log("initTable done")
 	
 //}
   console.log(allTables[req.query.t])
