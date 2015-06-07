@@ -95,7 +95,7 @@
 function showLobby(){
 	$(".putPlayersHere").empty();
 	var thisfunc="askToStart('Computer')"
-	var playersHTML = '<span onclick="'+thisfunc+'">Computer</span><br>'
+	var playersHTML = '<span class="pointed" onclick="'+thisfunc+'">Computer</span><br>'
 	players.forEach(function(player){
 
 		var thisfunc="askToStart('"+player+"')"
