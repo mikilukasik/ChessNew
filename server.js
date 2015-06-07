@@ -880,7 +880,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 			hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		
 		//			
 		// thistable=othistable
-		
+		}
 
 
 		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
