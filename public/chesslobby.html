@@ -99,7 +99,11 @@ function showLobby(){
 	players.forEach(function(player){
 
 		var thisfunc="askToStart('"+player+"')"
-		playersHTML = playersHTML+'<span onclick="'+thisfunc+'">'+player+'</span><br>'
+		if (player==playerName){
+			playersHTML = playersHTML+'<span style="color:silver">'+player+'</span><br>'
+		}else{
+			playersHTML = playersHTML+'<span onclick="'+thisfunc+'">'+player+'</span><br>'
+		}
 		
 	}) 
 	var playersPar= $('<p>'+playersHTML+'</p>')
