@@ -52,6 +52,43 @@ var allChats=[]
 
 var firstFreeTable=2
 
+function protectedPieces(originalTable,whitePlayer){
+	
+	//var flippedMoves=
+		
+	if(whitePlayer){
+		var myCol=2
+	}else{
+		var myCol=1
+	}
+	// var protectedTable=new Array(8)
+	// for(var i=0;i<8;i++){
+	// 	protectedTable[i]=new Array(8)
+	// 	for(var j=0;j<8;j++){
+	// 		protectedTable[i][j]=[]
+	// 		originalTable[i][j].forEach(function (value,feCount){
+	// 			protectedTable[i][j][feCount]=value
+				
+	// 		})
+	// 		if(originalTable[i][j][0]==myCol){
+	// 			protectedTable[i][j][6]=true  //protected if in flippedmoves
+	// 		}else{
+	// 			protectedTable[i][j][6]=false
+	// 		}
+	// 	}
+	// }
+	
+	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,!whitePlayer). //moves are flipped to hit my own
+		forEach(function(thisMoveCoords){												//we'll use the 2nd part of the moves
+			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
+				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
+			}
+		}
+	)
+	
+	
+}
+
 function addMovesToTable(originalTable,whiteNext){
 	if(whiteNext){
 		var myCol=2
@@ -946,6 +983,11 @@ function ai(tablE,wn){
 	return createFirstTableState(tablE,wn)[1][0]
 	//tableToAi[1][0]
 
+}
+
+
+function getAllProtectedSpaces(protectTable,wh){
+	
 }
 
 app.get('/move', function (req, res) {
