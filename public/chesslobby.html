@@ -17,7 +17,7 @@
   		*/overflow-y: scroll;
 	}
 
-	.putPlayersHere span:hover {
+	.putPlayersHere pointed:hover {
 		cursor: pointer;
 	}
 </style>
@@ -102,7 +102,7 @@ function showLobby(){
 		if (player==playerName){
 			playersHTML = playersHTML+'<span style="color:grey">'+player+'</span><br>'
 		}else{
-			playersHTML = playersHTML+'<span onclick="'+thisfunc+'">'+player+'</span><br>'
+			playersHTML = playersHTML+'<span class="pointed" onclick="'+thisfunc+'">'+player+'</span><br>'
 		}
 		
 	}) 
