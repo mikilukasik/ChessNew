@@ -52,7 +52,7 @@ var allChats=[]
 
 var firstFreeTable=2
 
-function protectedPieces(originalTable,whitePlayer){
+function protectPieces(originalTable,whitePlayer){
 	
 	//var flippedMoves=
 		
@@ -798,6 +798,7 @@ function sortAiArray(a,b){
 }
 
 function moveIt(moveString,intable){
+		protectPieces(intable)
 		var thistable=[]
 		//var thistable=[]
 		for (var i=0;i<8;i++){
@@ -873,8 +874,11 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 
 }	
 
-
-		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]					//this global val. will be captured in another function
+		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){
+			hitValue=9 					//this global val. will be captured in another function
+		}else{
+			hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		
+		//			
 		// thistable=othistable
 		
 
