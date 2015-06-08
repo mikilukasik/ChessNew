@@ -810,10 +810,12 @@ function moveIt(moveString,intable){
 			thistable[i]=new Array(8)
 			for (var j=0;j<8;j++){
 				thistable[i][j]= new Array (4)
-
-				intable[i][j].forEach(function (value,feCount){
-					thistable[i][j][feCount]=value
-				})
+				
+				for(k=0;k<5;k++{})
+				
+				//intable[i][j].forEach(function (value,feCount){
+					thistable[i][j][k]=intable[i][j][k]
+				}//)
 			}
 		}
 		
