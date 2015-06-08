@@ -801,7 +801,9 @@ function sortAiArray(a,b){
 }
 
 function moveIt(moveString,intable){
-		protectPieces(intable)
+		protectPieces(intable,true)
+		protectPieces(intable,false) //opponent would be enough 
+		
 		var thistable=[]
 		//var thistable=[]
 		for (var i=0;i<8;i++){
