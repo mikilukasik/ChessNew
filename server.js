@@ -1028,6 +1028,8 @@ app.get('/move', function (req, res) {
 	 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
 	   allWNexts[req.query.t]=!allWNexts[req.query.t]
   allTables[req.query.t]=addMovesToTable(allTables[req.query.t],allWNexts[req.query.t])
+  protectPieces[allTables[req.query.t],true]
+  protectPieces[allTables[req.query.t],false]
   var result=allTables[req.query.t]
   pollNum[req.query.t]++
  
