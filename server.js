@@ -681,7 +681,9 @@ function getAllMoves(rawTableData,tableToMoveOn,whiteNext,hitItsOwn){
 	//if (tableToMoveOn[tableData[0][1]][tableData[0][0]][0]=2){
 		//whiteNext=true
 	//}
-
+	if(hitItsOwn){
+		whiteNext=!whiteNext
+	}
 
 	for(var pieceNo=0;pieceNo<tableData.length;pieceNo++){
 		//console.log(pieceNo)
