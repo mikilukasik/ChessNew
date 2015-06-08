@@ -258,7 +258,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 
 
 
-
+	}
 
 
 
