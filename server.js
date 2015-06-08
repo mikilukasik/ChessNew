@@ -78,13 +78,13 @@ function protectPieces(originalTable,whitePlayer){
 	// 	}
 	// }
 	
-	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,!whitePlayer). //moves are flipped to hit my own (!wp)
+	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,whitePlayer,true). //moves include to hit my own 
+																				//true stands for letMeHitMyOwn
+																						
 		forEach(function(thisMoveCoords){		
-			//originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=false										//we'll use the 2nd part of the moves
+																					//we'll use the 2nd part of the moves [2][3]
 			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
 				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
-			}else{
-				//originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=false	
 			}
 		}
 	)
@@ -894,15 +894,18 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 			(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][0]==1&&				//vagy fekete
 			moveString[3]==1)					)												//1re
 		){			
-			//
-			//console.log(moveString)																		//AKKOR
+																								//AKKOR
 			thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]=5  					//kiralyno lett
-			//thistable[dletters.indexOf(moveString[0])][moveString[1]-1][5]=queenCanMove  		//ugy is mozog
+			
 		}
 
 
-		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){
-			hitValue=9 					//this global val. will be captured in another function
+
+
+			// calculate hitvalue and leave it for ai in global variable		//change this to local!!
+			
+ 		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){		//ha kiralyt ut
+			hitValue=20 					//this global val. will be captured in another function
 		}else{
 			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  	//ha pretectedre lep
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
