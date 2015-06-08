@@ -819,8 +819,8 @@ function moveIt(moveString,intable){
 			}
 		}
 		
-		protectPieces(thistable,true)
-		protectPieces(thistable,false) //opponent would be enough //maybe....
+		// protectPieces(thistable,true)
+		// protectPieces(thistable,false) //opponent would be enough //maybe....
 		
 				//itt indil sanc bastyatolas
 	if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==9&&thistable[dletters.indexOf(moveString[0])][moveString[1]-1][3]){
@@ -885,22 +885,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 
 }	
 
-		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){
-			hitValue=9 					//this global val. will be captured in another function
-		}else{
-			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){
-				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-
-					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
-				if(hitValue<0)hitvalue=0
-			}else{
-				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]
-				
-			}
-			
-		//			
-		// thistable=othistable
-		}
-
+		
 
 		if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&	(				//ha paraszt es
 		
@@ -916,6 +901,20 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 		}
 
 
+		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){
+			hitValue=9 					//this global val. will be captured in another function
+		}else{
+			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  	//ha pretectedre lep
+				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
+					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
+				if(hitValue<0)hitvalue=0												//negaive is 0
+			}else{
+				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
+				
+			}
+			
+		
+		}
 
 
 		
