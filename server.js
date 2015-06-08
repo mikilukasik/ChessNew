@@ -801,8 +801,8 @@ function sortAiArray(a,b){
 }
 
 function moveIt(moveString,intable){
-		protectPieces(intable,true)
-		protectPieces(intable,false) //opponent would be enough 
+		// protectPieces(intable,true)
+		// protectPieces(intable,false) //opponent would be enough 
 		
 		var thistable=[]
 		//var thistable=[]
@@ -816,6 +816,10 @@ function moveIt(moveString,intable){
 				})
 			}
 		}
+		
+		protectPieces(thistable,true)
+		protectPieces(thistable,false) //opponent would be enough 
+		
 				//itt indil sanc bastyatolas
 	if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==9&&thistable[dletters.indexOf(moveString[0])][moveString[1]-1][3]){
 	  	//if(moveString.substring(2)=="")
