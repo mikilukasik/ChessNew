@@ -157,17 +157,18 @@ function whatsThere(i,j,aiTable){
 
 	return pieceThere
 }
-function pushAid(x,y,hanyadik,milegyen,fromTable,hit){
+function pushAid(x,y,hanyadik,milegyen,fromTable)//,hit)
+{
 	
 
 	if (whatsThere(x,y,fromTable)[hanyadik]==milegyen) {
 		
 			canMoveTo.push([x,y,whatsThere(x,y,fromTable)[1]])
 			
-			if(bestHit<whatsThere(x,y,fromTable)[1]){
-				bestHit=whatsThere(x,y,fromTable)[1]
+			//if(bestHit<whatsThere(x,y,fromTable)[1]){
+				bestHit+=whatsThere(x,y,fromTable)[1]
 				//alert(bestHit)
-			}
+			//}
 
 				//besthit=10}//whatsThere(x,y,fromTable)[1]}
 			return true
