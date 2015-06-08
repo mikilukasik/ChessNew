@@ -84,7 +84,7 @@ function protectPieces(originalTable,whitePlayer){
 			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
 				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
 			}else{
-				
+				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=false	
 			}
 		}
 	)
