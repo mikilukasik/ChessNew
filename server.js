@@ -61,22 +61,7 @@ function protectPieces(originalTable,whitePlayer){
 	}else{
 		var myCol=1
 	}
-	// var protectedTable=new Array(8)
-	// for(var i=0;i<8;i++){
-	// 	protectedTable[i]=new Array(8)
-	// 	for(var j=0;j<8;j++){
-	// 		protectedTable[i][j]=[]
-	// 		originalTable[i][j].forEach(function (value,feCount){
-	// 			protectedTable[i][j][feCount]=value
-				
-	// 		})
-	// 		if(originalTable[i][j][0]==myCol){
-	// 			protectedTable[i][j][6]=true  //protected if in flippedmoves
-	// 		}else{
-	// 			protectedTable[i][j][6]=false
-	// 		}
-	// 	}
-	// }
+	
 	
 	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,whitePlayer,true). //moves include to hit my own 
 																							//true stands for letMeHitMyOwn
