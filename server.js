@@ -82,7 +82,7 @@ function protectPieces(originalTable,whitePlayer){
 		forEach(function(thisMoveCoords){		
 			originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=false										//we'll use the 2nd part of the moves
 			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
-				//originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
+				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
 			}else{
 				
 			}
@@ -303,21 +303,21 @@ function pawnCanMove(k,l,isWhite,moveTable){
 	
 		//if(aiCalled){
 		
-		if (isWhite){
+		if (moveTable[k][l][0]==2){
 
 			if(pushAid(k,l+1,0,0,moveTable)&&l==1){pushAid(k,l+2,0,0,moveTable)}
-			pushAid(k-1,l+1,0,1,moveTable,true)
-			pushAid(k+1,l+1,0,1,moveTable,true)
+			pushAid(k-1,l+1,0,1,moveTable,isWhite)
+			pushAid(k+1,l+1,0,1,moveTable,isWhite)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
 				
-				pushAid(k-1,l+1,0,0,moveTable,true)
+				pushAid(k-1,l+1,0,0,moveTable,isWhite)
 
 			}
 			if(whatsThere(k+1,l,moveTable)[3]){
 				
-				pushAid(k+1,l+1,0,0,moveTable,true)
+				pushAid(k+1,l+1,0,0,moveTable,isWhite)
 
 			}
 
@@ -325,18 +325,18 @@ function pawnCanMove(k,l,isWhite,moveTable){
 		}else{
 
 			if(pushAid(k,l-1,0,0,moveTable)&&l==6){pushAid(k,l-2,0,0,moveTable)}
-			pushAid(k-1,l-1,0,2,moveTable,true)
-			pushAid(k+1,l-1,0,2,moveTable,true)
+			pushAid(k-1,l-1,0,2,moveTable,!isWhite)
+			pushAid(k+1,l-1,0,2,moveTable,!isWhite)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
 				
-				pushAid(k-1,l-1,0,0,moveTable,true)
+				pushAid(k-1,l-1,0,0,moveTable,!isWhite)
 
 			}
 			if(whatsThere(k+1,l,moveTable)[3]){
 				
-				pushAid(k+1,l-1,0,0,moveTable,true)
+				pushAid(k+1,l-1,0,0,moveTable,!isWhite)
 
 			}
 
