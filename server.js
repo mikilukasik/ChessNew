@@ -915,7 +915,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
  		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){		//ha kiralyt ut
 			hitValue=20 					//this global val. will be captured in another function
 		}else{
-			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  	//ha pretectedre lep
+			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  	//ha protectedre lep
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
 					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
 				//if(hitValue<0)hitvalue=0												//negaive is 0
@@ -948,7 +948,7 @@ function createFirstTableState(cfTable,cfColor){
 	var tempTable=new Array(8)
 	var allTempTables=[]
 	var opponentsOrigValue=validateTable(cfTable,!cfColor)
-	var myOrigValue=validateTable(cfTable,cfColor)
+	var myOrigValue=0//validateTable(cfTable,cfColor)
 
 	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
 	
