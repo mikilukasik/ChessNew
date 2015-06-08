@@ -227,7 +227,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 			//////////////////////////
 		var thisHit=0		
 		if(fromTable[x][y][1]==9){		//ha kiralyt ut
-			thisHit=20 					//this global val. will be captured in another function
+			thisHit=9 					//this global val. will be captured in another function
 		}else{
 			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
