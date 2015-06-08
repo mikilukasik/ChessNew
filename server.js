@@ -924,6 +924,8 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 			thistable[dletters.indexOf(moveString[2])][moveString[3]-1][3]=false
 		}
 		//wNext=!wNext
+		protectPieces(thistable,true)
+		protectPieces(thistable,false)
 		return thistable
 }
 function createFirstTableState(cfTable,cfColor){
