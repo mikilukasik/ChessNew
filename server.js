@@ -44,13 +44,13 @@ players[1]=[]	//players last polled
 players[2]=[]	//bolleans true if game is to start
 players[3]=[]	//player colors for new games
 players[4]=[]	//table numbers for new games
-players[5]=[]	//playagainst ai
+players[5]=[]	//opponents name
 
 var lobbyPollNum=0
 var lobbyChat=[]
 var allChats=[]
 
-var firstFreeTable=2
+var firstFreeTable=0
 
 function protectPieces(originalTable,whitePlayer){
 	
@@ -79,7 +79,7 @@ function protectPieces(originalTable,whitePlayer){
 	// }
 	
 	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,whitePlayer,true). //moves include to hit my own 
-																				//true stands for letMeHitMyOwn
+																							//true stands for letMeHitMyOwn
 																						
 		forEach(function(thisMoveCoords){		
 																					//we'll use the 2nd part of the moves [2][3]
@@ -670,7 +670,7 @@ function moveArrayToStrings(moveArray,ftable,fwNext){
 
 //var switchCount=0;
 
-function getAllMoves(rawTableData,tableToMoveOn,whiteNext){		
+function getAllMoves(rawTableData,tableToMoveOn,whiteNext,hitItsOwn){		
 	
 	// var moveArrays=[]
 	// var moveStrings=[]
