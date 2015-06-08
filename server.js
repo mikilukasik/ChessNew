@@ -82,7 +82,7 @@ function protectPieces(originalTable,whitePlayer){
 		forEach(function(thisMoveCoords){		
 			originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=false										//we'll use the 2nd part of the moves
 			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
-				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
+				//originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
 			}else{
 				
 			}
@@ -993,9 +993,9 @@ function ai(tablE,wn){
 }
 
 
-function getAllProtectedSpaces(protectTable,wh){
+// function getAllProtectedSpaces(protectTable,wh){
 	
-}
+// }
 
 app.get('/move', function (req, res) {
  var moveStr=String(req.query.m)
