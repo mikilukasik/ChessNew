@@ -78,7 +78,7 @@ function protectPieces(originalTable,whitePlayer){
 	// 	}
 	// }
 	
-	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,!whitePlayer). //moves are flipped to hit my own
+	getAllMoves(getTableData(originalTable,whitePlayer),originalTable,!whitePlayer). //moves are flipped to hit my own (!wp)
 		forEach(function(thisMoveCoords){												//we'll use the 2nd part of the moves
 			if(originalTable[thisMoveCoords[2]][thisMoveCoords[3]][0]==myCol){		//if i have sg there
 				originalTable[thisMoveCoords[2]][thisMoveCoords[3]][6]=true			//that must be protected
@@ -1221,6 +1221,7 @@ app.get('/initTable', function (req,res) {
   console.log(allTables[req.query.t])
   
   allTables[req.query.t]=addMovesToTable(allTables[req.query.t],true)
+  protectPieces(allTables[req.query.t],true)
   var result=allTables[req.query.t]
 
 	res.json({table: result});
