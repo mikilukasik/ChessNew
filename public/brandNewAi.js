@@ -222,10 +222,50 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 		
 			canMoveTo.push([x,y,whatsThere(x,y,fromTable)[1]])
 			
-			if(bestHit<whatsThere(x,y,fromTable)[1]){
-				bestHit=whatsThere(x,y,fromTable)[1]
+			
+			
+			//////////////////////////
+		var thisHit=0		
+		if(fromTable[x][y][1]==9){		//ha kiralyt ut
+			thisHit=20 					//this global val. will be captured in another function
+		}else{
+			if(intablex][y][6]){  //alert('protectedHit')	//ha protectedre lep
+				thisHit=fromTable[y][1]-	//thisHitbol kivonja amivel lep
+					whatHits	
+				if(thisHit<0){
+					thisHit=0
+				}												//negaive is 0
+			}else{
+				thisHit=fromTable[y][1]		//normal hivalue
+				
+			}
+			
+		
+		}			
+			
+			////////////////////////////////
+			
+			
+			
+			
+			
+			
+			
+			if(bestHit<thisHit){
+				bestHit=thisHit
 				//alert(bestHit)
 			}
+
+
+
+
+
+
+
+
+
+
+
 
 				//besthit=10}//whatsThere(x,y,fromTable)[1]}
 			return true
