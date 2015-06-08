@@ -902,7 +902,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 		}else{
 			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  	//ha protectedre lep
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
-					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
+					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]*100	
 				//if(hitValue<0)hitvalue=0												//negaive is 0
 			}else{
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
