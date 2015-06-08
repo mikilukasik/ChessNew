@@ -846,7 +846,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
  		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){		//ha kiralyt ut
 			hitValue=20 					//this global val. will be captured in another function
 		}else{
-			if(intable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  alert('protectedHit')	//ha protectedre lep
+			if(intable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  //alert('protectedHit')	//ha protectedre lep
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
 					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]*100	
 				//if(hitValue<0)hitvalue=0												//negaive is 0
