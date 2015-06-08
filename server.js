@@ -300,14 +300,20 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,hit){
 function pawnCanMove(k,l,isWhite,moveTable){
 	canMoveTo=[]
 	//var hitIt=false
-	
+	if((isWhite&&moveTable[k][l][0]==2)||(!isWhite&&moveTable[k][l][0]==1)){
+			var c=2
+			var nc=1
+		}else{
+			var c=1
+			var nc=2
+		}
 		//if(aiCalled){
 		
 		if (moveTable[k][l][0]==2){
 
 			if(pushAid(k,l+1,0,0,moveTable)&&l==1){pushAid(k,l+2,0,0,moveTable)}
-			pushAid(k-1,l+1,0,1,moveTable,isWhite)
-			pushAid(k+1,l+1,0,1,moveTable,isWhite)
+			pushAid(k-1,l+1,0,nc,moveTable,isWhite)
+			pushAid(k+1,l+1,0,nc,moveTable,isWhite)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
@@ -325,8 +331,8 @@ function pawnCanMove(k,l,isWhite,moveTable){
 		}else{
 
 			if(pushAid(k,l-1,0,0,moveTable)&&l==6){pushAid(k,l-2,0,0,moveTable)}
-			pushAid(k-1,l-1,0,2,moveTable,!isWhite)
-			pushAid(k+1,l-1,0,2,moveTable,!isWhite)
+			pushAid(k-1,l-1,0,c,moveTable,!isWhite)
+			pushAid(k+1,l-1,0,c,moveTable,!isWhite)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
