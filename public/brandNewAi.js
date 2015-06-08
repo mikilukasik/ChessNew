@@ -1,3 +1,10 @@
+
+var bestHit=0
+
+var escConst=2
+var fadeConst=1
+var level=1
+
 function protectPieces(originalTable,whitePlayer){
 	
 	//var flippedMoves=

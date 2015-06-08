@@ -18,11 +18,6 @@ app.use(express.static('public'))
 app.use(morgan("combined"))
 
 
-//
-var escConst=2
-var fadeConst=1
-var level=1
-
 
 var dletters = ["a","b","c","d","e","f","g","h"]
 //var dfigures = ["","King","Queen","Rook","Bishop","Knight","Pawn"]
@@ -30,7 +25,6 @@ var dletters = ["a","b","c","d","e","f","g","h"]
 //this looks like a stinking hack.. 
 //var dcolors = ["","Black","White"]
 
-var bestHit=0
 
 var allTables=[]
 //var table=[]
