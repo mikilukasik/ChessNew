@@ -880,7 +880,15 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){
 			hitValue=9 					//this global val. will be captured in another function
 		}else{
-			hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		
+			if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){
+				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-
+					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
+				if(hitValue<0)hitvalue=0
+			}else{
+				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]
+				
+			}
+			
 		//			
 		// thistable=othistable
 		}
