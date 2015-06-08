@@ -850,7 +850,7 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
 					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
 				if(hitValue<0){
-					hitvalue=0
+					hitValue=0
 				}												//negaive is 0
 			}else{
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
