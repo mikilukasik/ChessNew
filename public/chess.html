@@ -411,21 +411,21 @@ function showChat(){								//this will update the chat field
 
 
 var tempMoveString=""
-function getAllMoves(whosMove){
-	if(whosMove){
-		var playerCN = 2 //this goes to server as color
-	}
-	var tempTable=$.ajax({
-			    type: 'GET',
-			    url: '/getAllMoves?p='+playerCN+'&t='+tableNum,
-			    dataType: 'json',
-			    success: function() { },
-			    data: {},
-			    async: false
-			});
-			//wNext=!wNext
-			return tempTable.responseJSON.allmoves
-}
+// function getAllMoves(whosMove){
+// 	if(whosMove){
+// 		var playerCN = 2 //this goes to server as color
+// 	}
+// 	var tempTable=$.ajax({
+// 			    type: 'GET',
+// 			    url: '/getAllMoves?p='+playerCN+'&t='+tableNum,
+// 			    dataType: 'json',
+// 			    success: function() { },
+// 			    data: {},
+// 			    async: false
+// 			});
+// 			//wNext=!wNext
+// 			return tempTable.responseJSON.allmoves
+// }
 function getAiMove(whosMove){
 	if(whosMove){
 		var playerCN = 2 //this goes to server as color
