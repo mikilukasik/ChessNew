@@ -809,7 +809,7 @@ function moveIt(moveString,intable){
 		for (var i=0;i<8;i++){
 			thistable[i]=new Array(8)
 			for (var j=0;j<8;j++){
-				thistable[i][j]= new Array (4)
+				thistable[i][j]= []  //new Array(4?)
 				
 				for(k=0;k<5;k++){
 				
@@ -820,7 +820,7 @@ function moveIt(moveString,intable){
 		}
 		
 		protectPieces(thistable,true)
-		protectPieces(thistable,false) //opponent would be enough 
+		protectPieces(thistable,false) //opponent would be enough //maybe....
 		
 				//itt indil sanc bastyatolas
 	if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==9&&thistable[dletters.indexOf(moveString[0])][moveString[1]-1][3]){
@@ -1028,8 +1028,8 @@ app.get('/move', function (req, res) {
 	 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
 	   allWNexts[req.query.t]=!allWNexts[req.query.t]
   allTables[req.query.t]=addMovesToTable(allTables[req.query.t],allWNexts[req.query.t])
-  protectPieces(allTables[req.query.t],true)
-  protectPieces(allTables[req.query.t],false)
+  // protectPieces(allTables[req.query.t],true)
+  // protectPieces(allTables[req.query.t],false)
   
   var result=allTables[req.query.t]
   pollNum[req.query.t]++
