@@ -4,7 +4,7 @@ var bestHit=0
 var escConst=1.1
 var fadeConst=1
 var level=1
-var whatHitConst=0.9
+var whatHitsConst=0.9
 
 function protectPieces(originalTable,whitePlayer){
 	
