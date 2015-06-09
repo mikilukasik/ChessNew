@@ -962,7 +962,7 @@ function createFirstTableState(cfTable,cfColor){
 			var myOrig2Value=hitValue
 			hitValue=0
 			
-			tTable2Value -=-myOrigValue+ myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
+			tTable2Value -=-tTableValue+ myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
 				opponents2OrigValue)+(validateTable(temp2Table,cfColor)/10)/10)
 	
 			
