@@ -486,7 +486,7 @@ function sendChat(){
 function  refreshTable(){
 	var gotTablePollNum=$.ajax({
 	    type: 'GET',
-	    url: '/getTablePolNum?t='+tableNum,
+	    url: '/getTablePollNum?t='+tableNum,
 	    dataType: 'json',
 	    success: function() { },
 	    data: {},
