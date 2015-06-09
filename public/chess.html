@@ -439,7 +439,11 @@ function getAiMove(whosMove){
 			    async: false
 			});
 			//wNext=!wNext
-			console.log(tempTable.responseJSON.fulltable)
+			tempTable.responseJSON.fulltable.foreach(function(thisline){
+				console.log(thisline)
+				
+				 
+			})
 			return tempTable.responseJSON.aimove
 }
 function makeAMove(whatMove){
