@@ -232,7 +232,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 		 }else{
 			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
-					whatHits*whatHitsConst
+											whatHits*whatHitsConst
 				if(thisHit<0){
 					thisHit=0 
 				}												//negaive is 0
