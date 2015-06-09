@@ -290,8 +290,8 @@ function pawnCanMove(k,l,isWhite,moveTable){
 		if (moveTable[k][l][0]==2){
 
 			if(pushAid(k,l+1,0,0,moveTable)&&l==1){pushAid(k,l+2,0,0,moveTable)}
-			pushAid(k-1,l+1,0,nc,moveTable,isWhite)
-			pushAid(k+1,l+1,0,nc,moveTable,isWhite)
+			pushAid(k-1,l+1,0,nc,moveTable,isWhite,1)
+			pushAid(k+1,l+1,0,nc,moveTable,isWhite,1)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
@@ -309,8 +309,8 @@ function pawnCanMove(k,l,isWhite,moveTable){
 		}else{
 
 			if(pushAid(k,l-1,0,0,moveTable)&&l==6){pushAid(k,l-2,0,0,moveTable)}
-			pushAid(k-1,l-1,0,c,moveTable,!isWhite)
-			pushAid(k+1,l-1,0,c,moveTable,!isWhite)
+			pushAid(k-1,l-1,0,c,moveTable,!isWhite,1)
+			pushAid(k+1,l-1,0,c,moveTable,!isWhite,1)
 
 			//en pass
 			if(whatsThere(k-1,l,moveTable)[3]){
@@ -386,19 +386,19 @@ function rookCanMove(k,l,isWhite,moveTable){
 	for (var moveCount=1;moveCount<8;moveCount++){
 		if(goFurther[0]){
 			pushAid(k+moveCount,l,0,0,moveTable)
-			if (pushAid(k+moveCount,l,0,c,moveTable,true)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[0]=false}
+			if (pushAid(k+moveCount,l,0,c,moveTable,true,4)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[0]=false}
 		}
 		if(goFurther[1]){
 			pushAid(k-moveCount,l,0,0,moveTable)
-			if (pushAid(k-moveCount,l,0,c,moveTable,true)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[1]=false}
+			if (pushAid(k-moveCount,l,0,c,moveTable,true,4)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[1]=false}
 		}
 		if(goFurther[2]){
 			pushAid(k,l+moveCount,0,0,moveTable)
-			if (pushAid(k,l+moveCount,0,c,moveTable,true)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[2]=false}
+			if (pushAid(k,l+moveCount,0,c,moveTable,true,4)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[2]=false}
 		}
 		if(goFurther[3]){
 			pushAid(k,l-moveCount,0,0,moveTable)
-			if (pushAid(k,l-moveCount,0,c,moveTable,true)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+			if (pushAid(k,l-moveCount,0,c,moveTable,true,4)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
 		}
 	}
 	return canMoveTo
@@ -429,19 +429,19 @@ function bishopCanMove(k,l,isWhite,moveTable){
 	for (var moveCount=1;moveCount<8;moveCount++){
 		if(goFurther[0]){
 			pushAid(k+moveCount,l+moveCount,0,0,moveTable)
-			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
+			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true,2)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
 		}
 		if(goFurther[1]){
 			pushAid(k-moveCount,l+moveCount,0,0,moveTable)
-			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
+			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true,2)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
 		}
 		if(goFurther[2]){
 			pushAid(k+moveCount,l-moveCount,0,0,moveTable)
-			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
+			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true,2)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
 		}
 		if(goFurther[3]){
 			pushAid(k-moveCount,l-moveCount,0,0,moveTable)
-			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true,2)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
 		}
 	}
 	return canMoveTo
@@ -473,36 +473,36 @@ function queenCanMove(k,l,isWhite,moveTable){
 	for (var moveCount=1;moveCount<8;moveCount++){
 		if(goFurther[0]){
 			pushAid(k+moveCount,l+moveCount,0,0,moveTable)
-			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
+			if (pushAid(k+moveCount,l+moveCount,0,c,moveTable,true,5)||whatsThere(k+moveCount,l+moveCount,moveTable)[0]==nc){goFurther[0]=false}
 		}
 		if(goFurther[1]){
 			pushAid(k-moveCount,l+moveCount,0,0,moveTable)
-			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
+			if (pushAid(k-moveCount,l+moveCount,0,c,moveTable,true,5)||whatsThere(k-moveCount,l+moveCount,moveTable)[0]==nc){goFurther[1]=false}
 		}
 		if(goFurther[2]){
 			pushAid(k+moveCount,l-moveCount,0,0,moveTable)
-			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
+			if (pushAid(k+moveCount,l-moveCount,0,c,moveTable,true,5)||whatsThere(k+moveCount,l-moveCount,moveTable)[0]==nc){goFurther[2]=false}
 		}
 		if(goFurther[3]){
 			pushAid(k-moveCount,l-moveCount,0,0,moveTable)
-			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
+			if (pushAid(k-moveCount,l-moveCount,0,c,moveTable,true,5)||whatsThere(k-moveCount,l-moveCount,moveTable)[0]==nc){goFurther[3]=false}
 		}
 
 		if(goFurther[4]){
 			pushAid(k+moveCount,l,0,0,moveTable)
-			if (pushAid(k+moveCount,l,0,c,moveTable,true)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[4]=false}
+			if (pushAid(k+moveCount,l,0,c,moveTable,true,5)||whatsThere(k+moveCount,l,moveTable)[0]==nc){goFurther[4]=false}
 		}
 		if(goFurther[5]){
 			pushAid(k-moveCount,l,0,0,moveTable)
-			if (pushAid(k-moveCount,l,0,c,moveTable,true)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[5]=false}
+			if (pushAid(k-moveCount,l,0,c,moveTable,true,5)||whatsThere(k-moveCount,l,moveTable)[0]==nc){goFurther[5]=false}
 		}
 		if(goFurther[6]){
 			pushAid(k,l+moveCount,0,0,moveTable)
-			if (pushAid(k,l+moveCount,0,c,moveTable,true)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[6]=false}
+			if (pushAid(k,l+moveCount,0,c,moveTable,true,5)||whatsThere(k,l+moveCount,moveTable)[0]==nc){goFurther[6]=false}
 		}
 		if(goFurther[7]){
 			pushAid(k,l-moveCount,0,0,moveTable)
-			if (pushAid(k,l-moveCount,0,c,moveTable,true)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[7]=false}
+			if (pushAid(k,l-moveCount,0,c,moveTable,true,5)||whatsThere(k,l-moveCount,moveTable)[0]==nc){goFurther[7]=false}
 		}
 	}
 	return canMoveTo
@@ -533,14 +533,14 @@ function kingCanMove(k,l,isWhite,moveTable){
 	pushAid(k,l+moveCount,0,0,moveTable)
 	pushAid(k,l-moveCount,0,0,moveTable)
 	
-	pushAid(k+moveCount,l+moveCount,0,c,moveTable,true)
-	pushAid(k-moveCount,l+moveCount,0,c,moveTable,true)
-	pushAid(k+moveCount,l-moveCount,0,c,moveTable,true)
-	pushAid(k-moveCount,l-moveCount,0,c,moveTable,true)
-	pushAid(k+moveCount,l,0,c,moveTable,true)
-	pushAid(k-moveCount,l,0,c,moveTable,true)
-	pushAid(k,l+moveCount,0,c,moveTable,true)
-	pushAid(k,l-moveCount,0,c,moveTable,true)
+	pushAid(k+moveCount,l+moveCount,0,c,moveTable,true,9)
+	pushAid(k-moveCount,l+moveCount,0,c,moveTable,true,9)
+	pushAid(k+moveCount,l-moveCount,0,c,moveTable,true,9)
+	pushAid(k-moveCount,l-moveCount,0,c,moveTable,true,9)
+	pushAid(k+moveCount,l,0,c,moveTable,true,9)
+	pushAid(k-moveCount,l,0,c,moveTable,true,9)
+	pushAid(k,l+moveCount,0,c,moveTable,true,9)
+	pushAid(k,l-moveCount,0,c,moveTable,true,9)
 	
 
 
@@ -610,15 +610,15 @@ function horseCanMove(k,l,isWhite,moveTable){
 	// 	}
 	// }
 
-	pushAid(k+1,l+2,0,c,moveTable,true)
-	pushAid(k+1,l-2,0,c,moveTable,true)
-	pushAid(k-1,l+2,0,c,moveTable,true)
-	pushAid(k-1,l-2,0,c,moveTable,true)
+	pushAid(k+1,l+2,0,c,moveTable,true,3)
+	pushAid(k+1,l-2,0,c,moveTable,true,3)
+	pushAid(k-1,l+2,0,c,moveTable,true,3)
+	pushAid(k-1,l-2,0,c,moveTable,true,3)
 	
-	pushAid(k+2,l+1,0,c,moveTable,true)
-	pushAid(k+2,l-1,0,c,moveTable,true)
-	pushAid(k-2,l+1,0,c,moveTable,true)
-	pushAid(k-2,l-1,0,c,moveTable,true)
+	pushAid(k+2,l+1,0,c,moveTable,true,3)
+	pushAid(k+2,l-1,0,c,moveTable,true,3)
+	pushAid(k-2,l+1,0,c,moveTable,true,3)
+	pushAid(k-2,l-1,0,c,moveTable,true,3)
 	
 
 	
