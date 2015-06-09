@@ -232,9 +232,9 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
 					whatHits	
-				// if(thisHit<0){
-				// 	thisHit=0
-				// }												//negaive is 0
+				if(thisHit<0){
+					thisHit=0
+				}												//negaive is 0
 			}else{
 				thisHit=fromTable[x][y][1]		//normal hivalue
 				
@@ -896,9 +896,9 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 			if(intable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  //alert('protectedHit')	//ha protectedre lep
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
 					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
-				// if(hitValue<0){
-				// 	hitValue=0
-				// }												//negaive is 0
+				if(hitValue<0){
+					hitValue=0
+				}												//negaive is 0
 			}else{
 				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
 				
