@@ -826,7 +826,7 @@ function moveIt(moveString,intable){
 	  			break;
 	  		
 	  		case "g8":
-	  				thistable=moveIt("h1f1",thistable)
+	  				thistable=moveIt("h8f8",thistable)
 	  			break;
 	
 	  	}
