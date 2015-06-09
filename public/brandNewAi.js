@@ -229,7 +229,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 		if(fromTable[x][y][1]==9){		//ha kiralyt ut
 			thisHit=9 					//this global val. will be captured in another function
 		}else{
-			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
+			if(fromTable[x][y][6]){ //ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
 					whatHits	
 				if(thisHit<0){
@@ -251,10 +251,10 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 			
 			//if (thisHit==2){alert('hit 2')}
 			
-			if(bestHit<thisHit){
-				bestHit=thisHit
+			//if(bestHit<thisHit){
+				bestHit+=thisHit
 				//alert(bestHit)
-			}
+			//}
 
 
 
