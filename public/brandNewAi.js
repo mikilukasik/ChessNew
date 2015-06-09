@@ -996,7 +996,7 @@ function ai(tablE,wn){
 	
 	//var tableToAi=createFirstTableState(tablE,wn)
 	
-	return createFirstTableState(tablE,wn)[1][0]
+	return createFirstTableState(tablE,wn)
 	//tableToAi[1][0]
 
 }

@@ -99,8 +99,9 @@ app.get('/aiMove', function (req, res) {
 	  var result=ai(allTables[req.query.t],false)
 	  
   }
+  result1=result[1][0]
  
- 	res.json({aimove: result[1][0], fulltable: result});
+ 	res.json({aimove: result1, fulltable: result});
 
 });
 
