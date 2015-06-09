@@ -215,7 +215,7 @@ function whatsThere(i,j,aiTable){
 
 	return pieceThere
 }
-function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
+function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 	
 
 	if (whatsThere(x,y,fromTable)[hanyadik]==milegyen) {
