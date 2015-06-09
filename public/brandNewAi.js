@@ -891,22 +891,22 @@ if(thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]==1&&  //parasz
 
 			// calculate hitvalue and leave it for ai in global variable		//change this to local!!
 			
- 		if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){		//ha kiralyt ut
-			hitValue=20 					//this global val. will be captured in another function
-		}else{
-			if(intable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  //alert('protectedHit')	//ha protectedre lep
-				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
-					thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
-				if(hitValue<0){
-					hitValue=0
-				}												//negaive is 0
-			}else{
-				hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
+ 		// if(thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]==9){		//ha kiralyt ut
+		// 	hitValue=20 					//this global val. will be captured in another function
+		// }else{
+		// 	if(intable[dletters.indexOf(moveString[2])][moveString[3]-1][6]){  //alert('protectedHit')	//ha protectedre lep
+		// 		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]-	//hitvaluebol kivonja amivel lep
+		// 			thistable[dletters.indexOf(moveString[0])][moveString[1]-1][1]	
+		// 		if(hitValue<0){
+		// 			hitValue=0
+		// 		}												//negaive is 0
+		// 	}else{
+		 		hitValue=thistable[dletters.indexOf(moveString[2])][moveString[3]-1][1]		//normal hivalue
 				
-			}
+		// 	}
 			
 		
-		}
+		// }
 
 
 		
