@@ -236,7 +236,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 				// 	thisHit=0
 				// }												//negaive is 0
 			}else{
-				thisHit=fromTable[y][1]		//normal hivalue
+				thisHit=fromTable[x][y][1]		//normal hivalue
 				
 			}
 			
