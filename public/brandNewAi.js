@@ -232,9 +232,9 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
 					whatHits	
-				if(thisHit<0){
-					thisHit=0.1 //this should swap the queen?
-				}												//negaive is 0
+				// if(thisHit<0){
+				// 	thisHit=0 //this should swap the queen?
+				// }												//negaive is 0
 			}else{
 				thisHit=fromTable[x][y][1]		//normal hivalue
 				
