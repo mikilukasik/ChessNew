@@ -483,8 +483,22 @@ function sendChat(){
 			$(".chatInput").val("")
 			
 }
-
-function refreshTable(){
+function  refreshTable(){
+	var gotTablePollNum=$.ajax({
+	    type: 'GET',
+	    url: '/getTablePolNum?t='+tableNum,
+	    dataType: 'json',
+	    success: function() { },
+	    data: {},
+	    async: false
+	});
+	if(!(gotTablePollNum.responseJSON.tablePollNum==pollNum)){
+		pollNum=gotTablePollNum.responseJSON.tablePollNum
+		getAndShowTable()
+	}
+			
+}
+function getAndShowTable(){
 	var tempTable=$.ajax({
 			    type: 'GET',
 			    url: '/getTable?t='+tableNum,
@@ -493,10 +507,10 @@ function refreshTable(){
 			    data: {},
 			    async: false
 			});
-			alertText=""
-			var whoCantMove=false
+			//alertText=""
+			//var whoCantMove=false
 
-			if(!(pollNum==tempTable.responseJSON.pollnum)){
+			//if(!(pollNum==tempTable.responseJSON.pollnum)){
 
 
 
@@ -506,10 +520,10 @@ function refreshTable(){
 					wNext=tempTable.responseJSON.next
 					allMoves=tempTable.responseJSON.allmoves
 					chatLines=tempTable.responseJSON.chat
-					pollNum=tempTable.responseJSON.pollnum
+					//pollNum=tempTable.responseJSON.pollnum
 					showTable()
 
-			}
+			//}
 	
 				
 

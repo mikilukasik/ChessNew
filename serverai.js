@@ -799,12 +799,21 @@ if(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]==1&&  /
 
 
 });
+app.get('/getTablePollNum', function (req, res) {
+  //console.log(req)
+  
+ // var result=allTables[req.query.t]
+  
+ 	res.json({tablepollnum: pollNum[req.query.t]});
+
+});
+
 app.get('/getTable', function (req, res) {
   //console.log(req)
   
   var result=allTables[req.query.t]
   
- 	res.json({table: result, next: allWNexts[req.query.t], allmoves: allMoves[req.query.t], chat: allChats[req.query.t], pollnum: pollNum[req.query.t]});
+ 	res.json({table: result, next: allWNexts[req.query.t], allmoves: allMoves[req.query.t], chat: allChats[req.query.t]});//, pollnum: pollNum[req.query.t]});
 
 });
 
