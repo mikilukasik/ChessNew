@@ -499,6 +499,9 @@ function  refreshTable(){
 			
 }
 function getAndShowTable(){
+	
+	console.log('polling')
+	
 	var tempTable=$.ajax({
 			    type: 'GET',
 			    url: '/getTable?t='+tableNum,
