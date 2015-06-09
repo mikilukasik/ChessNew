@@ -249,7 +249,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 			
 			
 			
-			
+			if (thisHit==2){alert('hit 2')}
 			
 			if(bestHit<thisHit){
 				bestHit=thisHit
