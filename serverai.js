@@ -799,7 +799,7 @@ if(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]==1&&  /
 
 
 });
-app.get('/getTablePollNum', function (req, res) {
+app.get('/getTPollNum', function (req, res) {
   //console.log(req)
   
  // var result=allTables[req.query.t]
