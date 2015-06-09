@@ -1,9 +1,10 @@
 
 var bestHit=0
 
-var escConst=2
+var escConst=1.1
 var fadeConst=1
 var level=1
+var whatHitConst=0.9
 
 function protectPieces(originalTable,whitePlayer){
 	
@@ -231,7 +232,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,someboolean,whatHits){
 		}else{
 			if(fromTable[x][y][6]){  //alert('protectedHit')	//ha protectedre lep
 				thisHit=fromTable[x][y][1]-	//thisHitbol kivonja amivel lep
-					whatHits*0.9
+					whatHits*whatHitsConst
 				// if(thisHit<0){
 				// 	thisHit=0 
 				// }												//negaive is 0
