@@ -104,13 +104,20 @@ app.get('/aiMove', function (req, res) {
  	res.json({aimove: result1, fulltable: result});
 
 });
+app.get('/getTPollNum', function (req, res) {
+  //console.log(req)
+  
+ // var result=allTables[req.query.t]
+  
+ 	res.json({tablepollnum: pollNum[req.query.t]});
 
+});
 app.get('/getTable', function (req, res) {
   //console.log(req)
   
   var result=allTables[req.query.t]
   
- 	res.json({table: result, next: allWNexts[req.query.t], allmoves: allMoves[req.query.t], chat: allChats[req.query.t], pollnum: pollNum[req.query.t]});
+ 	res.json({table: result, next: allWNexts[req.query.t], allmoves: allMoves[req.query.t], chat: allChats[req.query.t]});//, pollnum: pollNum[req.query.t]});
 
 });
 
