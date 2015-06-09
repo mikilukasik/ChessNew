@@ -929,7 +929,7 @@ function createFirstTableState(cfTable,cfColor){
 	var tempTable=new Array(8)
 	var allTempTables=[]
 	var opponentsOrigValue=validateTable(cfTable,!cfColor)
-	var myOrigValue=0//validateTable(cfTable,cfColor)
+	var myOrigOrigValue=validateTable(cfTable,cfColor)
 
 	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
 	
@@ -981,8 +981,8 @@ function createFirstTableState(cfTable,cfColor){
 		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
 
 		var repValue=tTable2Value/50+tTableValue
-		allTempTables.push([stepMove,
-		parseInt(repValue*100),parseInt(tTableValue*100),parseInt(tTable2Value*100)])//,tableHitValue]) //row: movestring, ai val, deepen val, deep hit val, [tables]
+		var wtf=parseInt(repValue*100),parseInt(tTableValue*100),parseInt(tTable2Value*100)
+		allTempTables.push([stepMove,wtf])//,tableHitValue]) //row: movestring, ai val, deepen val, deep hit val, [tables]
 		
 	})
 	
