@@ -249,7 +249,7 @@ function pushAid(x,y,hanyadik,milegyen,fromTable,whatHits){
 			
 			
 			
-			if (thisHit==2){alert('hit 2')}
+			//if (thisHit==2){alert('hit 2')}
 			
 			if(bestHit<thisHit){
 				bestHit=thisHit
@@ -668,7 +668,7 @@ function getAllMoves(rawTableData,tableToMoveOn,whiteNext,hitItsOwn){
 	if(hitItsOwn){
 		whiteNext=!whiteNext
 	}
-
+	bestHit=0
 	for(var pieceNo=0;pieceNo<tableData.length;pieceNo++){
 		//console.log(pieceNo)
 		
