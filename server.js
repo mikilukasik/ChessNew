@@ -89,13 +89,15 @@ setInterval(function(){
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
 					}else{
+						var chatTemp=allChats[xx]
 						
-						allChats[xx].push(t1const+allWNexts[xx])
 					   
 						//fill stats here
 					
 					randomConst=Math.random()*20
 						initTable(xx)
+						allChats[xx]=chatTemp
+						allChats[xx].push(t1const+allWNexts[xx])
 						aiOn[xx]=true
 					}
 				 
