@@ -6,6 +6,8 @@ var fadeConst=1
 var level=1
 var whatHitsConst=1
 var hitValueConst=0.5
+var t1const=11
+var t2const=1
 
 function protectPieces(originalTable,whitePlayer){
 	
@@ -986,7 +988,8 @@ function createFirstTableState(cfTable,cfColor){
 			tTableValue/=5
 		}
 
-
+		tTableValue*=t1const
+		tTable2Value*=t2const
 		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
 
 		//var repValue=tTable2Value/100+tTableValue
