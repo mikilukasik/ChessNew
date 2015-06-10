@@ -63,7 +63,7 @@ setInterval(function(){
 			 if(aiOn[xx]){
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
-					var thisfullAiMove=ai(allTables[xx],allWNexts[xx])
+					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					if (thisAiMove[1][0].length==4){
 						
 						
