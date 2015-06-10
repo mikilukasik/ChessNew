@@ -106,11 +106,16 @@ setInterval(function(){
 						initTable(xx)
 						allChats[xx]=chatTemp
 						lobbyChat.push(' ')
+						lobbyChat.push('   ------ AI START ------ ')
+						
 						lobbyChat.push('Table: '+xx)
 						
 						
 						lobbyChat.push('t1const: '+t1const)
 						lobbyChat.push('wStuck: '+allWNexts[xx])
+						lobbyChat.push('   ------ AI END ------ ')
+						lobbyPollNum++
+						
 						//aiOn[xx]=true
 						randomConst=Math.random()*20
 						console.log('aimove on table '+xx+' reset.')
