@@ -61,7 +61,8 @@ setInterval(function(){
 	
 	 	for(var xx=1; xx<allTables.length; xx++){
 			 if(aiOn[xx]){
-				 Console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+				console.log(xx)
 				
 				   allTables[xx]=moveIt(ai(allTables[xx],allWNexts[xx])[1][0],allTables[xx])
 				
