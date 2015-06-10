@@ -62,8 +62,8 @@ setInterval(function(){
 	 	for(var xx=1; xx<allTables.length; xx++){
 			 if(aiOn[xx]){
 				 aiOn[xx]=false
-				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-				console.log(xx)
+				 console.log('aimove on table '+xx+' started..')
+				//console.log(xx)
 				
 				if(allWNexts[xx]){
 					t1const=10
@@ -71,7 +71,7 @@ setInterval(function(){
 				
 				
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
-					
+				console.log('aimove on table '+xx+' generated')	
 				if(allWNexts[xx]){
 					 t1const=randomConst
 				}else{
@@ -88,7 +88,8 @@ setInterval(function(){
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
-					   allWNexts[xx]=!allWNexts[xx]	
+					   allWNexts[xx]=!allWNexts[xx]
+					   console.log('aimove on table '+xx+' moved.')	
 					   aiOn[xx]=true
 					}else{
 						var chatTemp=allChats[xx]
@@ -101,8 +102,9 @@ setInterval(function(){
 						allChats[xx]=chatTemp
 						allChats[xx].push(t1const)
 						allChats[xx].push(allWNexts[xx])
-						aiOn[xx]=true
+						//aiOn[xx]=true
 						randomConst=Math.random()*20
+						console.log('aimove on table '+xx+' reset.')
 						aiOn[xx]=true
 						
 					}
