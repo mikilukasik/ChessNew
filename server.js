@@ -63,7 +63,21 @@ setInterval(function(){
 			 if(aiOn[xx]){
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
+				
+				if(allWNexts[xx]){
+					t1const=1
+				}
+				
+				
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
+					
+				if(allWNexts[xx]){
+					t1const=11
+				}
+					
+					
+					
+					
 					if (!(thisAiMove[1]===undefined)){
 						
 						//console.log(thismove)
@@ -78,6 +92,7 @@ setInterval(function(){
 					
 					
 						initTable(xx)
+						aiOn[xx]=true
 					}
 				 
 				 
