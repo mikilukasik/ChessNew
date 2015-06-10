@@ -336,7 +336,7 @@ app.get('/initTable', function (req,res) {
 
 	res.json({table: result});
 
-});
+});//
 
 
 var server = app.listen(80, function () {
