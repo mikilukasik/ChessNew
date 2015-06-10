@@ -90,9 +90,9 @@ setInterval(function(){
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]
-					   allMoves.push(' ')
-					   allMoves.push('wN '+!allWNexts[xx])
-					   allMoves.push('t1const '+t1const)
+					   allMoves[xx].push(' ')
+					   allMoves[xx].push('wN '+!allWNexts[xx])
+					   allMoves[xx].push('t1const '+t1const)
 					   					   
 					   console.log('aimove on table '+xx+' moved.')	
 					   aiOn[xx]=true
