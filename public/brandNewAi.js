@@ -983,7 +983,7 @@ function createFirstTableState(cfTable,cfColor){
 
 		tTable2Value/=10
 		if (tTable2Value<0){
-			tTableValue=0
+			tTableValue/=5
 		}
 
 
