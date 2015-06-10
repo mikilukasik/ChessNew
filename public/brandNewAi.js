@@ -926,6 +926,11 @@ function createFirstTableState(cfTable,cfColor){
 	
 	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor),cfTable,cfColor)
 	
+	for(var  i=cfMoves.length-1;i>=0;i--){							//sakkba nem lephetunk
+		if(validateTable(moveit(cfMoves[i],cfTable),!cfColor)==9){
+			cfMoves.splice(i,1)
+		}
+	}
 
 	var tempTable=new Array(8)
 	var allTempTables=[]
