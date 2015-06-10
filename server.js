@@ -65,6 +65,7 @@ setInterval(function(){
 				console.log(xx)
 				
 				   allTables[xx]=moveIt(ai(allTables[xx],allWNexts[xx])[1][0],allTables[xx])
+				   pollNum[xx]++
 				
 				 
 				 
