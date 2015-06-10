@@ -60,7 +60,7 @@ var randomConst=Math.random()*20
 setInterval(function(){
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
-			 var xx=Math.floor(Math.random()*(alltables.length+3))
+			 var xx=Math.floor(Math.random()*(allTables.length+3))
 			 if(aiOn[xx]){
 				 aiOn[xx]=false
 				 console.log('aimove on table '+xx+' started..')
