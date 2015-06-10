@@ -83,7 +83,7 @@ setInterval(function(){
 					if (!(thisAiMove[1]===undefined)){
 						
 						//console.log(thismove)
-						 //allChats[xx].push(t1const)
+						allChats[xx].push(t1const)
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
