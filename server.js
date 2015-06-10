@@ -64,7 +64,7 @@ setInterval(function(){
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
-					if (thisAiMove[1][0].length==4){
+					if (thisAiMove){
 						
 						//console.log(thismove)
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
