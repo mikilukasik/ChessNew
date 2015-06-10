@@ -110,7 +110,7 @@ setInterval(function(){
 						
 						
 						lobbyChat.push('t1const: '+t1const)
-						lobbyChat.push('wStuck: 'allWNexts[xx])
+						lobbyChat.push('wStuck: '+allWNexts[xx])
 						//aiOn[xx]=true
 						randomConst=Math.random()*20
 						console.log('aimove on table '+xx+' reset.')
