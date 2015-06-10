@@ -72,7 +72,7 @@ setInterval(function(){
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					
 				if(allWNexts[xx]){
-					t1const=11
+					t1const=Math.random()*20
 				}
 					
 					
