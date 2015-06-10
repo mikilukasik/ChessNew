@@ -868,3 +868,8 @@ function ai(tablE,wn){
 	//tableToAi[1][0]
 
 }
+
+function helpMe(wp){
+	ai(table,wp).forEach(function(thisline){
+				console.log(thisline[0]+' '+thisline[1]+' '+thisline[2]+' '+thisline[3])})
+}
