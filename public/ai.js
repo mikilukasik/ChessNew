@@ -870,6 +870,8 @@ function ai(tablE,wn){
 }
 
 function helpMe(wp){
+	console.log'MOVE SCORE    first    second')
 	ai(table,wp).forEach(function(thisline){
-				console.log(thisline[0]+' '+thisline[1]+' '+thisline[2]+' '+thisline[3])})
+		console.log(thisline[0]+' '+thisline[1]+'  =  '+thisline[2]+'  +  '+thisline[3])
+	})
 }
