@@ -65,7 +65,7 @@ setInterval(function(){
 				console.log(xx)
 				
 				if(allWNexts[xx]){
-					t1const=1
+					t1const=10
 				}
 				
 				
@@ -164,7 +164,8 @@ app.get('/aiMove', function (req, res) {
 
 app.get('/startAiGame', function (req, res) {
 
-  
+  randomConst=Math.random()*20
+					
   firstFreeTable++
   initTable(firstFreeTable)
   aiOn[firstFreeTable]=true
