@@ -90,6 +90,7 @@ app.get('/move', function (req, res) {
  
 //  	res.json({allmoves: result});
 // });
+
 app.get('/aiMove', function (req, res) {
 
   
@@ -100,6 +101,16 @@ app.get('/aiMove', function (req, res) {
 	  
   }
   result1=result[1][0]
+ 
+ 	res.json({aimove: result1, fulltable: result});
+
+});
+
+app.get('/startAiGame', function (req, res) {
+
+  
+  firstFreeTable++
+  initTable()
  
  	res.json({aimove: result1, fulltable: result});
 
@@ -248,28 +259,26 @@ app.get('/getLobby', function (req, res) {
 
 });
 
-
-app.get('/initTable', function (req,res) {
-
-
-	pollNum[req.query.t]=1
+function initTable(tNo){
+	
+	pollNum[tNo]=1
 
 //function initTable(){	
-	allWNexts[req.query.t]=true
-	allChats[req.query.t]=[]
-	allMoves[req.query.t]=[]
+	allWNexts[tNo]=true
+	allChats[tNo]=[]
+	allMoves[tNo]=[]
 	//var tempString=""							
 	//var 
-	allTables[req.query.t] = new Array(8)							//create 8x8 array
+	allTables[tNo] = new Array(8)							//create 8x8 array
 	for (var i = 0; i < 8; i++) {
-		allTables[req.query.t][i] = new Array(8)
+		allTables[tNo][i] = new Array(8)
 	}
 	
 
 
 	for(j=2; j<6; j++){ 							//make the blanks blank
 		for(i=0; i<8; i++){
-			allTables[req.query.t][i][j]=[0,0,false,false,false]//,blankFunction]		
+			allTables[tNo][i][j]=[0,0,false,false,false]//,blankFunction]		
 			//[][]=[color,piece,selected,isInItsOriginalPosition for king and rook or CanBeHitEnPass for pawns,highLighted,canMoveTo]
 		}
 	}
@@ -285,40 +294,44 @@ app.get('/initTable', function (req,res) {
 	
 	for (var i = 0; i < 8; i++) {									//row of white pawns
 		
-		allTables[req.query.t][i][1]=[2,1,false,false,false]//,pawnCanMove]
+		allTables[tNo][i][1]=[2,1,false,false,false]//,pawnCanMove]
 	}
 	for (var i = 0; i < 8; i++) {									//row of black pawns
-		allTables[req.query.t][i][6]=[1,1,false,false,false]//,pawnCanMove]
+		allTables[tNo][i][6]=[1,1,false,false,false]//,pawnCanMove]
 	}
-	allTables[req.query.t][0][0]=[2,4,false,true,false]//,rookCanMove]				//rooks
-	allTables[req.query.t][7][0]=[2,4,false,true,false]//,rookCanMove]
-	allTables[req.query.t][0][7]=[1,4,false,true,false]//,rookCanMove]
-	allTables[req.query.t][7][7]=[1,4,false,true,false]//,rookCanMove]
+	allTables[tNo][0][0]=[2,4,false,true,false]//,rookCanMove]				//rooks
+	allTables[tNo][7][0]=[2,4,false,true,false]//,rookCanMove]
+	allTables[tNo][0][7]=[1,4,false,true,false]//,rookCanMove]
+	allTables[tNo][7][7]=[1,4,false,true,false]//,rookCanMove]
 
-	allTables[req.query.t][1][0]=[2,3,false,true,false]//,horseCanMove]					//knights
-	allTables[req.query.t][6][0]=[2,3,false,true,false]//,horseCanMove]
-	allTables[req.query.t][1][7]=[1,3,false,true,false]//,horseCanMove]
-	allTables[req.query.t][6][7]=[1,3,false,true,false]//,horseCanMove]
+	allTables[tNo][1][0]=[2,3,false,true,false]//,horseCanMove]					//knights
+	allTables[tNo][6][0]=[2,3,false,true,false]//,horseCanMove]
+	allTables[tNo][1][7]=[1,3,false,true,false]//,horseCanMove]
+	allTables[tNo][6][7]=[1,3,false,true,false]//,horseCanMove]
 	
-	allTables[req.query.t][2][0]=[2,2,false,true,false]//,bishopCanMove]				//bishops
-	allTables[req.query.t][5][0]=[2,2,false,true,false]//,bishopCanMove]
-	allTables[req.query.t][2][7]=[1,2,false,true,false]//,bishopCanMove]
-	allTables[req.query.t][5][7]=[1,2,false,true,false]//,bishopCanMove]
+	allTables[tNo][2][0]=[2,2,false,true,false]//,bishopCanMove]				//bishops
+	allTables[tNo][5][0]=[2,2,false,true,false]//,bishopCanMove]
+	allTables[tNo][2][7]=[1,2,false,true,false]//,bishopCanMove]
+	allTables[tNo][5][7]=[1,2,false,true,false]//,bishopCanMove]
 
-	allTables[req.query.t][3][0]=[2,5,false,true,false]//,queenCanMove]				//w queen
-	allTables[req.query.t][4][0]=[2,9,false,true,false]//,kingCanMove]				//w king
+	allTables[tNo][3][0]=[2,5,false,true,false]//,queenCanMove]				//w queen
+	allTables[tNo][4][0]=[2,9,false,true,false]//,kingCanMove]				//w king
 	
-	allTables[req.query.t][3][7]=[1,5,false,true,false]//,queenCanMove]				//b q
-	allTables[req.query.t][4][7]=[1,9,false,true,false]//,kingCanMove]				//b k
+	allTables[tNo][3][7]=[1,5,false,true,false]//,queenCanMove]				//b q
+	allTables[tNo][4][7]=[1,9,false,true,false]//,kingCanMove]				//b k
 	
 	//console.log("initTable done")
 	
 //}
-  console.log(allTables[req.query.t])
+  console.log(allTables[tNo])
   
-  allTables[req.query.t]=addMovesToTable(allTables[req.query.t],true)
-  protectPieces(allTables[req.query.t],true)
-  protectPieces(allTables[req.query.t],false)
+  allTables[tNo]=addMovesToTable(allTables[tNo],true)
+  protectPieces(allTables[tNo],true)
+  protectPieces(allTables[tNo],false)
+}
+app.get('/initTable', function (req,res) {
+
+	initTable(req.query.t)
   var result=allTables[req.query.t]
 
 	res.json({table: result});
