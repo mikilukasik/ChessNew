@@ -64,10 +64,10 @@ setInterval(function(){
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
-					if (thisAiMove[1][0].length==4){
+					if (thisAiMove.length>1){
 						
 						
-					   allTables[xx]=moveIt(thisAiMove,allTables[xx])
+					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
 					}else{
