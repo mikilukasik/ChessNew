@@ -55,7 +55,7 @@ var allChats=[]
 var firstFreeTable=0
 
 var aiOn=[]
-
+var randomConst=Math.random()*20
 
 setInterval(function(){
 	
