@@ -71,7 +71,7 @@ setInterval(function(){
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
 					}else{
-						initTable[xx]		
+						eytrfyguhijouytt		
 					}
 				 
 				 
