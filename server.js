@@ -3,7 +3,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var app = express();
-
+var t1const=11
 
 //http://stackoverflow.com/questions/5797852/in-node-js-how-do-i-include-functions-from-my-other-files
 var fs = require('fs');
@@ -90,6 +90,10 @@ setInterval(function(){
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]
+					   allMoves.push(' ')
+					   allMoves.push('wN '+!allWNexts[xx])
+					   allMoves.push('t1const '+t1const)
+					   					   
 					   console.log('aimove on table '+xx+' moved.')	
 					   aiOn[xx]=true
 					}else{
