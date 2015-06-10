@@ -63,11 +63,16 @@ setInterval(function(){
 			 if(aiOn[xx]){
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
-				
-				   allTables[xx]=moveIt(ai(allTables[xx],allWNexts[xx])[1][0],allTables[xx])
-				   pollNum[xx]++
-				   allWNexts[xx]=!allWNexts[xx]	
-				
+					var thisAiMove=ai(allTables[xx],allWNexts[xx])[1][0]
+					if (thisAiMove.length==4){
+						
+						
+					   allTables[xx]=moveIt(,allTables[xx])
+					   pollNum[xx]++
+					   allWNexts[xx]=!allWNexts[xx]	
+					}else{
+						initTable[xx]		
+					}
 				 
 				 
 				 
