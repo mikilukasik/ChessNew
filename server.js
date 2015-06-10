@@ -104,9 +104,9 @@ setInterval(function(){
 					
 					
 						initTable(xx)
-						allChats[xx]=chatTemp
-						allChats[xx].push(t1const)
-						allChats[xx].push(allWNexts[xx])
+						lobbyChat[xx]=chatTemp
+						lobbyChat[xx].push(t1const)
+						lobbyChat[xx].push(allWNexts[xx])
 						//aiOn[xx]=true
 						randomConst=Math.random()*20
 						console.log('aimove on table '+xx+' reset.')
