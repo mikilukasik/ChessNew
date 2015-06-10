@@ -66,7 +66,7 @@ setInterval(function(){
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					if (thisAiMove.length>0){
 						
-						
+						console.log(thismove)
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
@@ -79,7 +79,7 @@ setInterval(function(){
 			 }
 		 }
 	
-	},1000);
+	},2500);
 
 
 
