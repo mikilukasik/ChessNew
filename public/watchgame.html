@@ -121,7 +121,7 @@ var dcolors = ["","Black","White"]
 var dfigures = ["","King","Queen","Rook","Bishop","Knight","Pawn"]
 var dletters = ["a","b","c","d","e","f","g","h"]
 
-var wPlayer=window.opener.playerColor//false
+var wPlayer=true//false
 
 hitValue=0
 var table=[]
@@ -131,65 +131,22 @@ var table=[]
 var opponentsName="relax"//window.opener.opponentsName
 //var alerted=false
 
-var playerID=window.opener.playerName//prompt("What's your name?")
+var playerID="Spectator"//window.opener.playerName//prompt("What's your name?")
 
 
 //var bestHit=0
-var pollNum=0
+//var pollNum=-1
 //pollConst=150
 					
 		
 //var aiCount =0
 
 setInterval(function(){
-			if(true){
+			
 				refreshTable()
 				console.log('trying')
-				// if(wNext==wPlayer){
-				// 	aiCount=0
-				// }else{
-				// 	//refreshTable()
-				// 	//aiCount++
-				// 	//tempMoveString=getAiMove(!wPlayer)
-				// 	//refreshTable()
-				// 	// if(aiCount==2&&opponentsName=="Computer"){
-				// 	// 	makeAMove(getAiMove(!wPlayer))
-				// 	// 	//refreshTable()
-				// 	// }
-				// }
-				
-				//showTable()
-			}
-			// if(moveArrayToStrings(getAllMoves(getTableData(table,wPlayer),table,wPlayer))<1||
-			// 	moveArrayToStrings(getAllMoves(getTableData(table,!wPlayer),table,!wPlayer))<1){
-			// 	alertText="Game over"
-			// 	whoCantMove=false
-			// }
-			// if(!(alertText=="")){
-			// 	if(validateTable(table,wPlayer)==9){
-			// 		alertText+=", you won!"
-			// 	}
-			// 	if(validateTable(table,!wPlayer)==9){
-			// 		alertText+=", you lost."
-			// 	}
-
-			// }
-			
-			// if (!alerted&&!alertText==""){
-			// 	alerted=true
-				
-
-			// 	if(wAi||bAi){
-			// 		window.close()
-
-			// 	}else{	
-			// 		alert(alertText)
-			// 	}
-			
-
-
-			// }
-					},200);
+		
+		},200);
 
 
 function drawTable(){
