@@ -981,7 +981,7 @@ function createFirstTableState(cfTable,cfColor){
 
 
 
-
+		tTable2Value/=10
 
 
 		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
