@@ -67,7 +67,7 @@ setInterval(function(){
 					if (thisAiMove.length==4){
 						
 						
-					   allTables[xx]=moveIt(,allTables[xx])
+					   allTables[xx]=moveIt(thisAiMove,allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
 					}else{
