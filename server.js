@@ -56,6 +56,27 @@ var firstFreeTable=0
 
 var aiOn=[]
 
+
+setInterval(function(){
+	
+	 	for(var xx=1; xx<allTables.length; xx++){
+			 if(aiOn[xx]){
+				 
+				
+				   allTables[xx]=moveIt(ai(allTables[xx],allWNexts[xx])[1][0],allTables[xx])
+				
+				 
+				 
+				 
+			 }
+		 }
+	
+	},4000);
+
+
+
+
+
 app.get('/move', function (req, res) {
  var moveStr=String(req.query.m)
 
