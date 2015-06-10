@@ -129,11 +129,11 @@ function canMove(what,k,l,isWhite,moveTable){
 			if(possibleMoves[i][1]==l&&possibleMoves[i][0]==k-2&&removeKmin2){
 				//possibleMoves.splice(i,1)
 				removeThis=true
-				console.log("to be removed")
+				//console.log("to be removed")
 			}
 			if((possibleMoves[i][1]==l&&possibleMoves[i][0]==k+2&&removeKplus2)||removeThis){
 				possibleMoves.splice(i,1)
-				console.log("removed")
+				//console.log("removed")
 			}
 		}
 
@@ -940,7 +940,7 @@ function createFirstTableState(cfTable,cfColor){
 	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
 	
 	i=0
-	console.log(cfMoves)
+	//console.log(cfMoves)
 	cfMoves.forEach(function(stepMove){
 		
 		tempTable=moveIt(stepMove,cfTable)
