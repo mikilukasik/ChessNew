@@ -54,7 +54,7 @@ var allChats=[]
 
 var firstFreeTable=0
 
-
+var aiOn=[]
 
 app.get('/move', function (req, res) {
  var moveStr=String(req.query.m)
@@ -110,9 +110,10 @@ app.get('/startAiGame', function (req, res) {
 
   
   firstFreeTable++
-  initTable()
+  initTable(firstFreeTable)
+  aiOn[firstFreeTable]=true
  
- 	res.json({aimove: result1, fulltable: result});
+ 	res.json({tableno: firstFreeTable});
 
 });
 app.get('/getTPollNum', function (req, res) {
@@ -260,6 +261,7 @@ app.get('/getLobby', function (req, res) {
 });
 
 function initTable(tNo){
+		aiOn[tNo]=false
 	
 	pollNum[tNo]=1
 
