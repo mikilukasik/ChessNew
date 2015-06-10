@@ -72,7 +72,7 @@ setInterval(function(){
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					
 				if(allWNexts[xx]){
-					 t1const=Math.random()*20
+					 t1const=randomConst
 				}else{
 					 t1const=1
 				}
@@ -83,19 +83,18 @@ setInterval(function(){
 					if (!(thisAiMove[1]===undefined)){
 						
 						//console.log(thismove)
-						 allChats[xx].push(t1const)
+						 //allChats[xx].push(t1const)
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
-					   allChats[xx].push(t1const)
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
 					}else{
 						
-						
+						allChats[xx].push(t1const+allWNexts[xx])
+					   
 						//fill stats here
 					
-					
-					
+					randomConst=Math.random()*20
 						initTable(xx)
 						aiOn[xx]=true
 					}
