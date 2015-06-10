@@ -55,7 +55,7 @@ var allChats=[]
 var firstFreeTable=0
 
 var aiOn=[]
-var randomConst=Math.random()*20
+var randomConst=[]
 
 setInterval(function(){
 	
@@ -68,16 +68,18 @@ setInterval(function(){
 				
 				if(allWNexts[xx]){
 					t1const=10
+				}else{
+					t1const=randomConst[xx]
 				}
 				
 				
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
-				console.log('aimove on table '+xx+' generated')	
-				if(allWNexts[xx]){
-					 t1const=randomConst
-				}else{
-					 t1const=10
-				}
+					console.log('aimove on table '+xx+' generated')	
+					// if(allWNexts[xx]){
+					// 	 t1const=randomConst[xx]
+					// }else{
+					// 	 t1const=10
+					// }
 					
 					
 					
@@ -117,10 +119,11 @@ setInterval(function(){
 						lobbyPollNum++
 						
 						//aiOn[xx]=true
-						randomConst=Math.random()*20
+						randomConst[xx]=Math.random()*100
+						if(Math.random()>0.5){randomConst[xx]=1/randomConst[xx]}
 						console.log('aimove on table '+xx+' reset.')
 						aiOn[xx]=true
-						
+											
 					}
 				 
 				 
@@ -342,6 +345,9 @@ app.get('/getLobby', function (req, res) {
 
 function initTable(tNo){
 		aiOn[tNo]=false
+randomConst[tNo]=Math.random()*100
+						if(Math.random()>0.5){randomConst[tNo]=1/randomConst[tNo]}
+
 	
 	pollNum[tNo]=1
 
