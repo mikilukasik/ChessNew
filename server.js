@@ -159,6 +159,29 @@ app.get('/startGame', function (req, res) {
 
 });
 
+app.get('/watchGame', function (req, res) {
+ 
+	var viewerNum=players[0].indexOf(req.query.v)
+	//var bPNum=players[0].indexOf(req.query.b)
+	
+	//firstFreeTable++
+	
+	//players[6][viewerNum]=true;		//ask viewer to open game
+	players[2][viewerNum]=true;		//ask viewer to open game
+	
+	players[3][viewerNum]=true;		//will watch w
+	
+	players[4][viewerNum]=req.query.t	//tablenum
+	
+	// will have to give names
+	
+	// players[7][wPNum]=req.query.b;		//give them the opponents name
+	players[5][viewerNum]="Spectator";		//tell lobby to open spect mode
+ 
+ 	res.json({none: 0});
+
+});
+
 app.get('/lobbyChat', function (req, res) {
   //console.log(req)
   
