@@ -66,6 +66,7 @@ setInterval(function(){
 				
 				   allTables[xx]=moveIt(ai(allTables[xx],allWNexts[xx])[1][0],allTables[xx])
 				   pollNum[xx]++
+				   allWNexts[xx]=!allWNexts[xx]	
 				
 				 
 				 
@@ -73,7 +74,7 @@ setInterval(function(){
 			 }
 		 }
 	
-	},4000);
+	},1000);
 
 
 
