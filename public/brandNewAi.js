@@ -982,7 +982,7 @@ function createFirstTableState(cfTable,cfColor){
 		//aiLoop([tempTable],!cfColor,cfColor,myOrigValue)
 
 		var repValue=tTable2Value/20+tTableValue
-		var wtf=[parseInt(tTable2Value*100),parseInt(tTableValue*100),parseInt(repValue*100)]
+		var wtf=[parseInt((tTable2Value+5*repValue)*100),parseInt(tTableValue*100),parseInt(repValue*100)]
 			//tTable2Value*100)]
 		allTempTables.push([stepMove,wtf[0],wtf[1],wtf[2]])//,tableHitValue]) //row: movestring, ai val, deepen val, deep hit val, [tables]
 		
