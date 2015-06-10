@@ -83,7 +83,7 @@ setInterval(function(){
 					if (!(thisAiMove[1]===undefined)){
 						
 						//console.log(thismove)
-						allChats[xx].push(t1const)
+						//allChats[xx].push(t1const)
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
@@ -94,11 +94,13 @@ setInterval(function(){
 					   
 						//fill stats here
 					
-					randomConst=Math.random()*20
+					
 						initTable(xx)
 						allChats[xx]=chatTemp
 						allChats[xx].push(t1const+allWNexts[xx])
 						aiOn[xx]=true
+						randomConst=Math.random()*20
+						
 					}
 				 
 				 
