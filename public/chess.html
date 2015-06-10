@@ -205,7 +205,9 @@ function clickedItTrans(i,j){
 	var clickedField=[j,8-i]
 	var clickedString=dletters[j]+(9-i)
 	
-	clickedIt(clickedField,clickedString)
+	if(!(opponentsName=="Spectator")){
+		clickedIt(clickedField,clickedString)
+	}
 //	console.log(clickedField,clickedString)
 
 }
