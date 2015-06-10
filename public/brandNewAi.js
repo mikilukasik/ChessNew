@@ -5,6 +5,7 @@ var escConst=1.1
 var fadeConst=1
 var level=1
 var whatHitsConst=0.9
+var hitValueConst=0.6
 
 function protectPieces(originalTable,whitePlayer){
 	
@@ -962,7 +963,7 @@ function createFirstTableState(cfTable,cfColor){
 			var myOrig2Value=hitValue
 			hitValue=0
 			
-			tTable2Value -=-tTableValue*0.7+ myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
+			tTable2Value -=-tTableValue*hitValueConst+ myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
 				opponents2OrigValue)+(validateTable(temp2Table,cfColor)/10)/10)
 	
 			
