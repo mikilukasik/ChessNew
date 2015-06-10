@@ -157,14 +157,15 @@ app.get('/move', function (req, res) {
 // });
 
 app.get('/aiMove', function (req, res) {
-
-  
+	var tempConst=t1const
+  t1const=11
   if(req.query.p==2){			//2 stands for white
 	   var result=ai(allTables[req.query.t],true)
   }else{
 	  var result=ai(allTables[req.query.t],false)
 	  
   }
+  t1const=tempConst
   result1=result[1][0]
  
  	res.json({aimove: result1, fulltable: result});
