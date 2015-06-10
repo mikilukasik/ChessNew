@@ -61,6 +61,7 @@ setInterval(function(){
 	
 	 	for(var xx=1; xx<allTables.length; xx++){
 			 if(aiOn[xx]){
+				 aiOn[xx]=false
 				 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 				console.log(xx)
 				
@@ -83,11 +84,12 @@ setInterval(function(){
 					if (!(thisAiMove[1]===undefined)){
 						
 						//console.log(thismove)
-						//allChats[xx].push(t1const)
+						allChats[xx].push(t1const)
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   allWNexts[xx]=!allWNexts[xx]	
+					   aiOn[xx]=true
 					}else{
 						var chatTemp=allChats[xx]
 						
@@ -100,6 +102,7 @@ setInterval(function(){
 						allChats[xx].push(t1const+allWNexts[xx])
 						aiOn[xx]=true
 						randomConst=Math.random()*20
+						aiOn[xx]=true
 						
 					}
 				 
@@ -108,7 +111,7 @@ setInterval(function(){
 			 }
 		 }
 	
-	},2500);
+	},300);
 
 
 
