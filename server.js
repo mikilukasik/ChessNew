@@ -75,7 +75,7 @@ setInterval(function(){
 				if(allWNexts[xx]){
 					 t1const=randomConst
 				}else{
-					 t1const=1
+					 t1const=10
 				}
 					
 					
