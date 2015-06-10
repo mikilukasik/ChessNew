@@ -315,20 +315,23 @@ function initTable(){
 	//table = new Array(8)							
 
 
-	var tempTable=$.ajax({
-	    type: 'GET',
-	    url: '/initTable?t='+tableNum,
-	    dataType: 'json',
-	    success: function() { },
-	    data: {},
-	    async: true
-	});
-
-
-	table=tempTable.responseJSON.table
+	if(!(opponentsName=="Spectator")){
+		var tempTable=$.ajax({
+		    type: 'GET',
+		    url: '/initTable?t='+tableNum,
+		    dataType: 'json',
+		    success: function() { },
+		    data: {},
+		    async: true
+		});
 	
 
-	console.log("initTable done")
+
+		table=tempTable.responseJSON.table
+	
+
+		console.log("initTable done")
+	}
 	
 }
 function showTable(){								//this will update the displayed table from the array
