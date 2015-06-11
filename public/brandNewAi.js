@@ -16,8 +16,18 @@ function getSimpleTableState(itable){
 			
 				switch (itable[i][j][1]) {
 					    case 0:
-									var letterToPush="s"
-					        			
+									//var letterToPush="s"
+					        		if(isNaN(tempString[tempString.length-1])){
+										var letterToPush="1"
+									}else{
+										// tempString[tempString.length-1]=tempString[tempString.length-1]+1  
+										
+										var lastNum=tempString.substring(tempString.length-1)
+										tempString=tempString.substring(0,tempString.length-1)
+										lastNum++
+										
+										var letterToPush=lastNum	
+									}
 					    		
 					        break;
 					    case 1:
@@ -51,7 +61,7 @@ function getSimpleTableState(itable){
 						
 				}//end of switch
 					
-			if (itable[i][j][0]==2){
+			if (itable[i][j][0]==2){  //if white
 				letterToPush= letterToPush.toUpperCase()
 				
 			}		
@@ -66,6 +76,7 @@ function getSimpleTableState(itable){
 			
 			
 		}
+		tempString= tempString.concat('/')
 	}
 	return tempString
 }
