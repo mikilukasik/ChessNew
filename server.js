@@ -199,6 +199,7 @@ app.get('/startAiGame', function (req, res) {
   
   randomConst[firstFreeTable]=Math.random()*100
 						if(Math.random()>0.5){randomConst[firstFreeTable]=1/randomConst[firstFreeTable]}
+						console.log(randomConst[firstFreeTable])
  
  	res.json({tableno: firstFreeTable});
 
