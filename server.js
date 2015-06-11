@@ -345,7 +345,7 @@ app.get('/getLobby', function (req, res) {
 
 function initTable(tNo){
 		aiOn[tNo]=false
-randomConst[tNo]=Math.random()*100
+randomConst[tNo]=5//Math.random()*100
 						//if(Math.random()>0.5){randomConst[tNo]=1/randomConst[tNo]}
 
 	
