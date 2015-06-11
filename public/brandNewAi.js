@@ -944,7 +944,7 @@ function createFirstTableState(cfTable,cfColor){
 	i=0
 	//console.log(cfMoves)
 	cfMoves.forEach(function(stepMove){
-		
+		console.log(stepMove)
 		tempTable=moveIt(stepMove,cfTable)
 		
 		var myOrigValue=hitValue
