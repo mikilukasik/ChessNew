@@ -6,9 +6,80 @@ var fadeConst=1
 var level=1
 var whatHitsConst=1
 var hitValueConst=0.5
-// var t1const=11
+var t1const=2.5
 var t2const=1
-
+function getSimpleTableState(itable){
+	var tempString=""
+	
+		for (var j=0;j<8;j++){
+			for (var i=0;i<8;i++){
+			
+				switch (itable[i][j][1]) {
+					    case 0:
+									//var letterToPush="s"
+					        		if(isNaN(tempString[tempString.length-1])){
+										var letterToPush="1"
+									}else{
+										// tempString[tempString.length-1]=tempString[tempString.length-1]+1  
+										
+										var lastNum=tempString.substring(tempString.length-1)
+										tempString=tempString.substring(0,tempString.length-1)
+										lastNum++
+										
+										var letterToPush=lastNum	
+									}
+					    		
+					        break;
+					    case 1:
+					       
+					        	
+					        		var letterToPush="p"
+					        			
+					    		
+					        break;
+					    case 2:
+					        		var letterToPush="b"
+					        break;
+					    case 3:
+					        		var letterToPush="n"
+					        		
+					        break;
+					    case 4:
+					       			var letterToPush="r"
+					        		
+					        
+					        break;
+					    case 5:
+					        		var letterToPush="q"
+					        		
+					        break;
+					    case 9:
+					    			var letterToPush="k"
+					        		
+					    	break;
+					
+						
+				}//end of switch
+					
+			if (itable[i][j][0]==2){  //if white
+				letterToPush= letterToPush.toUpperCase()
+				
+			}		
+			
+			tempString= tempString.concat(letterToPush)
+					
+	
+	
+	
+	
+	
+			
+			
+		}
+		tempString= tempString.concat('/')
+	}
+	return tempString
+}
 function protectPieces(originalTable,whitePlayer){
 	
 	//var flippedMoves=
@@ -100,7 +171,7 @@ function canMove(what,k,l,isWhite,moveTable){
 	}
 	
 	for(var  i=possibleMoves.length-1;i>=0;i--){							//sakkba nem lephetunk
-		if(validateTable(moveIt(coordsToMoveString(k,l,possibleMoves[i][0],possibleMoves[i][1]),moveTable),!isWhite)==9){
+		if(getBestHit(moveIt(coordsToMoveString(k,l,possibleMoves[i][0],possibleMoves[i][1]),moveTable),!isWhite)==9){
 			possibleMoves.splice(i,1)
 		}
 	}
@@ -108,7 +179,7 @@ function canMove(what,k,l,isWhite,moveTable){
 
 
 	if (what==9&&moveTable[k][l][3]){					//lesznek sanc lepesek is a possibleMoves tombben
-		if(validateTable(moveTable,!isWhite)==9){		// de sakkban allunk
+		if(getBestHit(moveTable,!isWhite)==9){		// de sakkban allunk
 			for(var spliceCount=possibleMoves.length-1; spliceCount>=0; spliceCount--){
 				if(possibleMoves[spliceCount][1]==l&&(possibleMoves[spliceCount][0]==k-2||possibleMoves[spliceCount][0]==k+2)){
 					possibleMoves.splice(spliceCount,1)
@@ -638,7 +709,7 @@ function moveArrayToStrings(moveArray,ftable,fwNext){
 
 	})
 	for(var i=strArray.length-1;i>=0;i--){
-		if(validateTable(moveIt(strArray[i],ftable),!fwNext)==9){
+		if(getBestHit(moveIt(strArray[i],ftable),!fwNext)==9){
 			strArray.splice(i,1)
 		}
 	}
@@ -749,7 +820,7 @@ function getAllMoves(rawTableData,tableToMoveOn,whiteNext,hitItsOwn){
 	return thisArray
 	
 }
-function validateTable(tableToValidate, wNx, returnMoves){
+function getBestHit(tableToValidate, wNx, returnMoves){
 	bestHit=0
 	
 	var myMoves=
@@ -762,7 +833,7 @@ function validateTable(tableToValidate, wNx, returnMoves){
 	return [mybest]
 	
 }
-function validateTable2(tableToValidate, wNx){
+function trickTheBestHitFunc(tableToValidate, wNx){
 	bestHit=0
 	
 	var myMoves=getAllMoves(getTableData(tableToValidate,wNx),tableToValidate,wNx)
@@ -929,15 +1000,15 @@ function createFirstTableState(cfTable,cfColor){
 	var cfMoves=moveArrayToStrings(getAllMoves(getTableData(cfTable,cfColor),cfTable,cfColor),cfTable,cfColor)
 	
 	for(var  i=cfMoves.length-1;i>=0;i--){							//sakkba nem lephetunk
-		if(validateTable(moveIt(cfMoves[i],cfTable),!cfColor)==9){
+		if(getBestHit(moveIt(cfMoves[i],cfTable),!cfColor)==9){
 			cfMoves.splice(i,1)
 		}
 	}
 
 	var tempTable=new Array(8)
 	var allTempTables=[]
-	var opponentsOrigValue=validateTable(cfTable,!cfColor)
-	var myOrigOrigValue=validateTable(cfTable,cfColor)
+	var opponentsOrigValue=getBestHit(cfTable,!cfColor)
+	var myOrigOrigValue=getBestHit(cfTable,cfColor)
 
 	allTempTables.push([cfColor,fadeConst,0])				//array heading:color,fadeConst(will be multiplied),howDeep
 	
@@ -950,7 +1021,7 @@ function createFirstTableState(cfTable,cfColor){
 		var myOrigValue=hitValue
 		hitValue=0
 	
-		tTableValue=myOrigValue-escConst*(validateTable(tempTable,!cfColor)-opponentsOrigValue)+(validateTable(tempTable,cfColor)/2)
+		tTableValue=myOrigValue-escConst*(getBestHit(tempTable,!cfColor)-opponentsOrigValue)+(getBestHit(tempTable,cfColor)/2)
 		
 
 		// one deeper
@@ -960,8 +1031,8 @@ function createFirstTableState(cfTable,cfColor){
 		var tempTable2=new Array(8)
 		var tTable2Value=0
 		//var allTempTables=[]
-		var opponents2OrigValue=validateTable(tempTable,!cfColor)
-		var myOrigValue=validateTable(tempTable,cfColor)
+		var opponents2OrigValue=getBestHit(tempTable,!cfColor)
+		var myOrigValue=getBestHit(tempTable,cfColor)
 
 		cf2Moves.forEach(function(step2Move,moveNo){
 
@@ -970,8 +1041,8 @@ function createFirstTableState(cfTable,cfColor){
 			var myOrig2Value=hitValue
 			hitValue=0
 			
-			tTable2Value -=myOrig2Value-(escConst*escConst*(validateTable(temp2Table,!cfColor)-
-				opponents2OrigValue)+(validateTable(temp2Table,cfColor)/10)/10)
+			tTable2Value -=myOrig2Value-(escConst*escConst*(getBestHit(temp2Table,!cfColor)-
+				opponents2OrigValue)+(getBestHit(temp2Table,cfColor)/10)/10)
 	
 			
 	

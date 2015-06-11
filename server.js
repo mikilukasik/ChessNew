@@ -27,6 +27,7 @@ var dletters = ["a","b","c","d","e","f","g","h"]
 
 
 var allTables=[]
+var allPastTables=[]
 //var table=[]
 var allMoves=[]
 // var allStepsStringHTML=""
@@ -62,6 +63,7 @@ var tempRandomConst=0
 // 	console.log('a')
 // },5)
 setInterval(function(){
+		 console.log('elindult')
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
 			 var xx=Math.floor(Math.random()*(allTables.length-1))+1
@@ -79,22 +81,48 @@ setInterval(function(){
 				
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					console.log('aimove on table '+xx+' generated')	
-					// if(allWNexts[xx]){
-					// 	 t1const=randomConst[xx]
-					// }else{
-					// 	 t1const=10
-					// }
-					
-					
 					
 					
 					if (!(thisAiMove[1]===undefined)){
 						
-						//console.log(thismove)
 						
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
+					   
+					   if(pushTableState(xx)==3){
+						   //got into a loop
+						   //validate table by remaining pieces
+						   
+						   var chatTemp=allChats[xx]
+						
+					   
+					
+						
+						lobbyChat.push(' ')
+						lobbyChat.push('   ------ AI START ------ ')
+						
+						lobbyChat.push('Table: '+xx)
+						
+						
+						lobbyChat.push('t1const: '+randomConst[xx])
+						lobbyChat.push('looped. ')
+						lobbyChat.push('   ------ AI END ------ ')
+						lobbyPollNum++
+						
+						//aiOn[xx]=true
+						var tempRandomConst=Math.random()*100
+						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
+						
+						//console.log(tempRandomConst)
+						
+						randomConst[xx]=tempRandomConst
+						initTable(xx)
+						allChats[xx]=chatTemp
+						console.log('aimove on table '+xx+' reset.')
+						aiOn[xx]=true
+						   
+					   }
 					   
 					   allChats[xx].push(' ')
 					   allChats[xx].push('wN '+allWNexts[xx])
@@ -109,11 +137,11 @@ setInterval(function(){
 						var chatTemp=allChats[xx]
 						
 					   
-						//fill stats here
+					//store stats here
 					
 					
-						initTable(xx)
-						allChats[xx]=chatTemp
+						// initTable(xx)
+						
 						lobbyChat.push(' ')
 						lobbyChat.push('   ------ AI START ------ ')
 						
@@ -128,8 +156,12 @@ setInterval(function(){
 						//aiOn[xx]=true
 						var tempRandomConst=Math.random()*100
 						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
-						console.log(tempRandomConst)
+						
+						//console.log(tempRandomConst)
+						
 						randomConst[xx]=tempRandomConst
+						initTable(xx)
+						allChats[xx]=chatTemp
 						console.log('aimove on table '+xx+' reset.')
 						aiOn[xx]=true
 											
@@ -139,10 +171,28 @@ setInterval(function(){
 				 
 			 //}
 		 }
+		 console.log('lefutott')
 	
 	},1000);
 
 
+
+function pushTableState(tableNo){
+	
+	var sTable=getSimpleTableState(allTables[tableNo])
+	var sCount=0
+	
+	allChats[tableNo].push(sTable) //logging
+	
+	
+	allPastTables[tableNo].push(sTable) //remember this state
+	allPastTables[tableNo].forEach(function(tableTempState){	//check all past states
+		if (tableTempState==sTable)sCount++			//count how many times this occured
+	})
+	
+	return sCount
+	
+}
 
 
 
@@ -163,23 +213,14 @@ app.get('/move', function (req, res) {
   // protectPieces(allTables[req.query.t],false)
   
   var result=allTables[req.query.t]
-  pollNum[req.query.t]++
+  //pushTableState(req.query.t)
  
+  pollNum[req.query.t]++
+  
  	res.json({table: result});
 
 });
-// app.get('/getAllMoves', function (req, res) {
-//   //console.log(req)
-  
-//   if(req.query.p==2){
-// 	   var result=validateTable(allTables[req.query.t],true,true)
-//   }else{
-// 	  var result=validateTable(allTables[req.query.t],false,true)
-  
-//   }
- 
-//  	res.json({allmoves: result});
-// });
+
 
 app.get('/aiMove', function (req, res) {
 	var tempConst=t1const
@@ -360,6 +401,8 @@ app.get('/getLobby', function (req, res) {
 
 function initTable(tNo){
 		aiOn[tNo]=false
+		allPastTables[tNo]=[]
+		
 //randomConst[tNo]=5//Math.random()*100
 						//if(Math.random()>0.5){randomConst[tNo]=1/randomConst[tNo]}
 
