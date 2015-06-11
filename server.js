@@ -58,13 +58,13 @@ var firstFreeTable=0
 var aiOn=[]
 
 var tempRandomConst=0
-setInterval(function(){
-	console.log('a')
-},5)
+// setInterval(function(){
+// 	console.log('a')
+// },5)
 setInterval(function(){
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
-			 var xx=Math.floor(Math.random()*(allTables.length+3))
+			 var xx=Math.floor(Math.random()*(allTables.length-1))+1
 			 if(aiOn[xx]){
 				 aiOn[xx]=false
 				 console.log('aimove on table '+xx+' started..')
@@ -139,7 +139,7 @@ setInterval(function(){
 			 //}
 		 }
 	
-	},6000);
+	},1000);
 
 
 
