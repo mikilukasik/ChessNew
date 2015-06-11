@@ -90,7 +90,7 @@ setInterval(function(){
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
 					   
-					   if(pushTableState(xx )==3){
+					   if(pushTableState(xx)==3){
 						   //got into a loop
 						   //validate table by remaining pieces
 						   
@@ -213,7 +213,7 @@ app.get('/move', function (req, res) {
   // protectPieces(allTables[req.query.t],false)
   
   var result=allTables[req.query.t]
-  pushTableState(req.query.t)
+  //pushTableState(req.query.t)
  
   pollNum[req.query.t]++
   
