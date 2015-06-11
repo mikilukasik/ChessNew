@@ -60,7 +60,7 @@ var aiOn=[]
 var tempRandomConst=0
 setInterval(function(){
 	console.log('a')
-},50)
+},5)
 setInterval(function(){
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
