@@ -95,9 +95,9 @@ setInterval(function(){
 					   pollNum[xx]++
 					   
 					   allChats[xx].push(' ')
-					   allChats[xx].push('won: '+!allWNexts[xx])
+					   allChats[xx].push('wN '+!allWNexts[xx])
 					   allChats[xx].push('t1const '+t1const)
-					    allChats[xx].push('randomConst '+randomConst[xx])
+					   // allChats[xx].push('randomConst '+randomConst[xx])
 					   					   
 					   console.log('aimove on table '+xx+' moved.')	
 					   allWNexts[xx]=!allWNexts[xx]
@@ -118,7 +118,7 @@ setInterval(function(){
 						
 						
 						lobbyChat.push('t1const: '+randomConst[xx])
-						lobbyChat.push('wStuck: '+allWNexts[xx])
+						lobbyChat.push('won: '+allWNexts[xx])
 						lobbyChat.push('   ------ AI END ------ ')
 						lobbyPollNum++
 						
