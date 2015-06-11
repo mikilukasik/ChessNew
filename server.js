@@ -69,7 +69,7 @@ setInterval(function(){
 				//console.log(xx)
 				
 				if(allWNexts[xx]){
-					t1const=10
+					t1const=1
 				}else{
 					t1const=randomConst[xx]
 				}
@@ -93,13 +93,14 @@ setInterval(function(){
 					  
 					   allTables[xx]=moveIt(thisAiMove[1][0],allTables[xx])
 					   pollNum[xx]++
-					   allWNexts[xx]=!allWNexts[xx]
+					   
 					   allChats[xx].push(' ')
-					   allChats[xx].push('wN '+!allWNexts[xx])
+					   allChats[xx].push('won: '+!allWNexts[xx])
 					   allChats[xx].push('t1const '+t1const)
 					    allChats[xx].push('randomConst '+randomConst[xx])
 					   					   
 					   console.log('aimove on table '+xx+' moved.')	
+					   allWNexts[xx]=!allWNexts[xx]
 					   aiOn[xx]=true
 					}else{
 						var chatTemp=allChats[xx]
