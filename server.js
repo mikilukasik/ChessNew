@@ -120,8 +120,10 @@ setInterval(function(){
 						lobbyPollNum++
 						
 						//aiOn[xx]=true
-						randomConst[xx]=Math.random()*100
-						if(Math.random()>0.5){randomConst[xx]=1/randomConst[xx]}
+						var tempRandomConst=Math.random()*100
+						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
+						console.log(tempRandomConst)
+						randomConst[xx]=tempRandomConst
 						console.log('aimove on table '+xx+' reset.')
 						aiOn[xx]=true
 											
@@ -200,6 +202,7 @@ app.get('/startAiGame', function (req, res) {
   var tempRandomConst=Math.random()*100
 						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
 						console.log(tempRandomConst)
+						randomConst[firstFreeTable]=tempRandomConst
  
  	res.json({tableno: firstFreeTable});
 
