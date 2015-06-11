@@ -36,6 +36,7 @@ var allStepsStringHTML=[]
 var pollNum=[]
 var allWNexts=[]
 var players=[]
+var randomConst=[]
 
 var playerDisconnectConst=15000
 
@@ -55,7 +56,7 @@ var allChats=[]
 var firstFreeTable=0
 
 var aiOn=[]
-var randomConst=[]
+
 var tempRandomConst=0
 
 setInterval(function(){
@@ -194,7 +195,7 @@ app.get('/aiMove', function (req, res) {
 
 app.get('/startAiGame', function (req, res) {
 
-  randomConst=Math.random()*20
+  //randomConst=Math.random()*20
 					
   firstFreeTable++
   initTable(firstFreeTable)
@@ -203,7 +204,7 @@ app.get('/startAiGame', function (req, res) {
   tempRandomConst=Math.random()*100
 	if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
 	console.log(tempRandomConst)
-	var randomConst=[]
+	// var randomConst=[]
 	randomConst[firstFreeTable]=tempRandomConst
 	console.log(randomConst[firstFreeTable])
  	res.json({tableno: firstFreeTable});
