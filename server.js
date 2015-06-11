@@ -98,6 +98,7 @@ setInterval(function(){
 					   
 					   allChats[xx].push(' ')
 					   allChats[xx].push('wN '+allWNexts[xx])
+					   allChats[xx].push('Move: '+thisAiMove[1][0])
 					   allChats[xx].push('t1const '+t1const)
 					   // allChats[xx].push('randomConst '+randomConst[xx])
 					   					   
