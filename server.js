@@ -55,7 +55,7 @@ var allChats=[]
 var firstFreeTable=0
 
 var aiOn=[]
-var randomConst=[]
+var randomConst=new Array(5)
 
 setInterval(function(){
 	
