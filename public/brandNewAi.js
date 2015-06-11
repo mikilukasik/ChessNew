@@ -8,7 +8,67 @@ var whatHitsConst=1
 var hitValueConst=0.5
 var t1const=2.5
 var t2const=1
-
+function getSimpleTableState(itable){
+	var tempString=""
+	
+		for (var j=0;j<8;j++){
+			for (var i=0;i<8;i++){
+			
+				switch (itable[i][j][1]) {
+					    case 0:
+									var letterToPush="s"
+					        			
+					    		
+					        break;
+					    case 1:
+					       
+					        	
+					        		var letterToPush="p"
+					        			
+					    		
+					        break;
+					    case 2:
+					        		var letterToPush="b"
+					        break;
+					    case 3:
+					        		var letterToPush="n"
+					        		
+					        break;
+					    case 4:
+					       			var letterToPush="r"
+					        		
+					        
+					        break;
+					    case 5:
+					        		var letterToPush="q"
+					        		
+					        break;
+					    case 9:
+					    			var letterToPush="k"
+					        		
+					    	break;
+					
+						
+				}//end of switch
+					
+			if (itable[i][j][0]==2){
+				letterToPush= letterToPush.toUpperCase()
+				
+			}		
+			
+			tempString= tempString.concat(letterToPush)
+					
+	
+	
+	
+	
+	
+			
+			
+		}
+	}
+	return tempString
+}
 function protectPieces(originalTable,whitePlayer){
 	
 	//var flippedMoves=
