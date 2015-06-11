@@ -55,7 +55,7 @@ var allChats=[]
 var firstFreeTable=0
 
 var aiOn=[]
-var randomConst=new Array(5)
+var randomConst=[]]
 
 setInterval(function(){
 	
@@ -203,7 +203,7 @@ app.get('/startAiGame', function (req, res) {
 						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
 						console.log(tempRandomConst)
 						randomConst[firstFreeTable]=tempRandomConst
- 
+ 						console.log(randomConst[firstFreeTable])
  	res.json({tableno: firstFreeTable});
 
 });
