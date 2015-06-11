@@ -56,6 +56,7 @@ var firstFreeTable=0
 
 var aiOn=[]
 var randomConst=[]
+var tempRandomConst=0
 
 setInterval(function(){
 	
@@ -199,7 +200,7 @@ app.get('/startAiGame', function (req, res) {
   initTable(firstFreeTable)
   aiOn[firstFreeTable]=true
   
-  var tempRandomConst=Math.random()*100
+  tempRandomConst=Math.random()*100
 						if(Math.random()>0.5){tempRandomConst=1/tempRandomConst}
 						console.log(tempRandomConst)
 						randomConst[firstFreeTable]=tempRandomConst
