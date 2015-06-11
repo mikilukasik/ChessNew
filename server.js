@@ -62,6 +62,7 @@ var tempRandomConst=0
 // 	console.log('a')
 // },5)
 setInterval(function(){
+		 console.log('elindult')
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
 			 var xx=Math.floor(Math.random()*(allTables.length-1))+1
@@ -139,6 +140,7 @@ setInterval(function(){
 				 
 			 //}
 		 }
+		 console.log('lefutott')
 	
 	},1000);
 
