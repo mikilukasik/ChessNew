@@ -137,7 +137,7 @@ setInterval(function(){
 			 //}
 		 }
 	
-	},30);
+	},6000);
 
 
 
