@@ -107,6 +107,7 @@ setInterval(function(){
 						
 						lobbyChat.push('t1const: '+randomConst[xx])
 						lobbyChat.push('looped. ')
+						loobyChat.push('Value:'+getTableData(allTables[xx],false)[0])
 						lobbyChat.push('   ------ AI END ------ ')
 						lobbyPollNum++
 						
@@ -150,6 +151,8 @@ setInterval(function(){
 						
 						lobbyChat.push('t1const: '+randomConst[xx])
 						lobbyChat.push('won: '+allWNexts[xx])
+						loobyChat.push('Value:'+getTableData(allTables[xx],false)[0])
+						
 						lobbyChat.push('   ------ AI END ------ ')
 						lobbyPollNum++
 						
