@@ -4,7 +4,10 @@ var express = require('express');
 var morgan = require('morgan');
 var app = express();
 var t1const=11
-
+var activeGames=[]
+activeGames[0]=[]
+activeGames[1]=[]
+var tablesLastMoved=[]
 //http://stackoverflow.com/questions/5797852/in-node-js-how-do-i-include-functions-from-my-other-files
 var fs = require('fs');
 
@@ -39,7 +42,8 @@ var allWNexts=[]
 var players=[]
 var randomConst=[]
 
-var playerDisconnectConst=15000
+var playerDisconnectConst=15000		//15sec
+var gameInactiveConst=300000		//5min
 
 players[0]=[]	//player names
 
@@ -63,6 +67,14 @@ var tempRandomConst=0
 // 	console.log('a')
 // },5)
 setInterval(function(){
+	// active games
+	
+	
+	
+},300)
+	
+	
+setInterval(function(){
 		 console.log('elindult')
 	
 	 	//for(var xx=1; xx<allTables.length; xx++){
@@ -78,7 +90,16 @@ setInterval(function(){
 					t1const=randomConst[xx]
 				}
 				
-				
+						if(activeGames[0].indexOf(xx)==-1){
+					  		activeGames[0].push(xx)
+					  		activeGames[1].push((new Date()).getTime())
+					  		
+					  		//activeGames.sort(sortactiveGames)
+					  		lobbyPollNum++
+					  
+					  }else{
+					  		activeGames[1][activeGames[0].indexOf(xx)]=(new Date()).getTime()
+					  }
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
 					console.log('aimove on table '+xx+' generated')	
 					
@@ -200,33 +221,60 @@ function pushTableState(tableNo){
 
 
 app.get('/move', function (req, res) {
- var moveStr=String(req.query.m)
-
-	var toPush=  String(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][0])+allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]+moveStr+
-	allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][0]+allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][1]
-
-	allMoves[req.query.t].push(toPush)
-  	allTables[req.query.t]=moveIt(moveStr,allTables[req.query.t])
-	  
-	  //trick here:
-	 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
-	   allWNexts[req.query.t]=!allWNexts[req.query.t]
-  allTables[req.query.t]=addMovesToTable(allTables[req.query.t],allWNexts[req.query.t])
-  // protectPieces(allTables[req.query.t],true)
-  // protectPieces(allTables[req.query.t],false)
+	
+	if(activeGames[0].indexOf(req.query.t)==-1){
+  		activeGames[0].push(req.query.t)
+  		activeGames[1].push((new Date()).getTime())
+  		
+  		//activeGames.sort(sortactiveGames)
+  		lobbyPollNum++
   
+  }else{
+  		activeGames[1][activeGames[0].indexOf(req.query.t)]=(new Date()).getTime()
+  }
+	
+ var moveStr=String(req.query.m)
+ //var stringToCompare=string(allMoves[allMoves.length-1])
+ //if (!(moveStr==stringToCompare.substring(2,6))){
+	var toPush=  String(allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][0])+
+		allTables[req.query.t][dletters.indexOf(moveStr[0])][moveStr[1]-1][1]+
+		moveStr+
+		allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][0]+
+		allTables[req.query.t][dletters.indexOf(moveStr[2])][moveStr[3]-1][1]
+	
+	if(!(toPush==allMoves[allMoves.length-1])){
+		allMoves[req.query.t].push(toPush)
+	  	allTables[req.query.t]=moveIt(moveStr,allTables[req.query.t])
+		  
+		  //trick here:
+		 // allTables[req.query.t]=moveIt(ai(allTables[req.query.t],false),allTables[req.query.t])
+		   allWNexts[req.query.t]=!allWNexts[req.query.t]
+	  allTables[req.query.t]=addMovesToTable(allTables[req.query.t],allWNexts[req.query.t])
+	  // protectPieces(allTables[req.query.t],true)
+	  // protectPieces(allTables[req.query.t],false)
+	}
   var result=allTables[req.query.t]
   //pushTableState(req.query.t)
  
   pollNum[req.query.t]++
   
  	res.json({table: result});
-
+ 
 });
 
 
 app.get('/aiMove', function (req, res) {
 	var tempConst=t1const
+	if(activeGames[0].indexOf(req.query.t)==-1){
+  		activeGames[0].push(req.query.t)
+  		activeGames[1].push((new Date()).getTime())
+  		
+  		//activeGames.sort(sortactiveGames)
+  		lobbyPollNum++
+  
+  }else{
+  		activeGames[1][activeGames[0].indexOf(req.query.t)]=(new Date()).getTime()
+  }
   t1const=11
   if(req.query.p==2){			//2 stands for white
 	   var result=ai(allTables[req.query.t],true)
@@ -361,6 +409,20 @@ function clearDisconnectedPlayers(){
 
 
 	}
+	clearInactiveGames()
+}
+function clearInactiveGames(){
+	for(var i=activeGames.length-1;i>=0;i--){
+
+		if(activeGames[1][i]+gameInactiveConst<(new Date()).getTime()){
+			activeGames[1].splice(i,1)
+			activeGames[0].splice(i,1)
+			lobbyPollNum++
+
+		}
+
+
+	}
 }
 
 app.get('/getLobby', function (req, res) {
@@ -387,12 +449,12 @@ app.get('/getLobby', function (req, res) {
 
   		players[2][playerIndex]=false
 
-  		res.json({players: players[0], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
+  		res.json({players: players[0], games: [activeGames], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
   			asktoopen: true, opentablenum: openTableNum, opentablecolor: openTableColor, opponentsname: opponentsName});
 
 
   	}else{
-  		res.json({players: players[0], lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
+  		res.json({players: players[0], games: activeGames[0],lobbypollnum: lobbyPollNum, lobbychat: lobbyChat,
   			asktoopen: false});
 
   	}
@@ -479,7 +541,16 @@ function initTable(tNo){
   protectPieces(allTables[tNo],false)
 }
 app.get('/initTable', function (req,res) {
-
+	if(activeGames[0].indexOf(req.query.t)==-1){
+  		activeGames[0].push(req.query.t)
+  		activeGames[1].push((new Date()).getTime())
+  		
+  		//activeGames.sort(sortactiveGames)
+  		lobbyPollNum++
+  
+  }else{
+  		activeGames[1][activeGames[0].indexOf(req.query.p)]=(new Date()).getTime()
+  }
 	initTable(req.query.t)
   var result=allTables[req.query.t]
 

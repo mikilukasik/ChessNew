@@ -45,7 +45,7 @@
 	
 	},800);
 	
-	function refreshLobby(){
+function refreshLobby(){
 		var lobbyPoll=$.ajax({
 		    type: 'GET',
 		    url: '/getLobby?p='+playerName,
@@ -80,13 +80,14 @@
 				console.log('polling')
 
 			
-				lobbyChatLines=lobbyPoll.responseJSON.lobbychat
-				players=lobbyPoll.responseJSON.players
+				var lobbyChatLines=lobbyPoll.responseJSON.lobbychat
+				var players=lobbyPoll.responseJSON.players
+				var games=lobbyPoll.responseJSON.games
 				players.sort(function (a, b) {
 				    return a.toLowerCase().localeCompare(b.toLowerCase());
 				});
-				lobbyPollNum=lobbyPoll.responseJSON.lobbypollnum
-				showLobby()
+				var lobbyPollNum=lobbyPoll.responseJSON.lobbypollnum
+				showLobby(lobbyChatLines,players,games,lobbyPollNum)
 
 
 
@@ -94,7 +95,7 @@
 		
 			
 }
-function showLobby(){
+function showLobby(lobbyChatLines,players,games,lobbyPollNum){
 	$(".putPlayersHere").empty();
 	var thisfunc="askToStart('Computer')"
 	var playersHTML = '<span class="pointed" onclick="'+thisfunc+'">Computer</span><br>'
@@ -107,16 +108,39 @@ function showLobby(){
 			playersHTML = playersHTML+'<span class="pointed" onclick="'+thisfunc+'">'+player+'</span><br>'
 		}
 		
-	}) 
+	})
+	
 	var playersPar= $('<p>'+playersHTML+'</p>')
 	
 	$(".putPlayersHere").append(playersPar)
+	
+	
+	
+	$(".putGamesHere").empty();
+	
+	var gamesHTML =""
+	
+	games.forEach(function(game){
 
-	showChat()
+			var thisfunc="askToWatch('"+game+"')"	//tricky
+			gamesHTML = gamesHTML+'<span class="pointed" onclick="'+thisfunc+'">'+game+'</span><br>'
+		
+		
+	})
+	
+	var gamesPar= $('<p>'+gamesHTML+'</p>')
+	
+	$(".putGamesHere").append(gamesPar)
+	
+	
+	
+	
+
+	showChat(lobbyChatLines)
 }
 
 
-function showChat(){								//this will update the chat field 
+function showChat(lobbyChatLines){								//this will update the chat field 
 
 			
 	$(".chatCell").empty();
@@ -156,6 +180,18 @@ function askToStart(opponentsName){
 
 
 }
+function askToWatch(gameID){
+	var tempTable=$.ajax({
+		    type: 'GET',
+		    url: '/watchGame?v='+playerName+"&t="+gameID,
+		    dataType: 'json',
+		    success: function() { },
+		    data: {},
+		    async: false,
+	});
+
+
+}
 
 
 </script>
@@ -172,6 +208,16 @@ function askToStart(opponentsName){
 			<p class="putPlayersHere"></p>
 				
 			</td>
+			
+			
+			<td>
+			Below you can see the active tables. <br>Click on a game to watch it.<br>
+			<br>
+			<p class="putGamesHere"></p>
+				
+			</td>
+			
+			
 			<td>
 				<table>
 				<tr class="chatTextTr">
