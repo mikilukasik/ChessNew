@@ -8,6 +8,8 @@ var whatHitsConst=1
 var hitValueConst=0.5
 var t1const=2.5
 var t2const=1
+var dontHitConst=0.8
+
 function getSimpleTableState(itable){
 	var tempString=""
 	
@@ -1056,7 +1058,7 @@ function createFirstTableState(cfTable,cfColor){
 
 		tTable2Value/=10
 		if (tTable2Value<0){
-			tTableValue/=5
+			tTableValue*=dontHitConst
 		}
 
 		tTableValue*=t1const
