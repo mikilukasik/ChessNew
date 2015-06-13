@@ -874,11 +874,13 @@ function moveIt(moveString,intable){
 			for (var j=0;j<8;j++){
 				thistable[i][j]= []  //new Array(4?)
 				
-				for(k=0;k<5;k++){
+				//for(k=0;k<5;k++){
 				
 				//intable[i][j].forEach(function (value,feCount){
-					thistable[i][j][k]=intable[i][j][k]
-				}//)
+					thistable[i][j]//[k]
+					=intable[i][j]//[k]
+					.slice()
+				//}//)
 			}
 		}
 		
