@@ -265,6 +265,7 @@ app.get('/move', function (req, res) {
 
 app.get('/aiMove', function (req, res) {
 	var tempConst=t1const
+	var startTime=(new Date()).getTime()
 	if(activeGames[0].indexOf(req.query.t)==-1){
   		activeGames[0].push(req.query.t)
   		activeGames[1].push((new Date()).getTime())
@@ -284,7 +285,7 @@ app.get('/aiMove', function (req, res) {
   }
   t1const=tempConst
   result1=result[1][0]
- 
+ 	allChats[req.query.t].push((new Date()).getTime()-startTime)
  	res.json({aimove: result1, fulltable: result});
 
 });
