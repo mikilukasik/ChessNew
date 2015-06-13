@@ -880,6 +880,7 @@ function moveIt(moveString,intable){
 					thistable[i][j]//[k]
 					=intable[i][j]//[k]
 					.slice()
+					thistable[i][j][6]=[]
 				//}//)
 			}
 		}
