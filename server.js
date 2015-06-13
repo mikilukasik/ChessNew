@@ -285,7 +285,7 @@ app.get('/aiMove', function (req, res) {
   }
   t1const=tempConst
   result1=result[1][0]
- 	allChats[req.query.t].push((new Date()).getTime()-startTime)
+ 	allChats[req.query.t].push(((new Date()).getTime()-startTime).concat(' ms'))
  	res.json({aimove: result1, fulltable: result});
 
 });
