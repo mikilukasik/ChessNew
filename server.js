@@ -85,7 +85,7 @@ setInterval(function(){
 				//console.log(xx)
 				
 				if(allWNexts[xx]){
-					t1const=1
+					t1const=2.5
 				}else{
 					t1const=randomConst[xx]
 				}
@@ -101,6 +101,7 @@ setInterval(function(){
 					  		activeGames[1][activeGames[0].indexOf(xx)]=(new Date()).getTime()
 					  }
 					var thisAiMove=ai(allTables[xx],allWNexts[xx])
+					t1Const=2.5
 					console.log('aimove on table '+xx+' generated')	
 					
 					
